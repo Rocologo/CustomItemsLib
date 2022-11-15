@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>CustomItemsLib</artifactId>
+	<packaging>jar</packaging>
+	<version>0.9.0-SNAPSHOT</version>
+	<name>Rocologo's CustomItems Library</name>
+	<url>https://github.com/Rocologo/CustomItemsLib</url>
+	<description>CustomItemsLib is a library with code shared between MobHunting and BagOfGold. </description>
+
+	<parent>
+		<groupId>one.lindegaard</groupId>
+		<artifactId>Main</artifactId>
+		<version>0.1.3-SNAPSHOT</version>
+	</parent>
+
+	<scm>
+		<connection>scm:svn:https://github.com/Rocologo/CustomItemsLib.git</connection>
+		<developerConnection>scm:git:git://github.com/Rocologo</developerConnection>
+		<url>https://github.com/Rocologo/CustomItemsLib</url>
+	</scm>
+
+	<properties>	
+			<bagofgold.version>4.2.0</bagofgold.version>
+			<mobhunting.version>8.1.8</mobhunting.version>
+	</properties>
+
+	<issueManagement>
+		<url>https://github.com/Rocologo/CustomItemsLib/issues</url>
+	</issueManagement>
+	
+	<!-- ********************************************************************** -->
+	<!-- ******************************** Build ******************************* -->
+	<!-- ********************************************************************** -->
+	<build>
+		<sourceDirectory>${basedir}/src</sourceDirectory>
+		<defaultGoal>clean install</defaultGoal>
+		<resources>
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>plugin.yml</include>
+				</includes>
+			</resource>
+			<resource>
+				<targetPath>lang</targetPath>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources/lang</directory>
+			</resource>
+		</resources>
+		<directory>${basedir}/target</directory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${mavenShadePlugin.version}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+					<createSourcesJar>false</createSourcesJar>
+					<artifactSet>
+						<includes>
+							<include>one.lindegaard:NMS*</include>
+						</includes>
+					</artifactSet>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- ********************************************************************** -->
+	<!-- **************************** Dependencies **************************** -->
+	<!-- ********************************************************************** -->
+	<dependencies>
+
+		<!-- SpigotMC -->
+		<dependency>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>${spigotmc_1_19_R1.version}</version>
+		</dependency>
+
+		<dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>authlib</artifactId>
+            <version>3.4.40</version>
+            <scope>provided</scope>
+        </dependency>
+
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_Shared</artifactId>
+			<version>${NMS_Shared.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_19_R1</artifactId>
+			<version>v1_19_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_18_R1</artifactId>
+			<version>v1_18_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_17_R1</artifactId>
+			<version>v1_17_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_16_R3</artifactId>
+			<version>v1_16_R3-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_16_R2</artifactId>
+			<version>v1_16_R2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_16_R1</artifactId>
+			<version>v1_16_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_15_R1</artifactId>
+			<version>v1_15_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_14_R1</artifactId>
+			<version>v1_14_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_13_R2</artifactId>
+			<version>v1_13_R2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_13_R1</artifactId>
+			<version>v1_13_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_12_R1</artifactId>
+			<version>v1_12_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_11_R1</artifactId>
+			<version>v1_11_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_10_R1</artifactId>
+			<version>v1_10_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_9_R2</artifactId>
+			<version>v1_9_R2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_9_R1</artifactId>
+			<version>v1_9_R1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_8_R3</artifactId>
+			<version>v1_8_R3-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_8_R2</artifactId>
+			<version>v1_8_R2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_8_R1</artifactId>
+			<version>v1_8_R1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>BagOfGold</artifactId>
+			<version>${bagofgold.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>MobHunting</artifactId>
+			<version>${mobhunting.version}</version>
+		</dependency>
+		
+		<!-- BossBarAPI -->
+		<dependency>
+			<groupId>org.inventivetalent</groupId>
+			<artifactId>bossbarapi</artifactId>
+			<version>${bossbarapi.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>metrics-lite</artifactId>
+					<groupId>org.mcstats.bukkit</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- BarAPI -->
+		<dependency>
+			<groupId>me.confuser</groupId>
+			<artifactId>BarAPI</artifactId>
+			<version>${barapi.version}</version>
+		</dependency>
+
+		<!-- TitleManager -->
+		<dependency>
+			<groupId>io.puharesource.mc</groupId>
+			<artifactId>TitleManager</artifactId>
+			<version>${titlemanager.version}</version>
+		</dependency>
+
+		<!-- TitleAPI, ActionBarAPI -->
+		<dependency>
+			<groupId>com.github.ConnorLinfoot</groupId>
+			<artifactId>TitleAPI</artifactId>
+			<version>${TitleAPI.version}</version>
+		</dependency>
+
+		<!-- CMI -->
+		<dependency>
+			<groupId>com.Zrips</groupId>
+			<artifactId>CMI</artifactId>
+			<version>${CMI.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.Zrips</groupId>
+			<artifactId>CMILib</artifactId>
+			<version>${CMILib.version}</version>
+		</dependency>
+
+		<!-- ActionBarAPI -->
+		<dependency>
+			<groupId>com.github.ConnorLinfoot</groupId>
+			<artifactId>ActionBarAPI</artifactId>
+			<version>${ActionBarAPI.version}</version>
+		</dependency>
+
+		<!-- ActionAnnouncer -->
+		<dependency>
+			<groupId>me.clip.actionannouncer</groupId>
+			<artifactId>ActionAnnouncer</artifactId>
+			<version>${ActionAnnouncer.version}</version>
+		</dependency>
+
+	</dependencies>
+
+</project>

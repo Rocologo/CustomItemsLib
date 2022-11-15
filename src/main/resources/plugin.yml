@@ -1,0 +1,44 @@
+name: CustomItemsLib
+main: one.lindegaard.CustomItemsLib.Core
+version: ${version}
+description: CustomItemsLib is shared library used by BagOfGold and MobHunting.  
+dev-url: https://www.spigotmc.org/resources/customitemslib.nnnnn/
+author: Rocologo
+depend: []
+loadbefore: [PerWorldInventory, Citizens2, Essentials, BagOfGold, MobHunting, ItemFrameShops, Multiverse-Core, TitleManager]
+softdepend: [Reserve]
+api-version: 1.13
+
+customitemslib:
+  bagofgold:
+    description: Allows you to use commands in CustomItemsLib
+    permission: customitemslib.cmd
+    aliases: [cil]
+    usage: /<command> command
+
+customitemslib:
+  customitemslib.cmd:
+    description: Allows a player to use the customitemslib command
+    default: true
+  customitemslib.update:
+    description: Allows a player to update the plugin
+    default: op
+    children:
+      customitemslib.cmd: true
+  customitemslib.reload:
+    description: Allows you to reload the configuration
+    default: op
+    children:
+      customitemslib.cmd: true
+  customitemslib.version:
+    description: Allows you to get plugin version.
+    default: true
+    children:
+      customitemslib.cmd: true
+  customitemslib.debug:
+    description: Allows you to enable/disable debugmode and see debug information in the server console.
+    default: op
+    children:
+      customitemslib.cmd: true
+
+      
