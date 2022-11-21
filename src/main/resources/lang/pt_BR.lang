@@ -23,13 +23,23 @@ core.commands.base.unknown_timeperiod=Unknown TimePeriod &b${period}
 core.commands.base.unknowncommand=Unknown command: &4${command}&a
 core.commands.base.usage=Usage: ${usage}
 core.commands.base.validcommands=Valid commands are:
+core.commands.debug.description=Enable/Disable debug information in server console.
+core.commands.debug.disabled=Debugmode disabled.
+core.commands.debug.enabled=Debugmode enabled. Check server console.
+core.commands.reload.description=Reloads the configuration
+core.commands.reload.reload-complete=Configuration Reloaded
+core.commands.reload.reload-error=There is a problem with the config. Please check any changes you made
 core.commands.update.check=Checking for new updates...
 core.commands.update.complete=Plugin updated. Restart server to complete the update.
 core.commands.update.could-not-update=The plugin could not be updated. You must do it manually.
 core.commands.update.description=Update the plugin
-core.commands.update.help=Please type '/bagofgold update' to update.
+core.commands.update.help=Please type '/cil update' to update.
 core.commands.update.no-update=No update found.
 core.commands.update.version-found=new version available: ${newversion}
+core.commands.version.currentversion=This server is running 'BagOfGold ${currentversion}'.
+core.commands.version.description=Show BagOfGold's version number.
+core.commands.version.newversion=Version ${newversion} is available. Use '/cil update' to update the plugin.
+
 
 mobs.Bat.name=§9Bat
 mobs.Bee.name=§9Abelha

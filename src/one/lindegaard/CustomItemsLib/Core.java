@@ -218,4 +218,13 @@ public class Core extends JavaPlugin {
 		return mSpigetUpdater;
 	}
 
+	/**
+	 * setMessages
+	 * 
+	 * @param messages
+	 */
+	public static void setMessages(Messages messages) {
+		mMessages = messages;
+	}
+
 }

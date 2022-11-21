@@ -10,7 +10,7 @@ softdepend: [Reserve]
 api-version: 1.13
 
 customitemslib:
-  bagofgold:
+  customitemslib:
     description: Allows you to use commands in CustomItemsLib
     permission: customitemslib.cmd
     aliases: [cil]
@@ -40,5 +40,3 @@ customitemslib:
     default: op
     children:
       customitemslib.cmd: true
-
-      
