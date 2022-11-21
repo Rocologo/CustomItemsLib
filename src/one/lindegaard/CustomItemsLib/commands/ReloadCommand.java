@@ -30,7 +30,7 @@ public class ReloadCommand implements ICommand {
 
 	@Override
 	public String getPermission() {
-		return "core.reload";
+		return "customitemslib.reload";
 	}
 
 	@Override

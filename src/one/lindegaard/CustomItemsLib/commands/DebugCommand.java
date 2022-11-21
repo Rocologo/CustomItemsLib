@@ -30,7 +30,7 @@ public class DebugCommand implements ICommand {
 
 	@Override
 	public String getPermission() {
-		return "core.debug";
+		return "customitemslib.debug";
 	}
 
 	@Override

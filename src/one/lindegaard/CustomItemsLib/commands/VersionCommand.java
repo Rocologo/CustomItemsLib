@@ -28,7 +28,7 @@ public class VersionCommand implements ICommand {
 
 	@Override
 	public String getPermission() {
-		return "core.version";
+		return "customitemslib.version";
 	}
 
 	@Override

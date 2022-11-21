@@ -28,7 +28,7 @@ public class UpdateCommand implements ICommand {
 
 	@Override
 	public String getPermission() {
-		return "core.update";
+		return "customitemslib.update";
 	}
 
 	@Override
