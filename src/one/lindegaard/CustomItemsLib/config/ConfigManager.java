@@ -115,6 +115,9 @@ public class ConfigManager extends AutoConfig {
 		setCategoryComment("database",
 				"########################################################################" + "\nDatabase Settings."
 						+ "\n########################################################################");
+		
+		setCategoryComment("updates", "########################################################################"
+				+ "\nUpdate settings" + "\n########################################################################");
 
 	}
 
@@ -347,5 +350,19 @@ public class ConfigManager extends AutoConfig {
 			+ "\nto change this value. In case you decide to delete your database and let it recreate"
 			+ "\nor if you change database type sqlite/mysql you should set this value to 0 again.")
 	public int databaseVersion = 0;
+	
+	// #####################################################################################
+	// Update Settings
+	// #####################################################################################
+	@ConfigField(name = "update-check", category = "updates", comment = "Check if there is a new version of the plugin available.")
+	public boolean updateCheck = true;
+
+	@ConfigField(name = "check_every", category = "updates", comment = "Set the number of seconds between each check. Recommended setting is"
+			+ "\ncheck_every: 7200 ~ to check every second hour.")
+	public int checkEvery = 7200;
+
+	@ConfigField(name = "autoupdate", category = "updates", comment = "Set 'autoupdate: true' if you want new updates downloaded and installed."
+			+ "\nYou will still have to reboot the server manually.")
+	public boolean autoupdate = false;
 
 }

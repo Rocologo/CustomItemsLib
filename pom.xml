@@ -24,8 +24,8 @@
 	</scm>
 
 	<properties>	
-			<bagofgold.version>4.2.0</bagofgold.version>
-			<mobhunting.version>8.1.8</mobhunting.version>
+			<bagofgold.version>4.5.0-SNAPSHOT</bagofgold.version>
+			<mobhunting.version>8.5.0-SNAPSHOT</mobhunting.version>
 	</properties>
 
 	<issueManagement>

@@ -6,6 +6,13 @@ core.moneypickup=You found ${money} ${rewardname}
 core.moneydrop=You dropped ${money} ${rewardname}
 core.moneylost=You lost ${prize}!
 
+core.commands.update.complete=Plugin zaktualizowany. Zrestartuj serwer aby ukonczyc aktualizacje.
+core.commands.update.could-not-update=Plugin nie mogl zostac zaktualizowany. Musisz dokonczyc to recznie.
+core.commands.update.description=Aktualizuje Plugin
+core.commands.update.help=Wpisz '/cil update' aby zaktualizowac.
+core.commands.update.no-update=Nie znaleziono nowszej wersji.
+core.commands.update.version-found=Dostepna nowa wersja: ${newversion}
+
 mobs.Armorer.name=§9Platnerz
 mobs.Bat.name=§9Nietoperz
 mobs.Bee.name=§9Pszczoła

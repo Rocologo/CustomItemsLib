@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -433,6 +434,17 @@ public class Messages {
 		} else {
 			player.sendMessage(ChatColor.AQUA + getString("core.learn.prefix") + " " + String.format(message, args));
 		}
+	}
+
+	public void senderSendMessage(final CommandSender sender, String message) {
+		if (isEmpty(message))
+			return;
+		if (sender instanceof Player) {
+			Player player = ((Player) sender);
+			if (!Core.getPlayerSettingsManager().getPlayerSettings(player).isMuted())
+				player.sendMessage(PlaceholderAPICompat.setPlaceholders((Player) sender, message));
+		} else
+			sender.sendMessage(message);
 	}
 
 }

@@ -6,6 +6,14 @@ core.moneydrop=Tu as lâché ${money} ${rewardname}
 core.moneylost=Tu as perdu ${prize}!
 core.reward.lore=Reward
 
+core.commands.update.check=Recherche de mise à jour...
+core.commands.update.complete=Plugin mis à jour. Redémarres le serveur pour terminer la mise à jour.
+core.commands.update.could-not-update=Le plugin n'a pas pu être mis à jour. Tu dois le faire manuellement.
+core.commands.update.description=Mets à jour le plugin
+core.commands.update.help=Merci de taper '/cil update' pour lancer la mise à jour.
+core.commands.update.no-update=Pas de mise à jour trouvée.
+core.commands.update.version-found=Nouvelle version disponible : ${newversion}
+
 mobs.Armorer.name=§9Armorer
 mobs.Bat.name=§9Bat
 mobs.Bee.name=§9Bee

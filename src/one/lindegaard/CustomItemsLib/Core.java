@@ -33,6 +33,7 @@ import one.lindegaard.CustomItemsLib.storage.DataStoreManager;
 import one.lindegaard.CustomItemsLib.storage.IDataStore;
 import one.lindegaard.CustomItemsLib.storage.MySQLDataStore;
 import one.lindegaard.CustomItemsLib.storage.SQLiteDataStore;
+import one.lindegaard.CustomItemsLib.update.SpigetUpdater;
 
 public class Core extends JavaPlugin {
 
@@ -48,6 +49,7 @@ public class Core extends JavaPlugin {
 	private static PlayerSettingsManager mPlayerSettingsManager;
 	private static CoreRewardManager mCoreRewardManager;
 	private static CompatibilityManager mCompatibilityManager;
+	private SpigetUpdater mSpigetUpdater;
 
 	// Public Placeholders used in BagOfGold and MobHunting
 	public static final String PH_PLAYERNAME = "playername";
@@ -153,7 +155,10 @@ public class Core extends JavaPlugin {
 
 		mCompatibilityManager.registerPlugin(BagOfGoldCompat.class, CompatPlugin.BagOfGold);
 		mCompatibilityManager.registerPlugin(MobHuntingCompat.class, CompatPlugin.MobHunting);
-		
+
+		// Check for new updates
+		mSpigetUpdater.hourlyUpdateCheck(getServer().getConsoleSender(), mConfig.updateCheck, false);
+
 	}
 
 	@Override
@@ -207,6 +212,10 @@ public class Core extends JavaPlugin {
 
 	public static CoreRewardManager getCoreRewardManager() {
 		return mCoreRewardManager;
+	}
+
+	public SpigetUpdater getSpigetUpdater() {
+		return mSpigetUpdater;
 	}
 
 }

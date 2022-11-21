@@ -6,6 +6,14 @@ core.moneylost=&eВы потеряли &6${prize}⦿&e.
 core.moneypickup=&eВы подобрали &6${money}⦿&e.
 core.reward.lore=&dЗолото
 
+core.commands.update.check=&7Поиск обновлений...
+core.commands.update.complete=&aПлагин успешно обновлен! Перезагрузить сервер, чтобы завершить установку обновления.
+core.commands.update.could-not-update=&cНевозможно обновить плагин. Вы должны сделать это вручную.
+core.commands.update.description=&7Обновить плагин.
+core.commands.update.help=&aИспользуйте '/cil update' чтобы обновиться.
+core.commands.update.no-update=&aОбновлений не найдено.
+core.commands.update.version-found=&cДоступна новая версия: ${newversion}
+
 mobs.Armorer.name=§9Оружейник
 mobs.Bat.name=§9Лечучая Мышь
 mobs.Bee.name=§9пчелка

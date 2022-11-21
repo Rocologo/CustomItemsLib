@@ -18,7 +18,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockFromToEvent;
-import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ItemDespawnEvent;
@@ -414,13 +413,13 @@ public class CoreRewardListeners implements Listener {
 		Inventory inventory = event.getInventory();
 		Inventory clickedInventory = Servers.isMC113OrNewer() ? event.getClickedInventory() : inventory;
 
-		Core.getMessages().debug(
-				"action=%s, InvType=%s, clickedInvType=%s, slottype=%s, slotno=%s, current=%s, cursor=%s, view=%s, keyboardClick=%s, numberKey=%s, swap_hand=%s",
-				action, inventory.getType(), clickedInventory == null ? "null" : clickedInventory.getType(), slotType,
-				event.getSlot(), isCurrentSlot == null ? "null" : isCurrentSlot.getType(),
-				isCursor == null ? "null" : isCursor.getType(), event.getView().getType(),
-				event.getClick().isKeyboardClick(), isNumberKey == null ? "null" : isNumberKey.getType(),
-				isSwapOffhand == null ? "null" : isSwapOffhand.getType());
+		//Core.getMessages().debug(
+		//		"action=%s, InvType=%s, clickedInvType=%s, slottype=%s, slotno=%s, current=%s, cursor=%s, view=%s, keyboardClick=%s, numberKey=%s, swap_hand=%s",
+		//		action, inventory.getType(), clickedInventory == null ? "null" : clickedInventory.getType(), slotType,
+		//		event.getSlot(), isCurrentSlot == null ? "null" : isCurrentSlot.getType(),
+		//		isCursor == null ? "null" : isCursor.getType(), event.getView().getType(),
+		//		event.getClick().isKeyboardClick(), isNumberKey == null ? "null" : isNumberKey.getType(),
+		//		isSwapOffhand == null ? "null" : isSwapOffhand.getType());
 
 		if (slotType == SlotType.ARMOR && Reward.isReward(isCursor)) {
 			Reward reward = Reward.getReward(isCursor);
@@ -457,7 +456,7 @@ public class CoreRewardListeners implements Listener {
 					break;
 				case CLONE_STACK:
 					if (Reward.isReward(isCurrentSlot) || Reward.isReward(isCursor)) {
-						Core.getMessages().debug("CoreRewardListeners: %s its not allowed to clone BagOfGold",
+						Core.getMessages().debug("CoreRewardListeners: %s its not allowed to clone BagOfGold items",
 								player.getName());
 						event.setCancelled(true);
 					}
@@ -499,7 +498,7 @@ public class CoreRewardListeners implements Listener {
 											saldo - money_in_hand);
 							}
 						} else if (cursor.isKilledHeadReward() || cursor.isKillerHeadReward()) {
-							Core.getMessages().debug("Collect to cursor on MobHunting heads is still not implemented");
+							Core.getMessages().debug("Collect to cursor on BagOfGold item / MobHunting heads is still not implemented");
 						}
 					}
 					break;
@@ -550,7 +549,7 @@ public class CoreRewardListeners implements Listener {
 					}
 					break;
 				case MOVE_TO_OTHER_INVENTORY:
-					// Shift mouse click on the item to move item tro another inventory
+					// Shift mouse click on the item to move item to another inventory
 					if (BagOfGoldCompat.isSupported()
 							&& (Reward.isReward(isCurrentSlot) || Reward.isReward(isCursor))) {
 						Reward reward = Reward.isReward(isCurrentSlot) ? Reward.getReward(isCurrentSlot)
