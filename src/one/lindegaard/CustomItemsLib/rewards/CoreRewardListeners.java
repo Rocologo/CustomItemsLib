@@ -17,6 +17,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -90,17 +91,21 @@ public class CoreRewardListeners implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onInventoryMoveItemEvent(InventoryMoveItemEvent event) {
-		// This happens when an item moves from one Intory to another. Ex from one Hoppe
+		// This happens when an item moves from one Inventory to another. Ex from one
+		// Hopper
 		// to another Hopper.
+		if (event.isCancelled())
+			return;
+
 		ItemStack is = event.getItem();
 		if (Reward.isReward(is)) {
 			Reward reward = Reward.getReward(is);
 			Core.getMessages().debug(
-					"CoreRewardListeners: onInventoryMoveItemEvent: a %s was moved from %s to %s. The Initiator was %s",
+					"CoreRewardListeners: onInventoryMoveItemEvent: a %s was moved from %s to %s. The Initiator was a %s at %s",
 					reward.getDisplayName(), event.getSource().getType(), event.getDestination().getType(),
-					event.getInitiator().getType());
+					event.getInitiator().getType(), event.getInitiator().getLocation().toString());
 
 			// TODO: The BagOfGold in the Destination inventory should be merged.
 
@@ -319,10 +324,6 @@ public class CoreRewardListeners implements Listener {
 
 		ClickType clickType = event.getClick();
 
-		// Can NPC's do InventoryClick?
-		// if (CitizensCompat.isNPC(event.getWhoClicked()))
-		// return;
-
 		Player player = (Player) event.getWhoClicked();
 
 		ItemStack isCurrentSlot = event.getCurrentItem() != null ? event.getCurrentItem().clone() : null;
@@ -356,12 +357,6 @@ public class CoreRewardListeners implements Listener {
 			return;
 		}
 
-//		if ((action == InventoryAction.HOTBAR_SWAP || event.getAction() == InventoryAction.HOTBAR_MOVE_AND_READD)
-//				&& event.getClick().isKeyboardClick() && player.getGameMode() != GameMode.SURVIVAL) {
-//			event.setCancelled(true);
-//			return;
-//		}
-
 		if (!Reward.isReward(isCurrentSlot) && !Reward.isReward(isCursor) && !Reward.isReward(isNumberKey)
 				&& !Reward.isReward(isSwapOffhand))
 			return;
@@ -369,8 +364,8 @@ public class CoreRewardListeners implements Listener {
 		if (Reward.isReward(isCurrentSlot)) {
 			Reward reward = Reward.getReward(isCurrentSlot);
 			if (!reward.checkHash()) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGold]" + ChatColor.RED + "[Warning] "
-						+ player.getName() + " has tried to change the value of a BagOfGold Item. Value set to 0!(9)");
+				Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING + player.getName()
+						+ " has tried to change the value of a BagOfGold Item. Value set to 0!(9)");
 				reward.setMoney(0);
 				isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCurrentSlot, reward);
 			} else if (reward.isMoney() && isCurrentSlot.getAmount() > 1) {
@@ -384,8 +379,8 @@ public class CoreRewardListeners implements Listener {
 		if (Reward.isReward(isCursor)) {
 			Reward reward = Reward.getReward(isCursor);
 			if (!reward.checkHash()) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGold]" + ChatColor.RED + "[Warning] "
-						+ player.getName() + " has tried to change the value of a BagOfGold Item. Value set to 0!(10)");
+				Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING + player.getName()
+						+ " has tried to change the value of a BagOfGold Item. Value set to 0!(10)");
 				reward.setMoney(0);
 				isCursor = Reward.setDisplayNameAndHiddenLores(isCursor, reward);
 			} else if (reward.isMoney() && isCursor.getAmount() > 1) {
@@ -399,9 +394,8 @@ public class CoreRewardListeners implements Listener {
 		if (Reward.isReward(isNumberKey)) {
 			Reward reward = Reward.getReward(isNumberKey);
 			if (!reward.checkHash()) {
-				Bukkit.getConsoleSender()
-						.sendMessage(ChatColor.GOLD + "[BagOfGold]" + ChatColor.RED + "[Warning] " + player.getName()
-								+ " has tried to change the value of a BagOfGold Item. Value set to 0!(11a)");
+				Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING + player.getName()
+						+ " has tried to change the value of a BagOfGold Item. Value set to 0!(11a)");
 				reward.setMoney(0);
 				isNumberKey = Reward.setDisplayNameAndHiddenLores(isNumberKey, reward);
 			}
@@ -409,9 +403,8 @@ public class CoreRewardListeners implements Listener {
 		if (Reward.isReward(isSwapOffhand)) {
 			Reward reward = Reward.getReward(isSwapOffhand);
 			if (!reward.checkHash()) {
-				Bukkit.getConsoleSender()
-						.sendMessage(ChatColor.GOLD + "[BagOfGold]" + ChatColor.RED + "[Warning] " + player.getName()
-								+ " has tried to change the value of a BagOfGold Item. Value set to 0!(11b)");
+				Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING + player.getName()
+						+ " has tried to change the value of a BagOfGold Item. Value set to 0!(11b)");
 				reward.setMoney(0);
 				isSwapOffhand = Reward.setDisplayNameAndHiddenLores(isSwapOffhand, reward);
 			}
@@ -434,13 +427,14 @@ public class CoreRewardListeners implements Listener {
 			if (reward.isMoney() && (action == InventoryAction.PLACE_ALL || action == InventoryAction.PLACE_ONE
 					|| action == InventoryAction.PLACE_SOME || action == InventoryAction.COLLECT_TO_CURSOR)) {
 				Core.getMessages().playerActionBarMessageQueue(player,
-						Core.getMessages().getString("bagofgold.learn.rewards.no-helmet"));
+						Core.getMessages().getString("core.learn.rewards.no-helmet"));
 				event.setCancelled(true);
 				return;
 			}
 		}
 
-		if (inventory.getType() == InventoryType.MERCHANT && BagOfGoldCompat.isSupported() && ShopkeepersCompat.isSupported()) {
+		if (inventory.getType() == InventoryType.MERCHANT && BagOfGoldCompat.isSupported()
+				&& ShopkeepersCompat.isSupported()) {
 			Core.getMessages().debug(
 					"action=%s, InvType=%s, clickedInvType=%s, slottype=%s, slotno=%s, current=%s, cursor=%s, view=%s, key=%s",
 					action, inventory.getType(), clickedInventory == null ? "null" : clickedInventory.getType(),
@@ -463,7 +457,7 @@ public class CoreRewardListeners implements Listener {
 					break;
 				case CLONE_STACK:
 					if (Reward.isReward(isCurrentSlot) || Reward.isReward(isCursor)) {
-						Core.getMessages().debug("BagOfGoldItems: %s its not allowed to clone BagOfGold",
+						Core.getMessages().debug("CoreRewardListeners: %s its not allowed to clone BagOfGold",
 								player.getName());
 						event.setCancelled(true);
 					}
@@ -556,30 +550,42 @@ public class CoreRewardListeners implements Listener {
 					}
 					break;
 				case MOVE_TO_OTHER_INVENTORY:
+					// Shift mouse click on the item to move item tro another inventory
 					if (BagOfGoldCompat.isSupported()
 							&& (Reward.isReward(isCurrentSlot) || Reward.isReward(isCursor))) {
 						Reward reward = Reward.isReward(isCurrentSlot) ? Reward.getReward(isCurrentSlot)
 								: Reward.getReward(isCursor);
 						if (reward.isMoney()) {
-							if (inventory.getType() != InventoryType.ANVIL
-									&& inventory.getType() != InventoryType.ENCHANTING
-									&& inventory.getType() != InventoryType.CRAFTING) {
-								if (clickedInventory.getType() == InventoryType.PLAYER) {
+							if (clickedInventory.getType() == InventoryType.PLAYER) {
+								if (inventory.getType() == InventoryType.WORKBENCH
+										|| inventory.getType() == InventoryType.ENCHANTING
+										|| inventory.getType() == InventoryType.ANVIL
+										|| inventory.getType() == InventoryType.SMITHING
+										|| inventory.getType() == InventoryType.GRINDSTONE) {
+									Core.getMessages().debug("%s: this reward can't be moved into %s's crafting slot",
+											player.getName(), inventory.getType());
+									event.setCancelled(true);
+									return;
+								} else if (inventory.getType() == InventoryType.FURNACE
+										|| inventory.getType() == InventoryType.BLAST_FURNACE
+										|| inventory.getType() == InventoryType.BREWING
+										|| inventory.getType() == InventoryType.MERCHANT
+										|| inventory.getType() == InventoryType.STONECUTTER
+										|| inventory.getType() == InventoryType.LOOM
+										|| inventory.getType() == InventoryType.CARTOGRAPHY) {
+									Core.getMessages().debug("%s moved %s %s inside the Player Inventory",
+											player.getName(), reward.getMoney(), reward.getDisplayName());
+								} else {
 									Core.getMessages().debug("%s moved %s %s out of the Player Inventory",
 											player.getName(), reward.getMoney(), reward.getDisplayName());
 									BagOfGold.getInstance().getRewardManager().removeMoneyFromPlayerBalance(player,
 											reward.getMoney());
-								} else { // CHEST, DISPENSER, DROPPER, ......
-									Core.getMessages().debug("%s moved %s %s into the Player Inventory",
-											player.getName(), reward.getMoney(), reward.getDisplayName());
-									BagOfGold.getInstance().getRewardManager().addMoneyToPlayerBalance(player,
-											reward.getMoney());
 								}
-							} else {
-								Core.getMessages().debug("%s: this reward can't be moved into %s", player.getName(),
-										inventory.getType());
-								event.setCancelled(true);
-								return;
+							} else { // CHEST, DISPENSER, DROPPER, ......
+								Core.getMessages().debug("%s moved %s %s into the Player Inventory", player.getName(),
+										reward.getMoney(), reward.getDisplayName());
+								BagOfGold.getInstance().getRewardManager().addMoneyToPlayerBalance(player,
+										reward.getMoney());
 							}
 						}
 					}
@@ -627,8 +633,7 @@ public class CoreRewardListeners implements Listener {
 								event.setCursor(isCursor);
 
 								Core.getMessages().debug("%s halfed a reward in two (%s,%s)", player.getName(),
-										Tools.format(currentSlotMoney),
-										Tools.format(cursorMoney));
+										Tools.format(currentSlotMoney), Tools.format(cursorMoney));
 
 								if (clickedInventory.getType() == InventoryType.PLAYER
 										|| clickedInventory.getType() == InventoryType.CRAFTING) {
@@ -681,7 +686,6 @@ public class CoreRewardListeners implements Listener {
 						}
 
 					} else { // GameMode!=Survival
-						// event.setCancelled(true);
 						if (Reward.isReward(isCurrentSlot) && isCursor.getType() == Material.AIR) {
 							Reward reward = Reward.getReward(isCurrentSlot);
 							isCursor = Reward.setDisplayNameAndHiddenLores(isCurrentSlot.clone(), reward);
@@ -801,7 +805,7 @@ public class CoreRewardListeners implements Listener {
 					}
 					break;
 				default:
-					Core.getMessages().debug("BagOfGoldItems: Unhandled action=%s", action);
+					Core.getMessages().debug("CoreRewardListeners: Unhandled action=%s", action);
 				}
 
 			} else {
@@ -817,6 +821,9 @@ public class CoreRewardListeners implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onProjectileHitRewardEvent(ProjectileHitEvent event) {
+		if (event.isCancelled())
+			return;
+
 		Projectile projectile = event.getEntity();
 		Entity targetEntity = null;
 		Iterator<Entity> nearby = projectile.getNearbyEntities(1, 1, 1).iterator();
@@ -838,19 +845,12 @@ public class CoreRewardListeners implements Listener {
 		if (event.isCancelled())
 			return;
 
-		if (BagOfGoldCompat.isSupported())
-			return;
-
 		Item item = event.getItem();
 		if (!Reward.isReward(item))
 			return;
 
 		if (Core.getConfigManager().denyHoppersToPickUpRewards
 				&& event.getInventory().getType() == InventoryType.HOPPER) {
-			// plugin.getMessages().debug("A %s tried to pick up the the reward,
-			// but this is
-			// disabled in config.yml",
-			// event.getInventory().getType());
 			event.setCancelled(true);
 		} else {
 			Core.getMessages().debug("The reward was picked up by %s", event.getInventory().getType());
@@ -926,40 +926,23 @@ public class CoreRewardListeners implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onBlockPhysicsEvent(BlockPhysicsEvent event) {
-
+	public void onBlockFromToEvent(BlockFromToEvent event) {
 		if (event.isCancelled())
 			return;
 
-		if (event.getChangedType() != Material.matchMaterial("PLAYER_HEAD"))
-			return;
-
-		Block block = event.getBlock();
-
-		if (Reward.isReward(block)) {
-			Reward reward = Reward.getReward(block);
-
-			// plugin.getMessages().debug("RewardListernes: Changed:%s, Src=%s, blk=%s" ,
-			// event.getChangedType(), event.getSourceBlock().getType(),
-			// event.getBlock().getType());
-
-			if (event.getSourceBlock().getType() == Material.DISPENSER
-					|| event.getSourceBlock().getType() == Material.matchMaterial("WATER")) {
-				if (!Reward.isReward(event.getSourceBlock())) {
-					// plugin.getMessages().debug("RewardListeners: a %s changed a %s(%s)",
-					// event.getSourceBlock().getType(), block.getType(), reward.getMoney());
-					Core.getRewardBlockManager().removeReward(block);
-					Core.getCoreRewardManager().dropRewardOnGround(block.getLocation(), reward);
-				}
-			} else if (event.getSourceBlock().getType() == Material.matchMaterial("PLAYER_HEAD")) {
-				// plugin.getMessages().debug("PLAYER_HEAD changed PLAYER_HEAD");
-				return;
-			} else {
-				// plugin.getMessages().debug("RewardListeners: Event Cancelled - a %s tried to
-				// change a %s(%s)",
-				// event.getSourceBlock().getType(), block.getType(), reward.getMoney());
-				event.setCancelled(true);
+		Block toBlock = event.getToBlock();
+		if (Reward.isReward(toBlock)) {
+			Reward reward = Reward.getReward(toBlock);
+			Block fromBlock = event.getBlock();
+			event.setCancelled(true);
+			if (!Core.getConfigManager().denyWaterToBreakRewards) {
+				Core.getMessages().debug("BlockFromToEvent: %s broke %s", fromBlock.getType(), reward.getDisplayName());
+				Core.getRewardBlockManager().removeReward(toBlock);
+				Core.getCoreRewardManager().dropRewardOnGround(toBlock.getLocation(), reward);
 			}
 		}
 	}
+	
+	// OBS BlockBurnEvent can be used to deny LAVA to burn Rewards. 
+
 }

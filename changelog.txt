@@ -1,2 +1,5 @@
 V0.0.1
 * Initial version
+V0.9.0
+* WATER breaks by default BagOfGold/Reward items and keep its value. This behavior can be configured in the config.yml 
+* 

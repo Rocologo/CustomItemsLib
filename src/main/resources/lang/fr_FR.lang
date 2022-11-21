@@ -1,9 +1,9 @@
-core.command.base.description=BagOfGold Version 
-core.config.fail=There was a problem loading the BagOfGold config
+core.command.base.description=Version de CustomItemsLib
+core.config.fail=Il y a eu un problème en chargeant la configuration de CCustomItemsLib
 core.learn.rewards.no-helmet=§bYou are not allowed to wear a reward as a helmet
-core.moneypickup=You found ${money} ${rewardname}
-core.moneydrop=You dropped ${money} ${rewardname}
-core.moneylost=You lost ${prize}!
+core.moneypickup=Tu as ramassé ${money} ${rewardname} !
+core.moneydrop=Tu as lâché ${money} ${rewardname}
+core.moneylost=Tu as perdu ${prize}!
 core.reward.lore=Reward
 
 mobs.Armorer.name=§9Armorer

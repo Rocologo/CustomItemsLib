@@ -272,8 +272,14 @@ public class ConfigManager extends AutoConfig {
 
 	@ConfigField(name = "deny_hoppers_to_pickup_rewards", category = "reward.other", comment = "Dark room mobspawners usually collect items in a HOPPER. This is allowed by default."
 			+ "\nIf you want to deny HOPPERS to collect MobHunting Money rewards "
-			+ "\nset \"deny_hoppers_to_pickup_rewards\"=false")
-	public boolean denyHoppersToPickUpRewards = true;
+			+ "\nset \"deny_hoppers_to_pickup_rewards\"=true")
+	public boolean denyHoppersToPickUpRewards = false;
+	
+	@ConfigField(name = "deny_water_to_break_rewards", category = "reward.other", 
+			comment = "By default flowing WATER / LAVA usually breaks Player Heads, but here you can set the behavior."
+			+ "\nIf you want to deny WATER and LAVA to break Rewards, set \"deny_water_to_break_rewards\"=true")
+	public boolean denyWaterToBreakRewards = false;
+	
 	
 	// #####################################################################################
 	// Plugin integration

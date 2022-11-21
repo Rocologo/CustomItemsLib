@@ -1,4 +1,11 @@
 core.reward.lore=Nagroda Polowania
+core.command.base.description=BagOfGold Version 
+core.config.fail=There was a problem loading the BagOfGold config
+core.learn.rewards.no-helmet=§bYou are not allowed to wear a reward as a helmet
+core.moneypickup=You found ${money} ${rewardname}
+core.moneydrop=You dropped ${money} ${rewardname}
+core.moneylost=You lost ${prize}!
+
 mobs.Armorer.name=§9Platnerz
 mobs.Bat.name=§9Nietoperz
 mobs.Bee.name=§9Pszczoła

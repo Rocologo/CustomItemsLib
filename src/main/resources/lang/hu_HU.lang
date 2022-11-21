@@ -1,4 +1,11 @@
 core.reward.lore=MobHunting Nyeremény
+core.config.fail=Hiba történt a CustomItemsLib konfiguráció betöltése során
+core.learn.rewards.no-helmet=§bYou are not allowed to wear a reward as a helmet
+core.moneypickup=Találtál ${money} ${rewardname}
+core.moneydrop=Leesett ${money} ${rewardname}
+core.moneylost=Veszítettél ${prize}!
+core.reward.lore=Reward
+
 mobs.Armorer.name=§9Fegyverkovács
 mobs.Bat.name=§9Denevér
 mobs.Bee.name=§9Méh

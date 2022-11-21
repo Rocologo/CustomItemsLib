@@ -1,4 +1,14 @@
 core.reward.lore=MobHunting 奖励
+core.learn.rewards.no-helmet=§bYou are not allowed to wear a reward as a helmet
+bagofgold.config.fail=加载 BagOfGold 插件时出现问题
+core.moneydrop=你损失了 ${money} ${rewardname}
+core.moneygain=你获得了 ${prize}!
+core.moneygain.drop=${killed} 下降 ${prize} 在地上!
+core.moneylost=你丢失了 ${prize}!
+core.moneypickup=You found ${money} ${rewardname}
+
+bagofgold.reward.lore=MobHunting Reward
+
 mobs.Armorer.name=§9Armorer
 mobs.Bat.name=§9蝙蝠
 mobs.Bee.name=§9蜜蜂

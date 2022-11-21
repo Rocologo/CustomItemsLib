@@ -56,7 +56,7 @@ public class Messages {
 
 	private static Map<String, String> mTranslationTable;
 	private static String[] mValidEncodings = new String[] { "UTF-16", "UTF-16BE", "UTF-16LE", "UTF-8", "ISO646-US" };
-	private static String[] sources = new String[] { "en_US.lang", "hu_HU.lang", "pl_PL.lang", "ru_RU.lang",
+	private static String[] sources = new String[] { "en_US.lang", "fr_FR.lang", "hu_HU.lang", "pl_PL.lang", "pt_BR.lang", "ru_RU.lang",
 			"zh_CN.lang" };
 
 	public void exportDefaultLanguages(Plugin plugin) {
