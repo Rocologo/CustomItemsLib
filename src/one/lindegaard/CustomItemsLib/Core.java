@@ -76,11 +76,11 @@ public class Core extends JavaPlugin {
 		plugin = this;
 
 		if (!mFile.exists()) {
-			mFile.mkdirs();
+			mFile.mkdir();
 			// Copy config and database from old place
-			File mFileOldConfig = new File(getDataFolder().getParent() + "/BagOfGold", "bagofgoldcore.yml");
-			File mFileOldDb = new File(getDataFolder().getParent() + "/BagOfGold", "bagofgoldcore.db");
-			File mFileNewDb = new File(getDataFolder(), "bagofgoldcore.db");
+			File mFileOldConfig = new File(getDataFolder().getParent() + "/BagOfGold", "/bagofgoldcore.yml");
+			File mFileOldDb = new File(getDataFolder().getParent() + "/BagOfGold", "/bagofgoldcore.db");
+			File mFileNewDb = new File(getDataFolder(), "/bagofgoldcore.db");
 			if (mFileOldConfig.exists()) {
 				try {
 					Files.move(mFileOldConfig.toPath(), mFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
@@ -135,6 +135,9 @@ public class Core extends JavaPlugin {
 			}
 			return;
 		}
+
+		mSpigetUpdater = new SpigetUpdater(this);
+		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
 
 		mDataStoreManager = new DataStoreManager(plugin, mStore);
 		mPlayerSettingsManager = new PlayerSettingsManager(plugin);

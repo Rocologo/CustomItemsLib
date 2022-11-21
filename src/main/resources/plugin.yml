@@ -5,8 +5,8 @@ description: CustomItemsLib is shared library used by BagOfGold and MobHunting.
 dev-url: https://www.spigotmc.org/resources/customitemslib.nnnnn/
 author: Rocologo
 depend: []
-loadbefore: [PerWorldInventory, Citizens2, Essentials, BagOfGold, MobHunting, ItemFrameShops, Multiverse-Core, TitleManager]
-softdepend: [Reserve]
+loadbefore: [BagOfGold, MobHunting]
+softdepend: [Reserve, Vault, PerWorldInventory, Citizens, Essentials, ProtocolLib, PacketListenerApi, ItemFrameShops, Multiverse-Core, TitleManager, CMI, CMILib, BossBarAPI, BarAPI, ActionBar, TitleAPI, TitleManager, ActionBarAPI, ActionAnnouncer]
 api-version: 1.13
 
 customitemslib:

@@ -29,8 +29,8 @@ public class SQLiteDataStore extends DatabaseDataStore {
 	protected Connection setupConnection() throws DataStoreException {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			Connection connection = DriverManager.getConnection(
-					"jdbc:sqlite:" + plugin.getDataFolder().getPath() + Core.getConfigManager().databaseName + ".db");
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:" + plugin.getDataFolder().getPath() + "/"
+					+ Core.getConfigManager().databaseName + ".db");
 			connection.setAutoCommit(false);
 			return connection;
 		} catch (ClassNotFoundException classNotFoundEx) {
