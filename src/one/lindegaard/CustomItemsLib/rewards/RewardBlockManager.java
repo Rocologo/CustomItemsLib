@@ -35,7 +35,7 @@ public class RewardBlockManager {
 
 	public RewardBlockManager(Plugin plugin) {
 		this.plugin = plugin;
-		file = new File(plugin.getDataFolder().getParent(), "BagOfGold/rewards.yml");
+		file = new File(plugin.getDataFolder().getParent(), "CustomItemsLib/rewards.yml");
 		load();
 		Bukkit.getPluginManager().registerEvents(new CoreRewardListeners(plugin), plugin);
 	}
@@ -175,18 +175,25 @@ public class RewardBlockManager {
 				config.save(file);
 			}
 			if (n > 0) {
-				Core.getMessages().debug("Loaded %s rewards from the BagOfGold/rewards.yml file", n);
+				Core.getMessages().debug("Loaded %s rewards from the CustomItemsLib/rewards.yml file", n);
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		// Import files from MobHunting to BagOfGold/rewards.yml
+		// Import files from MobHunting to CustomItemsLib/rewards.yml
 		File file2 = new File(plugin.getDataFolder().getParent(), "MobHunting/rewards.yml");
 		if (file2.exists()) {
 			Core.getMessages().debug("Loading rewards from MobHunting first time.");
 			migrateRewardsFromMobHunting(file2);
+		}
+		
+		// Import files from BagOfGold to CustomItemsLib/rewards.yml
+		File file3 = new File(plugin.getDataFolder().getParent(), "BagOfGold/rewards.yml");
+		if (file3.exists()) {
+			Core.getMessages().debug("Loading rewards from BagOfGold first time.");
+			migrateRewardsFromBagOfGold(file3);
 		}
 	}
 
@@ -225,8 +232,51 @@ public class RewardBlockManager {
 			e.printStackTrace();
 		}
 		if (n > 0) {
-			Core.getMessages().debug("Loaded %s rewards from the MobHunting/rewards.yml file." + ChatColor.RED
+			Core.getMessages().debug("Loaded %s rewards from the CustomItemsLib/rewards.yml file." + ChatColor.RED
 					+ " Renaming MobHunting/rewards.yml to MobHunting/rewards.yml.old", n);
+			file.renameTo(new File(file.getPath() + ".old"));
+			dataChanged = true;
+		}
+
+	}
+	
+	private void migrateRewardsFromBagOfGold(File file) {
+		if (!file.exists())
+			return;
+
+		YamlConfiguration mobhunting_rewards = new YamlConfiguration();
+		int n = 0;
+
+		try {
+			mobhunting_rewards.load(file);
+		} catch (IOException | InvalidConfigurationException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			for (String key : mobhunting_rewards.getKeys(false)) {
+				ConfigurationSection section = mobhunting_rewards.getConfigurationSection(key);
+				Reward reward = new Reward();
+				reward.read(section);
+				Location location = (Location) section.get("location");
+				for (RewardBlock rb : rewardBlocks.values()) {
+					if (rb.equals(new RewardBlock(location, reward)))
+						continue;
+				}
+				if (location != null && Materials.isSkull(location.getBlock().getType())) {
+					n++;
+					reward.setUniqueID(n);
+					location.getBlock().setMetadata(Reward.MH_REWARD_DATA_NEW,
+							new FixedMetadataValue(plugin, new Reward(reward)));
+					rewardBlocks.put(n, new RewardBlock(location, reward));
+				}
+			}
+		} catch (InvalidConfigurationException e) {
+			e.printStackTrace();
+		}
+		if (n > 0) {
+			Core.getMessages().debug("Loaded %s rewards from the CustomItemsLib/rewards.yml file." + ChatColor.RED
+					+ " Renaming BagOfGold/rewards.yml to BagOfGold/rewards.yml.old", n);
 			file.renameTo(new File(file.getPath() + ".old"));
 			dataChanged = true;
 		}
