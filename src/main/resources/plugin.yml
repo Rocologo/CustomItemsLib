@@ -9,14 +9,14 @@ loadbefore: [BagOfGold, MobHunting]
 softdepend: [Reserve, Vault, PerWorldInventory, Citizens, Essentials, ProtocolLib, PacketListenerApi, ItemFrameShops, Multiverse-Core, TitleManager, CMI, CMILib, BossBarAPI, BarAPI, ActionBar, TitleAPI, TitleManager, ActionBarAPI, ActionAnnouncer]
 api-version: 1.13
 
-customitemslib:
+commands:
   customitemslib:
     description: Allows you to use commands in CustomItemsLib
     permission: customitemslib.cmd
     aliases: [cil]
     usage: /<command> command
 
-customitemslib:
+permissions:
   customitemslib.cmd:
     description: Allows a player to use the customitemslib command
     default: true

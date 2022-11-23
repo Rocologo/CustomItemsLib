@@ -115,9 +115,7 @@ public class RewardBlockManager {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} // else
-			// Core.getMessages().debug("No rewards was placed or removed. Nothing to write
-			// to rewards.yml");
+		}
 	}
 
 	public void load() {

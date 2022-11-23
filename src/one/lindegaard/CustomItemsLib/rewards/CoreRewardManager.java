@@ -160,6 +160,7 @@ public class CoreRewardManager {
 			ItemStack is = player.getInventory().getItem(slot);
 			if (Reward.isReward(is)) {
 				Reward reward = Reward.getReward(is);
+				Core.getMessages().debug("Foung bag in slot %s",slot);
 				if (reward.checkHash()) {
 					if (reward.isMoney()) {
 						double saldo = Tools.round(reward.getMoney());

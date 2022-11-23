@@ -1,11 +1,11 @@
-core.config.fail=There was a problem loading the BagOfGold config
+core.config.fail=There was a problem loading the CustomItemsLib config
 core.learn.rewards.no-helmet=§bYou are not allowed to wear a reward as a helmet
 core.moneydrop=Você dropou ${money} ${rewardname}
 core.moneylost=Você perdeu ${prize}!
 core.moneypickup=Você encontrou ${money} ${rewardname}
 core.reward.lore=MobHunting Reward
 
-core.command.base.description=BagOfGold Version
+core.command.base.description=CustomItemsLib Version
 core.commands.base.error=An internal error occurred while executing that command.
 core.commands.base.help.commands=Comandos:
 core.commands.base.help.description=Displays this screen.

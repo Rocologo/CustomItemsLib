@@ -6,7 +6,7 @@ core.moneydrop=Leesett ${money} ${rewardname}
 core.moneylost=Veszítettél ${prize}!
 core.reward.lore=Reward
 
-core.command.base.description=CustomItesLib Version
+core.command.base.description=CustomItemsLib Version
 core.commands.base.help.commands=Parancsok:
 core.commands.base.help.description=Megjeleníti ezt a képernyőt.
 core.commands.base.nocommand=Nincs megadva parancs: ${command}
@@ -15,7 +15,7 @@ core.commands.base.noconsole=${command} nem hívható a konzolról.
 core.commands.base.nopermission=Nincs jogod (${perm}) ${command} a használatához
 core.commands.base.unknowncommand=Ismeretlen parancs: &4${command}&a
 core.commands.base.unknown_playername=${playername} nem ismert ezen a szerveren
-core.commands.base.morehelp=Típus /bagofgold &6<parancs> help&f segítséget kap egy adott parancs segítségével. 
+core.commands.base.morehelp=Típus /cil &6<parancs> help&f segítséget kap egy adott parancs segítségével. 
 core.commands.base.usage=Használat: ${usage}
 core.commands.base.validcommands=Érvényes parancsok:
 core.commands.base.error=Belső hiba történt a parancs végrehajtása közben.

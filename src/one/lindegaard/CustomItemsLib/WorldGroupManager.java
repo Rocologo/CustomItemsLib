@@ -18,6 +18,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import com.google.common.io.Files;
+
 /**
  * @author Rocologo
  *
@@ -33,7 +35,7 @@ public class WorldGroupManager {
 
 	public WorldGroupManager(Plugin plugin) {
 		this.plugin = plugin;
-		file = new File(plugin.getDataFolder(), "../BagOfGold/worldgroups.yml");
+		file = new File(plugin.getDataFolder(), "../CustomItemsLib/worldgroups.yml");
 		load();
 		if (worldGroups.isEmpty()) {
 			// TODO: check if worldgroups is the same as PerWorldInventory and MyPet if
@@ -119,7 +121,7 @@ public class WorldGroupManager {
 		}
 		worldGroups.get(getDefaultWorldgroup()).add(world);
 		save();
-		Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "[BagOfGold]" + ChatColor.RED + " The world '" + world
+		Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING + "The world '" + world
 				+ "' was missing in the worldgroups.yml file. It has beed added to the default group in worldgroups.yml in the BagOfGold folder. Please review the worldgroups.");
 		return getDefaultWorldgroup();
 	}
@@ -193,14 +195,21 @@ public class WorldGroupManager {
 					// plugin.getMessages().debug("Copy WorldGroups from MobHunting.");
 					try {
 						config.load(fileMobHunting);
+						config.save(file);
+						File fileMobHuntingOld = new File(plugin.getDataFolder(), "../MobHunting/worldgroups.yml.old");
+						Files.move(fileMobHunting, fileMobHuntingOld);
 					} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
 						e.printStackTrace();
 					}
 				}
 			} else {
 				// plugin.getMessages().debug("Copy WorldGroups from BagOfGold");
+
 				try {
 					config.load(fileBagOfGold);
+					config.save(file);
+					File fileBagOfGoldOld = new File(plugin.getDataFolder(), "../BagOfGold/worldgroups.yml.old");
+					Files.move(fileBagOfGold, fileBagOfGoldOld);
 				} catch (IllegalStateException | InvalidConfigurationException | IOException e) {
 					e.printStackTrace();
 				}

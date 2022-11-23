@@ -208,8 +208,8 @@ public class DataStoreManager {
 		private int mSaveInterval;
 
 		public StoreThread(int interval) {
-			super("BGC StoreThread");
-			Core.getMessages().debug("Saving called from %s", plugin.getName());
+			super("CIL StoreThread");
+			//Core.getMessages().debug("Saving called from %s", plugin.getName());
 			if (BagOfGoldCompat.isSupported()) {
 				if (plugin.getName().equals("BagOfGold")) {
 					start();

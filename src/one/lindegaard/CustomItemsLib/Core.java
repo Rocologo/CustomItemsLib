@@ -11,6 +11,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import one.lindegaard.CustomItemsLib.commands.CommandDispatcher;
+import one.lindegaard.CustomItemsLib.commands.DebugCommand;
+import one.lindegaard.CustomItemsLib.commands.ReloadCommand;
+import one.lindegaard.CustomItemsLib.commands.UpdateCommand;
+import one.lindegaard.CustomItemsLib.commands.VersionCommand;
 import one.lindegaard.CustomItemsLib.compatibility.ActionAnnouncerCompat;
 import one.lindegaard.CustomItemsLib.compatibility.ActionBarAPICompat;
 import one.lindegaard.CustomItemsLib.compatibility.ActionbarCompat;
@@ -49,6 +54,7 @@ public class Core extends JavaPlugin {
 	private static PlayerSettingsManager mPlayerSettingsManager;
 	private static CoreRewardManager mCoreRewardManager;
 	private static CompatibilityManager mCompatibilityManager;
+	private CommandDispatcher mCommandDispatcher;
 	private SpigetUpdater mSpigetUpdater;
 
 	// Public Placeholders used in BagOfGold and MobHunting
@@ -119,6 +125,16 @@ public class Core extends JavaPlugin {
 		mWorldGroupManager = new WorldGroupManager(plugin);
 		mRewardBlockManager = new RewardBlockManager(plugin);
 
+		// Register commands
+		mCommandDispatcher = new CommandDispatcher(this, "customitemslib",
+				Core.getMessages().getString("core.command.base.description") + getDescription().getVersion());
+		getCommand("customitemslib").setExecutor(mCommandDispatcher);
+		getCommand("customitemslib").setTabCompleter(mCommandDispatcher);
+		mCommandDispatcher.registerCommand(new ReloadCommand(this));
+		mCommandDispatcher.registerCommand(new UpdateCommand(this));
+		mCommandDispatcher.registerCommand(new VersionCommand(this));
+		mCommandDispatcher.registerCommand(new DebugCommand(this));
+
 		if (mConfig.databaseType.equalsIgnoreCase("mysql"))
 			mStore = new MySQLDataStore(plugin);
 		else
@@ -136,15 +152,12 @@ public class Core extends JavaPlugin {
 			return;
 		}
 
-		mSpigetUpdater = new SpigetUpdater(this);
-		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
-
 		mDataStoreManager = new DataStoreManager(plugin, mStore);
 		mPlayerSettingsManager = new PlayerSettingsManager(plugin);
 		mCoreRewardManager = new CoreRewardManager(plugin);
 
 		mCompatibilityManager = new CompatibilityManager(plugin);
-		
+
 		mCompatibilityManager.registerPlugin(ProtocolLibCompat.class, CompatPlugin.ProtocolLib);
 
 		mCompatibilityManager.registerPlugin(TitleManagerCompat.class, CompatPlugin.TitleManager);
@@ -160,6 +173,8 @@ public class Core extends JavaPlugin {
 		mCompatibilityManager.registerPlugin(MobHuntingCompat.class, CompatPlugin.MobHunting);
 
 		// Check for new updates
+		mSpigetUpdater = new SpigetUpdater(this);
+		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
 		mSpigetUpdater.hourlyUpdateCheck(getServer().getConsoleSender(), mConfig.updateCheck, false);
 
 	}

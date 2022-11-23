@@ -1,15 +1,15 @@
 core.reward.lore=Nagroda Polowania
-core.config.fail=There was a problem loading the BagOfGold config
+core.config.fail=There was a problem loading the CustomItemsLib config
 core.learn.rewards.no-helmet=§bYou are not allowed to wear a reward as a helmet
 core.moneypickup=You found ${money} ${rewardname}
 core.moneydrop=You dropped ${money} ${rewardname}
 core.moneylost=You lost ${prize}!
 
-core.command.base.description=Wersja Pluginu
+core.command.base.description=Wersja CustomItemsLib
 core.commands.base.error=Wystapil blad wewnetrzny podczas wykonywania tej komendy
 core.commands.base.help.commands=Komendy:
 core.commands.base.help.description=Wyswietla te informacje.
-core.commands.base.morehelp=Napisz /mobhunt §6<command> help§f aby uzyskac pomoc do okreslonej komendy.
+core.commands.base.morehelp=Napisz /cil §6<command> help§f aby uzyskac pomoc do okreslonej komendy.
 core.commands.base.nocommand=Nie podano polecenia: ${command}
 core.commands.base.nocommandblock=${command} nie mozna wywolac z bloku polecen.
 core.commands.base.noconsole=${command} nie mozna wywolac z konsoli.

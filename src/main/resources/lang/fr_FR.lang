@@ -1,5 +1,5 @@
 core.command.base.description=Version de CustomItemsLib
-core.config.fail=Il y a eu un problème en chargeant la configuration de CCustomItemsLib
+core.config.fail=Il y a eu un problème en chargeant la configuration de CustomItemsLib
 core.learn.rewards.no-helmet=§bYou are not allowed to wear a reward as a helmet
 core.moneypickup=Tu as ramassé ${money} ${rewardname} !
 core.moneydrop=Tu as lâché ${money} ${rewardname}
@@ -9,7 +9,7 @@ core.reward.lore=Reward
 core.commands.base.error=Erreur interne lors de l'exécution de cette commande.
 core.commands.base.help.commands=Commandes :
 core.commands.base.help.description=Affiche cet écran.
-core.commands.base.morehelp=Tapes /bagofgold &6<command> help&f pour avoir de l'aide sur les commandes.
+core.commands.base.morehelp=Tapes /cil &6<command> help&f pour avoir de l'aide sur les commandes.
 core.commands.base.nocommand=Aucune commande spécifiée : ${command}
 core.commands.base.nocommandblock=${command} ne peut pas être effectuée depuis un bloc de commandes.
 core.commands.base.noconsole=${command} ne peut pas être effectuée depuis la console.

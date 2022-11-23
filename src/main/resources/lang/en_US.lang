@@ -1,5 +1,5 @@
-core.command.base.description=BagOfGold Version 
-core.config.fail=There was a problem loading the BagOfGold config
+core.command.base.description=CustomItemsLib Version 
+core.config.fail=There was a problem loading the CustomItemsLib config
 core.learn.rewards.no-helmet=§bYou are not allowed to wear a reward as a helmet
 core.moneypickup=You found ${money} ${rewardname}
 core.moneydrop=You dropped ${money} ${rewardname}
@@ -14,7 +14,7 @@ core.commands.base.noconsole=${command} cannot be called from the console.
 core.commands.base.nopermission=You do not have permission (${perm}) to use ${command}
 core.commands.base.unknowncommand=Unknown command: &4${command}&a
 core.commands.base.unknown_playername=${playername} is unknown on this server
-core.commands.base.morehelp=Type /bagofgold &6<command> help&f to get help using a specific command. 
+core.commands.base.morehelp=Type /cil &6<command> help&f to get help using a specific command. 
 core.commands.base.usage=Usage: ${usage}
 core.commands.base.validcommands=Valid commands are:
 core.commands.base.error=An internal error occurred while executing that command.

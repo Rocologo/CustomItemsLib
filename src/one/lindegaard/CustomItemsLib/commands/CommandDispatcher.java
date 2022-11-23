@@ -87,7 +87,7 @@ public class CommandDispatcher implements CommandExecutor, TabCompleter {
 		// Check that they have permission
 		if (com.getPermission() != null && !sender.hasPermission(com.getPermission())) {
 			Core.getMessages().senderSendMessage(sender,
-					ChatColor.RED + Core.getMessages().getString("bagofgold.commands.base.nopermission", "command",
+					ChatColor.RED + Core.getMessages().getString("core.commands.base.nopermission", "command",
 							"/" + label + " " + subCommand, Core.PH_PERMISSION, com.getPermission()));
 			return true;
 		}
