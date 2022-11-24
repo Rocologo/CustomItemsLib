@@ -472,16 +472,6 @@ public class CoreRewardListeners implements Listener {
 		Inventory inventory = event.getInventory();
 		Inventory clickedInventory = Servers.isMC113OrNewer() ? event.getClickedInventory() : inventory;
 
-		if (inventory.getType() == InventoryType.MERCHANT && BagOfGoldCompat.isSupported()
-				&& ShopkeepersCompat.isSupported()) {
-			Core.getMessages().debug(
-					"action=%s, InvType=%s, clickedInvType=%s, slottype=%s, slotno=%s, current=%s, cursor=%s, view=%s, key=%s",
-					action, inventory.getType(), clickedInventory == null ? "null" : clickedInventory.getType(),
-					slotType, event.getSlot(), isCurrentSlot == null ? "null" : isCurrentSlot.getType(),
-					isCursor == null ? "null" : isCursor.getType(), event.getView().getType(),
-					isNumberKey == null ? "null" : isNumberKey.getType());
-		}
-
 		if (!Reward.isReward(isCurrentSlot) && !Reward.isReward(isCursor) && !Reward.isReward(isNumberKey)
 				&& !Reward.isReward(isSwapOffhand))
 			return;
@@ -1069,89 +1059,6 @@ public class CoreRewardListeners implements Listener {
 				event.setCancelled(true);
 			}
 		}
-	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onTradeSelectEvent(TradeSelectEvent event) {
-		if (event.isCancelled())
-			return;
-		HumanEntity trader = event.getMerchant().getTrader();
-		MerchantInventory inv = event.getInventory();
-		Player buyer = (Player) event.getWhoClicked();
-		MerchantRecipe recipe = inv.getMerchant().getRecipe(event.getIndex());
-		List<ItemStack> ingredients = recipe.getIngredients();
-
-		Core.getMessages().debug("TradeSelectEvent: Trader=%s, Player=%s, index=%s, result=%s", trader.getName(),
-				buyer.getName(), event.getIndex(), event.getResult().toString());
-		Core.getMessages().debug("TradeSelectEvent: RecipeInventorySize=%s, TraderInventorySize=%s", inv.getSize(),
-				event.getMerchant().getTrader().getInventory().getSize());
-
-		double cost = 0;
-		int antal = ingredients.size();
-		for (int n = 0; n < antal; n++) {
-			ItemStack is = ingredients.get(n);
-			if (Reward.isReward(is)) {
-				Reward reward = Reward.getReward(is);
-				Core.getMessages().debug(
-						"TradeSelectEvent: %s recipe contains a reward with value %s (amount=%s) in slot=%s",
-						buyer.getName(), reward.getMoney(), is.getAmount(), n);
-				inv.setItem(n, is);
-				cost = cost + reward.getMoney();
-			}
-		}
-
-		//event.getResult().compareTo(Result.ALLOW)
-		
-		if (Reward.isReward(recipe.getResult())) {
-			Reward reward = Reward.getReward(recipe.getResult());
-			recipe.setPriceMultiplier((float) reward.getMoney());
-			Core.getMessages().debug(
-					"TradeSelectEvent: the trade is resulting in BagOfGold with value: %s, uses=%s, PriceMultiplier=%s",
-					reward.getMoney(), recipe.getUses(), recipe.getPriceMultiplier());
-		} else if (recipe.getResult() != null && cost != 0) {
-			Core.getMessages().debug("%s bougth a %s for %s bagofgold", buyer.getName(), recipe.getResult().getType(), cost);
-			//double taken = Core.getCoreRewardManager().removeBagOfGoldFromPlayer(buyer, cost);
-			double taken = 0;
-			double toBeTaken = Tools.round(cost);
-			for (int slot = buyer.getInventory().getSize(); slot > 0; slot--) {
-				if (slot >= 36 && slot <= 40)
-					continue;
-				ItemStack is = event.getInventory().getItem(slot);
-				if (Reward.isReward(is)) {
-					Reward reward = Reward.getReward(is);
-					Core.getMessages().debug("Foung bag in slot %s",slot);
-					if (reward.checkHash()) {
-						if (reward.isMoney()) {
-							double saldo = Tools.round(reward.getMoney());
-							if (saldo > toBeTaken) {
-								reward.setMoney(Tools.round(saldo - toBeTaken));
-								is = Reward.setDisplayNameAndHiddenLores(is, reward);
-								event.getInventory().setItem(slot, is);
-								taken = taken + toBeTaken;
-								toBeTaken = 0;
-								return;// Tools.round(taken);
-							} else {
-								event.getInventory().clear(slot);
-								taken = taken + saldo;
-								toBeTaken = toBeTaken - saldo;
-							}
-							if (reward.getMoney() == 0)
-								event.getInventory().clear(slot);
-						}
-					} else {
-						// Hash is wrong
-						Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING + buyer.getName()
-								+ " has tried to change the value of a BagOfGold Item. Value set to 0!");
-						reward.setMoney(0);
-						is = Reward.setDisplayNameAndHiddenLores(is, reward);
-					}
-				}
-
-			}
-
-			Core.getMessages().debug("taken=%s",taken);
-		}
-
 	}
 
 }
