@@ -1,7 +1,7 @@
 V1.0.0
 * All methods drop, pickup, moving rewards has been rewritten and moved to CustomItemsLib to fix dublication bugs and other bugs.
 * Added commands /cil update, /cil version, /cil reload, /cil debug including permissions
-* Saving placed rewards on ground moved to CustomItemsLib
+* Worldgroups.yml and rewards.yml is moved to the CustomItemsLib directory
 V0.9.0
 * WATER breaks by default BagOfGold/Reward items and keep its value. This behavior can be configured in the config.yml 
 V0.0.1
