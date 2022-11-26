@@ -26,8 +26,6 @@ public class CoreRewardManager {
 
 	public CoreRewardManager(Plugin plugin) {
 		this.plugin = plugin;
-		// Bukkit.getPluginManager().registerEvents(new MoneyMergeEventListener(plugin),
-		// plugin);
 	}
 
 	public HashMap<Integer, Double> getDroppedMoney() {
@@ -51,8 +49,6 @@ public class CoreRewardManager {
 		else if (player.getInventory().firstEmpty() != -1)
 			return true;
 		for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
-			if (slot >= 36 && slot <= 40)
-				continue;
 			ItemStack is = player.getInventory().getItem(slot);
 			if (Reward.isReward(is)) {
 				Reward rewardInSlot = Reward.getReward(is);
@@ -71,8 +67,6 @@ public class CoreRewardManager {
 		double moneyLeftToGive = amount;
 		double addedMoney = 0;
 		for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
-			if (slot >= 36 && slot <= 40)
-				continue;
 			ItemStack is = player.getInventory().getItem(slot);
 			if (Reward.isReward(is)) {
 				Reward rewardInSlot = Reward.getReward(is);
@@ -154,13 +148,10 @@ public class CoreRewardManager {
 	public double removeBagOfGoldFromPlayer(Player player, double amount) {
 		double taken = 0;
 		double toBeTaken = Tools.round(amount);
-		for (int slot = player.getInventory().getSize(); slot > 0; slot--) {
-			if (slot >= 36 && slot <= 40)
-				continue;
+		for (int slot = player.getInventory().getSize()-1; slot >= 0; slot--) {
 			ItemStack is = player.getInventory().getItem(slot);
 			if (Reward.isReward(is)) {
 				Reward reward = Reward.getReward(is);
-				Core.getMessages().debug("Foung bag in slot %s",slot);
 				if (reward.checkHash()) {
 					if (reward.isMoney()) {
 						double saldo = Tools.round(reward.getMoney());
@@ -178,7 +169,7 @@ public class CoreRewardManager {
 						}
 						if (reward.getMoney() == 0)
 							player.getInventory().clear(slot);
-					}
+					} 
 				} else {
 					// Hash is wrong
 					Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING + player.getName()

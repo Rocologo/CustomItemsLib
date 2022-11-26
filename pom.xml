@@ -6,8 +6,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>CustomItemsLib</artifactId>
 	<packaging>jar</packaging>
-	<!-- <version>1.0.1</version> -->
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
+	<!-- <version>1.0.1-SNAPSHOT</version> -->
 	<name>Rocologo's CustomItems Library</name>
 	<url>https://github.com/Rocologo/CustomItemsLib</url>
 	<description>CustomItemsLib is a library with code shared between MobHunting and BagOfGold. </description>
