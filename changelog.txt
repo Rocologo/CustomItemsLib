@@ -1,3 +1,5 @@
+V1.0.2
+*
 V1.0.1
 * Fixed bug when a player placed a bag with "PLACE_ONE" in a non empty slot in the inventory
 V1.0.0

@@ -2,14 +2,14 @@ package one.lindegaard.CustomItemsLib;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.google.common.io.Files;
 
 import one.lindegaard.CustomItemsLib.commands.CommandDispatcher;
 import one.lindegaard.CustomItemsLib.commands.DebugCommand;
@@ -84,19 +84,19 @@ public class Core extends JavaPlugin {
 		if (!mFile.exists()) {
 			mFile.mkdir();
 			// Copy config and database from old place
-			File mFileOldConfig = new File(getDataFolder().getParent() + "/BagOfGold", "/bagofgoldcore.yml");
-			File mFileOldDb = new File(getDataFolder().getParent() + "/BagOfGold", "/bagofgoldcore.db");
-			File mFileNewDb = new File(getDataFolder(), "/bagofgoldcore.db");
+			File mFileOldConfig = new File(getDataFolder() , "../BagOfGold/bagofgoldcore.yml");
+			File mFileOldDb = new File(getDataFolder(), "../BagOfGold/bagofgoldcore.db");
+			File mFileNewDb = new File(getDataFolder(), "bagofgoldcore.db");
 			if (mFileOldConfig.exists()) {
 				try {
-					Files.move(mFileOldConfig.toPath(), mFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+					Files.move(mFileOldConfig, mFile);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 			if (mFileOldDb.exists()) {
 				try {
-					Files.move(mFileOldDb.toPath(), mFileNewDb.toPath(), StandardCopyOption.REPLACE_EXISTING);
+					Files.move(mFileOldDb, mFileNewDb);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
