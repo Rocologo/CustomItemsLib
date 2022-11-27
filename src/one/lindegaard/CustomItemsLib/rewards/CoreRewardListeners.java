@@ -805,7 +805,7 @@ public class CoreRewardListeners implements Listener {
 									isCursor.setAmount(0);
 									event.setCursor(isCursor);
 								} else {
-									Reward cursorReward = new Reward();
+									Reward cursorReward = new Reward(reward);
 									cursorReward.setMoney(cursorMoney - bagSize);
 									isCursor = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), cursorReward);
 									event.setCursor(isCursor);

@@ -1,5 +1,7 @@
+V1.0.3
+* Fixed bug when a player placed a bag with "PLACE_ONE" in a non empty slot in the inventory (V1.0.1 renamed the Bag to "Skull"). V1.0.3 keeps the correct name.
 V1.0.2
-*
+* Fixed moving files on first run. Reported by Slimedog. 
 V1.0.1
 * Fixed bug when a player placed a bag with "PLACE_ONE" in a non empty slot in the inventory
 V1.0.0
