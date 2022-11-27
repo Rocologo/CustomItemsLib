@@ -17,6 +17,7 @@ import org.inventivetalent.update.spiget.UpdateCallback;
 import org.inventivetalent.update.spiget.comparator.VersionComparator;
 
 import one.lindegaard.CustomItemsLib.Core;
+import one.lindegaard.MobHunting.MobHunting;
 
 public class SpigetUpdater {
 
@@ -25,7 +26,7 @@ public class SpigetUpdater {
 	public SpigetUpdater(Core plugin) {
 		this.plugin = plugin;
 	}
-	
+
 	private SpigetUpdate spigetUpdate = null;
 	private UpdateStatus updateAvailable = UpdateStatus.UNKNOWN;
 	private String currentJarFile = "";
@@ -78,11 +79,11 @@ public class SpigetUpdater {
 
 	public void checkForUpdate(final CommandSender sender, final boolean silent, boolean forceDownload) {
 		if (!silent)
-			Bukkit.getConsoleSender().sendMessage(Core.PREFIX
-					+ Core.getMessages().getString("core.commands.update.check"));
+			Bukkit.getConsoleSender()
+					.sendMessage(Core.PREFIX + Core.getMessages().getString("core.commands.update.check"));
 		if (updateAvailable == UpdateStatus.RESTART_NEEDED)
-			sender.sendMessage(Core.PREFIX + ChatColor.GREEN
-					+ Core.getMessages().getString("core.commands.update.complete"));
+			sender.sendMessage(
+					Core.PREFIX + ChatColor.GREEN + Core.getMessages().getString("core.commands.update.complete"));
 
 		spigetUpdate = new SpigetUpdate(plugin, 106375);
 		spigetUpdate.setVersionComparator(VersionComparator.EQUAL);
@@ -97,19 +98,19 @@ public class SpigetUpdater {
 				updateAvailable = isUpdateNewerVersion(newVersion);
 				if (updateAvailable == UpdateStatus.AVAILABLE) {
 					newDownloadVersion = newVersion;
-					sender.sendMessage(Core.PREFIX+ ChatColor.GREEN + Core.getMessages()
+					sender.sendMessage(Core.PREFIX + ChatColor.GREEN + Core.getMessages()
 							.getString("core.commands.update.version-found", "newversion", newVersion));
-					if (Core.getConfigManager().autoupdate|| forceDownload) {
+					if (Core.getConfigManager().autoupdate || forceDownload) {
 						if (hasDirectDownload) {
 							try {
-								InputStream in = new URL("https://api.spiget.org/v2/resources/106375/download") 
+								InputStream in = new URL("https://api.spiget.org/v2/resources/106375/download")
 										.openStream();
 								Files.copy(in, Paths.get("plugins/CustomItemsLib-" + newDownloadVersion + ".jar"),
 										StandardCopyOption.REPLACE_EXISTING);
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
-							
+
 							new BukkitRunnable() {
 								int count = 0;
 
@@ -117,13 +118,11 @@ public class SpigetUpdater {
 								public void run() {
 									// Wait for the response
 									if (count++ > 20) {
-										Bukkit.getConsoleSender()
-												.sendMessage(Core.PREFIX_WARNING
-														+ "No updates found. (No response from server after 20s)");
+										Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING
+												+ "No updates found. (No response from server after 20s)");
 										Core.getMessages().senderSendMessage(sender,
-												Core.PREFIX + ChatColor.GREEN
-														+ Core.getMessages().getString(
-																"core.commands.update.could-not-update"));
+												Core.PREFIX + ChatColor.GREEN + Core.getMessages()
+														.getString("core.commands.update.could-not-update"));
 										Core.getMessages().debug("Update error: %s",
 												spigetUpdate.getFailReason().toString());
 										sender.sendMessage(Core.PREFIX + ChatColor.GREEN
@@ -135,14 +134,13 @@ public class SpigetUpdater {
 										final String OS = System.getProperty("os.name");
 										if (OS.indexOf("Win") >= 0) {
 											File downloadedJar = new File("plugins/" + currentJarFile);
-											File newJar = new File("plugins/CustomItemsLib-" + newDownloadVersion + ".jar");
+											File newJar = new File(
+													"plugins/CustomItemsLib-" + newDownloadVersion + ".jar");
 											if (newJar.exists())
 												newJar.delete();
 											downloadedJar.renameTo(newJar);
-											Core.getMessages().senderSendMessage(sender,
-													Core.PREFIX + ChatColor.GREEN
-															+ Core.getMessages()
-																	.getString("core.commands.update.complete"));
+											Core.getMessages().senderSendMessage(sender, Core.PREFIX + ChatColor.GREEN
+													+ Core.getMessages().getString("core.commands.update.complete"));
 										} else {
 											if (updateAvailable != UpdateStatus.RESTART_NEEDED) {
 												File currentJar = new File("plugins/" + currentJarFile);
@@ -158,13 +156,14 @@ public class SpigetUpdater {
 													File newJar = new File(
 															"plugins/CustomItemsLib-" + newDownloadVersion + ".jar");
 													downloadedJar.renameTo(newJar);
-													Core.getMessages().debug("Moved plugins/update/" + currentJarFile
-															+ " to plugins/CustomItemsLib-" + newDownloadVersion + ".jar");
+													Core.getMessages()
+															.debug("Moved plugins/update/" + currentJarFile
+																	+ " to plugins/CustomItemsLib-" + newDownloadVersion
+																	+ ".jar");
 													updateAvailable = UpdateStatus.RESTART_NEEDED;
 													Core.getMessages().senderSendMessage(sender,
-															Core.PREFIX + ChatColor.GREEN
-																	+ Core.getMessages().getString(
-																			"core.commands.update.complete"));
+															Core.PREFIX + ChatColor.GREEN + Core.getMessages()
+																	.getString("core.commands.update.complete"));
 												}
 											}
 										}
@@ -176,21 +175,17 @@ public class SpigetUpdater {
 									+ Core.getMessages().getString("core.commands.update.complete"));
 						}
 					} else
-						sender.sendMessage(Core.PREFIX
-								+ Core.getMessages().getString("core.commands.update.help"));
+						sender.sendMessage(Core.PREFIX + Core.getMessages().getString("core.commands.update.help"));
 				} else {
-					sender.sendMessage(Core.PREFIX
-							+ Core.getMessages().getString("core.commands.update.no-update"));
+					sender.sendMessage(Core.PREFIX + Core.getMessages().getString("core.commands.update.no-update"));
 				}
 			}
-							
 
 			@Override
 			public void upToDate() {
 				//// Plugin is up-to-date
 				if (!silent)
-					sender.sendMessage(Core.PREFIX
-							+ Core.getMessages().getString("core.commands.update.no-update"));
+					sender.sendMessage(Core.PREFIX + Core.getMessages().getString("core.commands.update.no-update"));
 			}
 		});
 
@@ -232,9 +227,11 @@ public class SpigetUpdater {
 				} else if (updateCheck < pluginCheck)
 					return UpdateStatus.NOT_AVAILABLE;
 			} catch (Exception e) {
-				Core.getInstance().getLogger().warning("Could not determine update's version # ");
-				Core.getInstance().getLogger().warning("Installed plugin version: " + Core.getInstance().getDescription().getVersion());
-				Core.getInstance().getLogger().warning("Newest version on Spiget.org: " + newVersion);
+				Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING + "Could not determine update's version # ");
+				Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING + "Installed plugin version: "
+						+ Core.getInstance().getDescription().getVersion());
+				Bukkit.getConsoleSender()
+						.sendMessage(Core.PREFIX_WARNING + "Newest version on Spiget.org: " + newVersion);
 				return UpdateStatus.UNKNOWN;
 			}
 		}

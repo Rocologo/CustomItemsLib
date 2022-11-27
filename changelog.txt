@@ -1,3 +1,5 @@
+V1.0.4
+* Fixed integration with ProtocolLib and all Actionbar/Bossbar/Titlemanager plugings and moved the code from MobHunting+BagOfGold to CustomItemsLib to make development easier.
 V1.0.3
 * Fixed bug when a player placed a bag with "PLACE_ONE" in a non empty slot in the inventory (V1.0.1 renamed the Bag to "Skull"). V1.0.3 keeps the correct name.
 V1.0.2
