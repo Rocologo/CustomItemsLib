@@ -82,6 +82,10 @@ public class ConfigManager extends AutoConfig {
 						+ "\nIntegration to other plugins."
 						+ "\n########################################################################");
 
+		setCategoryComment("plugins.protocollib",
+				"########################################################################" + "\nProtocollib"
+						+ "\n########################################################################");
+
 		setCategoryComment("plugins.bossbarapi",
 				"########################################################################" + "\nBossBarAPI"
 						+ "\n########################################################################");
@@ -143,7 +147,7 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "newplayer_learning_mode", category = "general", comment = "When a new playerjoins the server he will by default start"
 			+ "\nin 'LEARNING MODE' and get extra information about when he get rewards and not,"
 			+ "\nwhen killing Mobs. The player can disable this InGame by using the command '/mobhunt learn'")
-	public boolean learningMode = false;
+	public boolean learningMode = true;
 
 	@ConfigField(name = "config_version", category = "general", comment = "Config version. Do NOT change this!")
 	public int configVersion = 0;

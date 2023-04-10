@@ -47,6 +47,7 @@ public class Core extends JavaPlugin {
 
 	private static ConfigManager mConfig;
 	private static Messages mMessages;
+	private static EconomyManager mEconomyManager;
 	private static RewardBlockManager mRewardBlockManager;
 	private static WorldGroupManager mWorldGroupManager;
 	private static IDataStore mStore;
@@ -172,6 +173,11 @@ public class Core extends JavaPlugin {
 		mCompatibilityManager.registerPlugin(BagOfGoldCompat.class, CompatPlugin.BagOfGold);
 		mCompatibilityManager.registerPlugin(MobHuntingCompat.class, CompatPlugin.MobHunting);
 
+		// Hook into Vault or Reserve
+		mEconomyManager = new EconomyManager(this);
+		if (!mEconomyManager.isActive())
+			return;
+		
 		// Check for new updates
 		mSpigetUpdater = new SpigetUpdater(this);
 		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
@@ -184,7 +190,7 @@ public class Core extends JavaPlugin {
 		disabling = true;
 		try {
 			getMessages().debug("Saving all rewardblocks to disk.");
-			mRewardBlockManager.save();
+			mRewardBlockManager.saveData();
 			getMessages().debug("Saving worldgroups.");
 			mWorldGroupManager.save();
 			getMessages().debug("Shutdown StoreManager");
@@ -236,6 +242,10 @@ public class Core extends JavaPlugin {
 		return mSpigetUpdater;
 	}
 
+	public static EconomyManager getEconomyManager() {
+		return mEconomyManager;
+	}
+	
 	/**
 	 * setMessages
 	 * 
@@ -244,5 +254,5 @@ public class Core extends JavaPlugin {
 	public static void setMessages(Messages messages) {
 		mMessages = messages;
 	}
-
+	
 }

@@ -168,6 +168,11 @@ public class Servers {
                 && Bukkit.getServer().getVersion().toLowerCase().contains("paper");
     }
 
+    public static boolean isPurpurServer() {
+        return Bukkit.getServer().getName().equalsIgnoreCase("Purpur")
+                && Bukkit.getServer().getVersion().toLowerCase().contains("purpur");
+    }
+
 	public static boolean isSpigotServer() {
 		return Bukkit.getServer().getName().equalsIgnoreCase("CraftBukkit")
 				&& Bukkit.getServer().getVersion().toLowerCase().contains("spigot");

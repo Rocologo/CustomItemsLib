@@ -15,7 +15,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.plugin.Plugin;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -37,6 +36,8 @@ import one.lindegaard.Core.v1_16_R3.Skins_1_16_R3;
 import one.lindegaard.Core.v1_17_R1.Skins_1_17_R1;
 import one.lindegaard.Core.v1_18_R1.Skins_1_18_R1;
 import one.lindegaard.Core.v1_19_R1.Skins_1_19_R1;
+import one.lindegaard.Core.v1_19_R2.Skins_1_19_R2;
+import one.lindegaard.Core.v1_19_R3.Skins_1_19_R3;
 import one.lindegaard.Core.v1_8_R1.Skins_1_8_R1;
 import one.lindegaard.Core.v1_8_R2.Skins_1_8_R2;
 import one.lindegaard.Core.v1_8_R3.Skins_1_8_R3;
@@ -50,11 +51,11 @@ import one.lindegaard.CustomItemsLib.server.Servers;
 
 public class CoreCustomItems {
 
-	Plugin plugin;
+	//Plugin plugin;
 
-	public CoreCustomItems(Plugin plugin) {
-		this.plugin = plugin;
-	}
+	//public CoreCustomItems(Plugin plugin) {
+	//	this.plugin = plugin;
+	//}
 
 	// How to get Playerskin
 	// https://www.spigotmc.org/threads/how-to-get-a-players-texture.244966/
@@ -76,7 +77,11 @@ public class CoreCustomItems {
 			return null;
 		}
 		// https://www.spigotmc.org/wiki/spigot-nms-and-minecraft-versions-1-16/
-		if (version.equals("v1_19_R1")) {
+		if (version.equals("v1_19_R3")) {
+			sk = new Skins_1_19_R3();
+		} else if (version.equals("v1_19_R2")) {
+			sk = new Skins_1_19_R2();
+		} else if (version.equals("v1_19_R1")) {
 			sk = new Skins_1_19_R1();
 		} else if (version.equals("v1_18_R1")) {
 			sk = new Skins_1_18_R1();
@@ -127,7 +132,7 @@ public class CoreCustomItems {
 	 * @param money
 	 * @return ItemStack with custom texture.
 	 */
-	public ItemStack getCustomtexture(Reward reward, String mTextureValue, String mTextureSignature) {
+	public static ItemStack getCustomtexture(Reward reward, String mTextureValue, String mTextureSignature) {
 		ItemStack skull = CoreCustomItems.getDefaultPlayerHead(1);
 		if (mTextureSignature.isEmpty() || mTextureValue.isEmpty())
 			return skull;
@@ -167,7 +172,7 @@ public class CoreCustomItems {
 	 * @param money
 	 * @return
 	 */
-	public ItemStack getPlayerHead(UUID uuid, String name, int amount, double money) {
+	public static ItemStack getPlayerHead(UUID uuid, String name, int amount, double money) {
 		ItemStack skull = CoreCustomItems.getDefaultPlayerHead(amount);
 		skull.setAmount(amount);
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(uuid);
@@ -225,7 +230,7 @@ public class CoreCustomItems {
 		return skull;
 	}
 
-	private String[] getSkinFromUUID(UUID uuid) {
+	private static String[] getSkinFromUUID(UUID uuid) {
 		try {
 			URL url_1 = new URL(
 					"https://sessionserver.mojang.com/session/minecraft/profile/" + uuid + "?unsigned=false");
@@ -251,7 +256,7 @@ public class CoreCustomItems {
 		}
 	}
 
-	private ItemStack getPlayerHeadOwningPlayer(UUID uuid, String name, int amount, double money) {
+	private static ItemStack getPlayerHeadOwningPlayer(UUID uuid, String name, int amount, double money) {
 		ItemStack skull = CoreCustomItems.getDefaultPlayerHead(amount);
 		SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
 
@@ -266,7 +271,7 @@ public class CoreCustomItems {
 		return skull;
 	}
 
-	public ItemStack getCustomHead(MobType minecraftMob, String name, int amount, double money, UUID skinUUID) {
+	public static ItemStack getCustomHead(MobType minecraftMob, String name, int amount, double money, UUID skinUUID) {
 		ItemStack skull;
 		switch (minecraftMob) {
 		case Skeleton:

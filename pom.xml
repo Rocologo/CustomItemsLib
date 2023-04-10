@@ -6,8 +6,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>CustomItemsLib</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.4</version>
-	<!-- <version>1.0.4-SNAPSHOT</version> -->
+	<!-- <version>1.0.5</version> -->
+	<version>1.0.5-SNAPSHOT</version>
 	<name>Rocologo's CustomItems Library</name>
 	<url>https://github.com/Rocologo/CustomItemsLib</url>
 	<description>CustomItemsLib is a library with code shared between MobHunting and BagOfGold. </description>
@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>one.lindegaard</groupId>
 		<artifactId>Main</artifactId>
-		<version>0.1.3-SNAPSHOT</version>
+		<version>0.1.4-SNAPSHOT</version>
 	</parent>
 
 	<scm>
@@ -25,7 +25,8 @@
 	</scm>
 
 	<properties>	
-			<bagofgold.version>4.5.0-SNAPSHOT</bagofgold.version>
+			<!-- These 2 versions MUST ALWAYS be one lower than newest version to make the plugin compile -->
+			<bagofgold.version>4.5.2-SNAPSHOT</bagofgold.version>
 			<mobhunting.version>8.5.0-SNAPSHOT</mobhunting.version>
 	</properties>
 
@@ -90,7 +91,7 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>${spigotmc_1_19_R1.version}</version>
+			<version>${spigotmc_1_19_R3.version}</version>
 		</dependency>
 
 		<dependency>

@@ -13,25 +13,51 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.Plugin;
 
 import one.lindegaard.CustomItemsLib.Core;
 import one.lindegaard.CustomItemsLib.Tools;
 import one.lindegaard.CustomItemsLib.mobs.MobType;
+import one.lindegaard.CustomItemsLib.server.Servers;
 
 public class CoreRewardManager {
 
-	Plugin plugin;
+	private Core plugin;
+	private PickupRewards pickupRewards;
 	private HashMap<Integer, Double> droppedMoney = new HashMap<Integer, Double>();
 
-	public CoreRewardManager(Plugin plugin) {
+	public CoreRewardManager(Core plugin) {
 		this.plugin = plugin;
+		pickupRewards = new PickupRewards(plugin);
+		Bukkit.getPluginManager().registerEvents(new MoneyMergeEventListener(plugin), plugin);
+
+		if (Servers.isMC112OrNewer() && eventDoesExists())
+			Bukkit.getPluginManager().registerEvents(new EntityPickupItemEventListener(pickupRewards), plugin);
+		else
+			Bukkit.getPluginManager().registerEvents(new PlayerPickupItemEventListener(pickupRewards), plugin);
 	}
 
 	public HashMap<Integer, Double> getDroppedMoney() {
 		return droppedMoney;
 	}
 
+	/**
+	 * Check if EntityPickupItemEvent exists. EntityPickupItemEvent was introduced
+	 * in after MC 1.12 was released. The result is that some MC 1.12 server know
+	 * the event, others dont.
+	 * 
+	 * @return
+	 */
+	private boolean eventDoesExists() {
+		try {
+			@SuppressWarnings({ "rawtypes", "unused" })
+			Class cls = Class.forName("org.bukkit.event.entity.EntityPickupItemEvent");
+			return true;
+		} catch (ClassNotFoundException e) {
+			return false;
+		}
+	}
+	
+	
 	public boolean isBagOfGoldStyle() {
 		return Core.getConfigManager().rewardItemtype.equalsIgnoreCase("SKULL")
 				|| Core.getConfigManager().rewardItemtype.equalsIgnoreCase("ITEM")
@@ -125,7 +151,7 @@ public class CoreRewardManager {
 					addedMoney = addedMoney + nextBag;
 					ItemStack is;
 					if (Core.getConfigManager().rewardItemtype.equalsIgnoreCase("SKULL"))
-						is = new CoreCustomItems(plugin).getCustomtexture(
+						is = CoreCustomItems.getCustomtexture(
 								new Reward(Core.getConfigManager().bagOfGoldName, Tools.round(nextBag),
 										RewardType.BAGOFGOLD, UUID.fromString(RewardType.BAGOFGOLD.getUUID())),
 								Core.getConfigManager().skullTextureValue,
@@ -199,14 +225,14 @@ public class CoreRewardManager {
 		} else if (reward.isKilledHeadReward()) {
 			MobType mob = MobType.getMobType(reward.getSkinUUID());
 			if (mob != null) {
-				ItemStack is = new CoreCustomItems(plugin).getCustomHead(mob, reward.getDisplayName(), 1,
+				ItemStack is = CoreCustomItems.getCustomHead(mob, reward.getDisplayName(), 1,
 						reward.getMoney(), reward.getSkinUUID());
 				Item item = location.getWorld().dropItem(location, is);
 				item.setMetadata(Reward.MH_REWARD_DATA_NEW, new FixedMetadataValue(plugin, new Reward(reward)));
 				getDroppedMoney().put(item.getEntityId(), reward.getMoney());
 			}
 		} else if (reward.isKillerHeadReward()) {
-			ItemStack is = new CoreCustomItems(plugin).getPlayerHead(reward.getSkinUUID(), reward.getDisplayName(), 1,
+			ItemStack is = CoreCustomItems.getPlayerHead(reward.getSkinUUID(), reward.getDisplayName(), 1,
 					reward.getMoney());
 			Item item = location.getWorld().dropItem(location, is);
 			item.setMetadata(Reward.MH_REWARD_DATA_NEW, new FixedMetadataValue(plugin, new Reward(reward)));
@@ -237,18 +263,18 @@ public class CoreRewardManager {
 				MobType mob = MobType.getMobType(killedEntity);
 				rewardType = RewardType.KILLED;
 				skinuuid = mob.getSkinUUID();
-				is = new CoreCustomItems(plugin).getCustomHead(mob, mob.getFriendlyName(), 1, money, skinuuid);
+				is = CoreCustomItems.getCustomHead(mob, mob.getFriendlyName(), 1, money, skinuuid);
 
 			} else if (Core.getConfigManager().rewardItemtype.equalsIgnoreCase("SKULL")) {
 				rewardType = RewardType.BAGOFGOLD;
 				skinuuid = UUID.fromString(RewardType.BAGOFGOLD.getUUID());
-				is = new CoreCustomItems(plugin).getCustomtexture(
+				is = CoreCustomItems.getCustomtexture(
 						new Reward(Core.getConfigManager().bagOfGoldName.trim(), money, rewardType, skinuuid),
 						Core.getConfigManager().skullTextureValue, Core.getConfigManager().skullTextureSignature);
 			} else if (Core.getConfigManager().rewardItemtype.equalsIgnoreCase("KILLER")) {
 				rewardType = RewardType.KILLER;
 				skinuuid = player.getUniqueId();
-				is = new CoreCustomItems(plugin).getPlayerHead(player.getUniqueId(), player.getName(), 1, money);
+				is = CoreCustomItems.getPlayerHead(player.getUniqueId(), player.getName(), 1, money);
 			} else { // ITEM
 				rewardType = RewardType.ITEM;
 				skinuuid = null;

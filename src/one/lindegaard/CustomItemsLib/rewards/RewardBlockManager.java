@@ -77,7 +77,7 @@ public class RewardBlockManager {
 				&& location.getWorld().isChunkGenerated(location.getChunk().getX(), location.getChunk().getZ());
 	}
 
-	public void save() {
+	public void saveData() {
 		int n = 0;
 		if (dataChanged) {
 			try {

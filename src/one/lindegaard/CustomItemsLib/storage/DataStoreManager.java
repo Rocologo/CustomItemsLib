@@ -5,13 +5,11 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.Plugin;
 
 import one.lindegaard.CustomItemsLib.Core;
 import one.lindegaard.CustomItemsLib.PlayerSettings;
-import one.lindegaard.CustomItemsLib.compatibility.BagOfGoldCompat;
 import one.lindegaard.CustomItemsLib.storage.async.IDataStoreTask;
 import one.lindegaard.CustomItemsLib.storage.async.PlayerSettingsRetrieverTask;
 import one.lindegaard.CustomItemsLib.storage.async.StoreTask;
@@ -40,8 +38,8 @@ public class DataStoreManager {
 		int savePeriod = Core.getConfigManager().savePeriod;
 		if (savePeriod < 1200) {
 			savePeriod = 1200;
-			Bukkit.getConsoleSender().sendMessage(Core.PREFIX + ChatColor.RED
-					+ "[Warning] save-period in your config.yml is too low. Please raise it to 1200 or higher");
+			Bukkit.getConsoleSender().sendMessage(Core.PREFIX_WARNING
+					+ "save-period in your config.yml is too low. Please raise it to 1200 or higher");
 		}
 		mStoreThread = new StoreThread(savePeriod);
 	}
@@ -50,25 +48,6 @@ public class DataStoreManager {
 		return mTaskThread.getState() != Thread.State.WAITING && mTaskThread.getState() != Thread.State.TERMINATED
 				&& mStoreThread.getState() != Thread.State.WAITING
 				&& mStoreThread.getState() != Thread.State.TERMINATED;
-	}
-
-	public void save() {
-
-		// flush(); VIRKER IKKE
-
-		mTaskThread.addTask(new StoreTask(mWaiting), null);
-
-		/**
-		 * mTaskThread.addTask(new StoreTask(mWaiting), null);
-		 * 
-		 * if (mStoreThread.getState() == Thread.State.WAITING ||
-		 * mStoreThread.getState() == Thread.State.TIMED_WAITING)
-		 * mStoreThread.interrupt(); else if (mStoreThread.getState() ==
-		 * Thread.State.RUNNABLE) mStoreThread.run(); //else if (mStoreThread.getState()
-		 * == Thread.State.TERMINATED) // mStoreThread = new
-		 * StoreThread(Core.getConfigManager().savePeriod); else
-		 * Core.getMessages().debug("mStoreThread=%s", mStoreThread.getState());
-		 **/
 	}
 
 	// *****************************************************************************
@@ -130,7 +109,7 @@ public class DataStoreManager {
 			if (Core.getConfigManager().debug)
 				e.printStackTrace();
 		}
-		throw new UserNotFoundException(Core.PREFIX+" User " + playerId + " is not present in Core database");
+		throw new UserNotFoundException(Core.PREFIX + " User " + playerId + " is not present in Core database");
 	}
 
 	public final static String RANDOM_PLAYER_UUID = "bb3be6f2-b457-11ea-b3de-0242ac130004";
@@ -159,9 +138,6 @@ public class DataStoreManager {
 
 	/**
 	 * Shutdown the DataStoreManager
-	 */
-	/**
-	 * 
 	 */
 	public void shutdown() {
 		mExit = true;
@@ -209,32 +185,21 @@ public class DataStoreManager {
 
 		public StoreThread(int interval) {
 			super("CIL StoreThread");
-			//Core.getMessages().debug("Saving called from %s", plugin.getName());
-			if (BagOfGoldCompat.isSupported()) {
-				if (plugin.getName().equals("BagOfGold")) {
-					start();
-				} else {
-
-				}
-			} else {
-				start();
-			}
+			start();
 			mSaveInterval = interval;
 		}
 
 		@Override
 		public void run() {
+
 			try {
 				while (true) {
 					synchronized (this) {
-						if (mExit && mWaiting.size() == 0) {
+						if (mExit && mWaiting.isEmpty()) {
 							break;
 						}
 					}
 					mTaskThread.addTask(new StoreTask(mWaiting), null);
-
-					Core.getRewardBlockManager().save();
-					Core.getWorldGroupManager().save();
 
 					Thread.sleep(mSaveInterval * 50);
 				}

@@ -1,3 +1,5 @@
+V1.0.5
+* 
 V1.0.4
 * Fixed integration with ProtocolLib and all Actionbar/Bossbar/Titlemanager plugings and moved the code from MobHunting+BagOfGold to CustomItemsLib to make development easier.
 V1.0.3
