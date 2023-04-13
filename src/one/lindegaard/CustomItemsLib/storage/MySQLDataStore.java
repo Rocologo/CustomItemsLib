@@ -10,7 +10,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.Plugin;
 
-import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 import one.lindegaard.CustomItemsLib.Core;
@@ -33,7 +32,7 @@ public class MySQLDataStore extends DatabaseDataStore {
 		try {
 			Locale.setDefault(new Locale("us", "US"));
 			Class.forName("com.mysql.jdbc.Driver");
-			MysqlDataSource dataSource = new MysqlConnectionPoolDataSource();
+			MysqlDataSource dataSource = new MysqlDataSource();
 			dataSource.setUser(Core.getConfigManager().databaseUsername);
 			dataSource.setPassword(Core.getConfigManager().databasePassword);
 			if (Core.getConfigManager().databaseHost.contains(":")) {
@@ -42,8 +41,9 @@ public class MySQLDataStore extends DatabaseDataStore {
 			} else {
 				dataSource.setServerName(Core.getConfigManager().databaseHost);
 			}
-			dataSource.setDatabaseName(Core.getConfigManager().databaseName + "?autoReconnect=true&useSSL="
-					+ Core.getConfigManager().databaseUseSSL);
+			dataSource.setDatabaseName(Core.getConfigManager().databaseName);
+			//+ "?autoReconnect=true&useSSL="
+			//		+ Core.getConfigManager().databaseUseSSL);
 			Connection c = dataSource.getConnection();
 			Statement statement = c.createStatement();
 			statement.executeUpdate("SET NAMES 'utf8'");

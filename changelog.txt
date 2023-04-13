@@ -1,5 +1,5 @@
 V1.0.6
-*
+* Updated MySQLCOnnector to V8.0.32
 V1.0.5
 * Added support for Minecraft 1.19.3 and 1.19.4
 V1.0.4
