@@ -1,5 +1,7 @@
+V1.0.6
+*
 V1.0.5
-* 
+* Added support for Minecraft 1.19.3 and 1.19.4
 V1.0.4
 * Fixed integration with ProtocolLib and all Actionbar/Bossbar/Titlemanager plugings and moved the code from MobHunting+BagOfGold to CustomItemsLib to make development easier.
 V1.0.3
