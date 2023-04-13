@@ -1,3 +1,5 @@
+V1.0.7
+*
 V1.0.6
 * Updated MySQLCOnnector to V8.0.32
 V1.0.5
