@@ -91,7 +91,7 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>${spigotmc_1_19_R3.version}</version>
+			<version>${spigotmc_1_20_R1.version}</version>
 		</dependency>
 
 		<dependency>
@@ -105,6 +105,11 @@
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_Shared</artifactId>
 			<version>${NMS_Shared.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>one.lindegaard</groupId>
+			<artifactId>NMS_v1_20_R1</artifactId>
+			<version>v1_20_R1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
