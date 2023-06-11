@@ -1,5 +1,6 @@
-V1.0.7
-*
+V1.0.8
+* Added Minecraft 1.20 support (Camel and Sniffer added) 
+* If using MySQL you need to be on v 8.0.32 because a security issue was found in 8.0.31
 V1.0.6
 * Updated MySQLCOnnector to V8.0.32
 V1.0.5

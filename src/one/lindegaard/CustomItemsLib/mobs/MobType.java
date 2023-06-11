@@ -22,6 +22,17 @@ public enum MobType {
 	// http://heads.freshcoal.com/index.php
 
 	// ******************************************************************
+	// Minecraft 1.20
+	// ******************************************************************
+	Camel("Camel", "0b870939-ea19-4af2-a172-5c5204d21071", "Camel",
+			"ewogICJ0aW1lc3RhbXAiIDogMTU4OTAwMTgzOTQ4MiwKICAicHJvZmlsZUlkIiA6ICIzM2ViZDMyYmIzMzk0YWQ5YWM2NzBjOTZjNTQ5YmE3ZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJEYW5ub0JhbmFubm9YRCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8yMjY4ODYwNzRjZmE3NmFmNjg5YWE2Y2UwODg2NjA2OWQ4ZmRmYzc3OTg4MGZhMmZkZDNkYmJmYzA0ZWYxMDQyIgogICAgfQogIH0KfQ==",
+			"MnvItIBEB19zcBft/CaxJe433M/FhItJeNymOjxqztC+NwznNfr9S+FC9CuNy4Q45E+oJSSjj/KERhfHjNQ/k3W7iKZj6VpV/IogHO+Snpka+X2JSstf4VEa8CMPmYWGNgrq31i+ZD8yZFjqQ8nHv/rgqKivvGhALpOy97VgmX5kKP8GBuyhRHr/FuVwugZR1GriEjq+PRVUB0tvntYaOafMNAIsB7S3QgLjXvAyiotA+/kHZK+dzaAJcxWuDnlkN9QYFW5JVWSn2TjvaG4Eancw31gpewawG/QHgYFI4hyvUodKRD3Ll2JpwvV7iZUIc+f8vr+VFzVnqS1E9EI6wH6tjdFvU15qVR3R1JjNJU6uwc9imRJYeHcn3lVYRCv0SmAVH8tBPVooIzuaqW5GVjluik30faUm1yCX3M+xPhVeDcYkPFa0viNuVOwFCzGSWnhx/rnZwGK4pPHhZN4AMrqpX1G+AuBn082uxuRsrg8tNFiNFexxp3Zev12cdNPJgrXuyXPUfknrk2UjRoK2JmLrN7yBL+u1UyALGXXUJlcxN9Dvvr3CxB6AZgl/yjGwomB9Mw6fio9cTbYAh+4yiXywSRKeH531yry3t29RjG+x99yCG83ejKZoYa7sHOHPEgwk5om+AHJUncbVRrmq0+D2ZbIIHKak6RL7IvndTdo="),
+
+	Sniffer("Sniffer", "cb9e1a61-89ee-4105-8d0c-6fd6e1afec20", "Sniffer",
+			"ewogICJ0aW1lc3RhbXAiIDogMTY4NjIzNDk5OTM0NiwKICAicHJvZmlsZUlkIiA6ICJhYzM2YmVkZGQxNGQ0YjVmYmQyYzc5OThlMWMwOTg3ZCIsCiAgInByb2ZpbGVOYW1lIiA6ICJtYWlzYWthIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2ZjZTFmYzUzZGQ0ZDRhYWU0MzhkNWYzMzM0MzMzNTljNjhkOWU2MzNiOTlkYzdiNjdjYjA0ZjRmZmJlMjIyYiIKICAgIH0KICB9Cn0=",
+			"kTfShod/qIcls48wBhVn4BmQtY5fkIhpIiUb3kHJAPB3XdRmt3jQDwe6UtHXCtwflRvGMmkN/QjnTmc/p+M3WLvM4ST6DHNENq+7GLkV+GSEuSC14WhliJYjltlBMqf+3+VVuzifJ7MUup5lTR3Zd6EmhYY8llhsYNh0Y5+rrYhD4aFEnL7CTY0Ya60VrO02fVENS0c+Ryy6JmusX1o6mYIlP6gtbmsDKvatHVXQuwCJhBz4SL8VfWKsFRY8cHuO4XxULxRNMzvISV7699AoNahkeO9g7OVcSFwEHFGgOYjzP99yEtpWt8dRe7xjaylYZ9cRi4as5Byv8uTKtt+DvMvZL+vdLYjUP2S/fUY5k+UsJmHU6lSRiowlYCIdJns0q8ShzKkC5bMSyFQ+YAEVVXAwsnpO8ne1x/HycCbWDNo5Hb3sjP16OSusdLtl4lCQ3G766wmlivgOVwZTNuaSpXfAiejnG2r5kO0GUvrnS6CBYBZhEZjkJqSXEF7UO/fdeXv2HeMV5dZyNLUNDvIASxB3i7O0U1ePgGV3v/hCCOhjebwihckR6Xx1cBgLOUjDudV3Fqkmt0agzYkwhr161w1p94uWc0QPoIhirN+ClhufGRmqn0QLfIEVWJcL/Ecvy9n1rni5FBUz5PmRkMeNi6nWp8vI6TGdSIS9aEc/JYE="),
+	
+	// ******************************************************************
 	// Minecraft 1.19
 	// ******************************************************************
 	// Warden
@@ -565,6 +576,12 @@ public enum MobType {
 	}
 
 	public boolean matches(Entity entity) {
+
+		if (Servers.isMC120OrNewer())
+			if (this == Camel)
+				return entity instanceof org.bukkit.entity.Camel;
+			else if (this == Sniffer)
+				return entity instanceof org.bukkit.entity.Sniffer;
 
 		if (Servers.isMC119OrNewer())
 			if (this == Warden)

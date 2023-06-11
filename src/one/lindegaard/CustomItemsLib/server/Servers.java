@@ -8,6 +8,10 @@ public class Servers {
 	// Version detection
 	// *******************************************************************
 
+	public static boolean isMC120() {
+		return Bukkit.getBukkitVersion().contains("1.20");
+	}
+	
 	public static boolean isMC119() {
 		return Bukkit.getBukkitVersion().contains("1.19");
 	}
@@ -58,6 +62,14 @@ public class Servers {
 
 	public static boolean isMC18() {
 		return Bukkit.getBukkitVersion().contains("1.8");
+	}
+
+	public static boolean isMC120OrNewer() {
+		if (isMC120())
+			return true;
+		else if (isMC119() || isMC118() || isMC117() || isMC1162() || isMC116() || isMC115() || isMC114() || isMC113() || isMC112() || isMC111() || isMC110() || isMC19() || isMC18())
+			return false;
+		return true;
 	}
 
 	public static boolean isMC119OrNewer() {
