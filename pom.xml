@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>CustomItemsLib</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.8</version>
-	<!-- <version>1.0.8-SNAPSHOT</version> -->
+	<!-- <version>1.0.9</version> -->
+	<version>1.0.9-SNAPSHOT</version>
 	<name>Rocologo's CustomItems Library</name>
 	<url>https://github.com/Rocologo/CustomItemsLib</url>
 	<description>CustomItemsLib is a library with code shared between MobHunting and BagOfGold. </description>
@@ -24,8 +24,8 @@
 
 	<properties>	
 			<!-- These 2 versions MUST ALWAYS be one lower than newest version to make the plugin compile -->
-			<bagofgold.version>4.5.2-SNAPSHOT</bagofgold.version>
-			<mobhunting.version>8.5.0-SNAPSHOT</mobhunting.version>
+			<bagofgold.version>4.5.5-SNAPSHOT</bagofgold.version>
+			<mobhunting.version>8.5.4-SNAPSHOT</mobhunting.version>
 	</properties>
 
 	<issueManagement>
@@ -244,10 +244,10 @@
 
 		<!-- TitleManager -->
 		<dependency>
-			<groupId>io.puharesource.mc</groupId>
-			<artifactId>TitleManager</artifactId>
-			<version>${titlemanager.version}</version>
-		</dependency>
+  <groupId>io.puharesource.mc</groupId>
+  <artifactId>TitleManager</artifactId>
+  <version>2.3.6</version>
+</dependency>
 
 		<!-- TitleAPI, ActionBarAPI -->
 		<dependency>
