@@ -244,10 +244,10 @@
 
 		<!-- TitleManager -->
 		<dependency>
-  <groupId>io.puharesource.mc</groupId>
-  <artifactId>TitleManager</artifactId>
-  <version>2.3.6</version>
-</dependency>
+			<groupId>io.puharesource.mc.copy</groupId>
+			<artifactId>TitleManager</artifactId>
+			<version>${titlemanager.version}</version>
+		</dependency>
 
 		<!-- TitleAPI, ActionBarAPI -->
 		<dependency>
