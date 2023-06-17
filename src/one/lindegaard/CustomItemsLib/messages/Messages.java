@@ -29,6 +29,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import one.lindegaard.BagOfGold.compatibility.PlaceholderAPICompat;
+import one.lindegaard.Core.server.Servers;
 import one.lindegaard.CustomItemsLib.Core;
 import one.lindegaard.CustomItemsLib.Strings;
 import one.lindegaard.CustomItemsLib.compatibility.ActionAnnouncerCompat;
@@ -39,7 +40,7 @@ import one.lindegaard.CustomItemsLib.compatibility.BarAPICompat;
 import one.lindegaard.CustomItemsLib.compatibility.BossBarAPICompat;
 import one.lindegaard.CustomItemsLib.compatibility.CMICompat;
 import one.lindegaard.CustomItemsLib.compatibility.CitizensCompat;
-import one.lindegaard.CustomItemsLib.compatibility.TitleManagerCompat;
+//import one.lindegaard.CustomItemsLib.compatibility.TitleManagerCompat;
 
 public class Messages {
 
@@ -57,8 +58,8 @@ public class Messages {
 
 	private static Map<String, String> mTranslationTable;
 	private static String[] mValidEncodings = new String[] { "UTF-16", "UTF-16BE", "UTF-16LE", "UTF-8", "ISO646-US" };
-	private static String[] sources = new String[] { "en_US.lang", "fr_FR.lang", "hu_HU.lang", "pl_PL.lang", "pt_BR.lang", "ru_RU.lang",
-			"zh_CN.lang" };
+	private static String[] sources = new String[] { "en_US.lang", "fr_FR.lang", "hu_HU.lang", "pl_PL.lang",
+			"pt_BR.lang", "ru_RU.lang", "zh_CN.lang" };
 
 	public void exportDefaultLanguages(Plugin plugin) {
 		File folder = new File(dataFolder, "lang");
@@ -341,9 +342,12 @@ public class Messages {
 		if (isEmpty(message))
 			return;
 
-		final String final_message=BagOfGoldCompat.isSupported()?PlaceholderAPICompat.setPlaceholders(player, message):"";
-		
-		if (TitleManagerCompat.isSupported() || ActionbarCompat.isSupported() || ActionAnnouncerCompat.isSupported()
+		final String final_message = BagOfGoldCompat.isSupported()
+				? PlaceholderAPICompat.setPlaceholders(player, message)
+				: "";
+
+		if (  //TitleManagerCompat.isSupported() || 
+				ActionbarCompat.isSupported() || ActionAnnouncerCompat.isSupported()
 				|| ActionBarAPICompat.isSupported() || CMICompat.isSupported()) {
 			long last = 0L;
 			long time_between_messages = 80L;
@@ -367,7 +371,11 @@ public class Messages {
 				}
 			}, delay);
 		} else {
-			player.sendMessage(final_message);
+			if (Servers.isMC115OrNewer())
+				player.sendTitle("", final_message);
+			else
+				player.sendMessage(final_message);
+
 		}
 	}
 
@@ -382,9 +390,11 @@ public class Messages {
 			return;
 
 		message = Strings.convertColors(PlaceholderAPICompat.setPlaceholders(player, message));
-		if (TitleManagerCompat.isSupported()) {
-			TitleManagerCompat.setActionBar(player, message);
-		} else if (ActionbarCompat.isSupported()) {
+		//if (TitleManagerCompat.isSupported()) {
+		//	TitleManagerCompat.setActionBar(player, message);
+		//} else 
+			
+		if (ActionbarCompat.isSupported()) {
 			ActionbarCompat.setMessage(player, message);
 		} else if (ActionAnnouncerCompat.isSupported()) {
 			ActionAnnouncerCompat.setMessage(player, message);
@@ -394,7 +404,10 @@ public class Messages {
 			CMICompat.sendActionBarMessage(player, message);
 		} else {
 			if (!Core.getPlayerSettingsManager().getPlayerSettings(player).isMuted())
-				player.sendMessage(message);
+				if (Servers.isMC115OrNewer())
+					player.sendTitle("", message);
+				else
+					player.sendMessage(message);
 		}
 	}
 

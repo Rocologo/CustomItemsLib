@@ -9,6 +9,7 @@ import one.lindegaard.CustomItemsLib.Core;
 
 public class TitleManagerCompat {
 
+	/**
 	private static Plugin mPlugin;
 	private static TitleManagerAPI api;
 	private static boolean supported = false;
@@ -78,5 +79,5 @@ public class TitleManagerCompat {
 			//}
 		}
 	}
-
+**/
 }
