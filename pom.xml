@@ -244,7 +244,7 @@
 
 		<!-- TitleManager -->
 		<dependency>
-			<groupId>io.puharesource.mc.copy</groupId>
+			<groupId>io.puharesource.mc</groupId>
 			<artifactId>TitleManager</artifactId>
 			<version>${titlemanager.version}</version>
 		</dependency>
