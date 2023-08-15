@@ -1,3 +1,6 @@
+V1.0.9
+* Support for TitleManager removed because the Repository is broken and the plugin has not been updated for a long time.
+* Fixed NPE error Ticket 146 (https://github.com/Rocologo/BagOfGold/issues/146) 
 V1.0.8
 * Added Minecraft 1.20 support (Camel and Sniffer added) 
 * If using MySQL you need to be on v 8.0.32 because a security issue was found in 8.0.31

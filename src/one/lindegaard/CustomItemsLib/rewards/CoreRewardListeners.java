@@ -533,21 +533,20 @@ public class CoreRewardListeners implements Listener {
 //				event.getClick().isKeyboardClick(), isNumberKey == null ? "null" : isNumberKey.getType(),
 //				isSwapOffhand == null ? "null" : isSwapOffhand.getType());
 
-		if (slotType == SlotType.ARMOR && 
-				((Reward.isReward(isCursor) && Reward.getReward(isCursor).isMoney())
-				 || (Reward.isReward(isNumberKey) && Reward.getReward(isNumberKey).isMoney()))) {
+		if (slotType == SlotType.ARMOR && ((Reward.isReward(isCursor) && Reward.getReward(isCursor).isMoney())
+				|| (Reward.isReward(isNumberKey) && Reward.getReward(isNumberKey).isMoney()))) {
 			if ((action == InventoryAction.PLACE_ALL || action == InventoryAction.PLACE_ONE
 					|| action == InventoryAction.PLACE_SOME || action == InventoryAction.COLLECT_TO_CURSOR)) {
 				Core.getMessages().playerActionBarMessageQueue(player,
 						Core.getMessages().getString("core.learn.rewards.no-helmet"));
 				Core.getMessages().debug("No-Helmet");
 				Core.getMessages().debug(
-				"action=%s, InvType=%s, clickedInvType=%s, slottype=%s, slotno=%s, current=%s, cursor=%s, view=%s, keyboardClick=%s, numberKey=%s, swap_hand=%s",
-				action, inventory.getType(), clickedInventory == null ? "null" : clickedInventory.getType(), slotType,
-				event.getSlot(), isCurrentSlot == null ? "null" : isCurrentSlot.getType(),
-				isCursor == null ? "null" : isCursor.getType(), event.getView().getType(),
-				event.getClick().isKeyboardClick(), isNumberKey == null ? "null" : isNumberKey.getType(),
-				isSwapOffhand == null ? "null" : isSwapOffhand.getType());
+						"action=%s, InvType=%s, clickedInvType=%s, slottype=%s, slotno=%s, current=%s, cursor=%s, view=%s, keyboardClick=%s, numberKey=%s, swap_hand=%s",
+						action, inventory.getType(), clickedInventory == null ? "null" : clickedInventory.getType(),
+						slotType, event.getSlot(), isCurrentSlot == null ? "null" : isCurrentSlot.getType(),
+						isCursor == null ? "null" : isCursor.getType(), event.getView().getType(),
+						event.getClick().isKeyboardClick(), isNumberKey == null ? "null" : isNumberKey.getType(),
+						isSwapOffhand == null ? "null" : isSwapOffhand.getType());
 
 				event.setCancelled(true);
 				return;
@@ -794,8 +793,10 @@ public class CoreRewardListeners implements Listener {
 								else
 									bagSize = cursorMoney;
 								Core.getMessages().debug("PLACE_ONE: bagSize=%s", bagSize);
-								double slotMoney = Reward.isReward(isCurrentSlot)?Reward.getReward(isCurrentSlot).getMoney():0;
-								reward.setMoney(bagSize+slotMoney);
+								double slotMoney = Reward.isReward(isCurrentSlot)
+										? Reward.getReward(isCurrentSlot).getMoney()
+										: 0;
+								reward.setMoney(bagSize + slotMoney);
 								isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), reward);
 								isCurrentSlot.setAmount(1);
 								event.setCurrentItem(isCurrentSlot);
@@ -923,7 +924,8 @@ public class CoreRewardListeners implements Listener {
 							event.setCurrentItem(isCurrentSlot);
 							Core.getMessages().debug("PLACE_SOME, PLACE_ALL: %s moved %s (%s) out of Inventory (2)",
 									player.getName(), reward.getDisplayName(), reward.getMoney());
-						} else if (Reward.isReward(isCursor) && isCurrentSlot.getType() == Material.AIR) {
+						} else if (Reward.isReward(isCursor)
+								&& (isCurrentSlot == null || isCurrentSlot.getType() == Material.AIR)) {
 							Reward reward = Reward.getReward(isCursor);
 							isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), reward);
 							isCurrentSlot.setAmount(1);

@@ -29,7 +29,7 @@ public class StoreTask implements IDataStoreTask<Void> {
 		if (!mWaitingPlayerSettings.isEmpty())
 			store.savePlayerSettings(mWaitingPlayerSettings, true);
 
-		Core.getMessages().debug("Saving CustomItemsLib data");
+		//Core.getMessages().debug("Saving CustomItemsLib data");
 		
 		Core.getRewardBlockManager().saveData();
 		Core.getWorldGroupManager().save();
