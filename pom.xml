@@ -24,8 +24,8 @@
 
 	<properties>	
 			<!-- These 2 versions MUST ALWAYS be one lower than newest version to make the plugin compile -->
-			<bagofgold.version>4.5.5-SNAPSHOT</bagofgold.version>
-			<mobhunting.version>8.5.4-SNAPSHOT</mobhunting.version>
+			<bagofgold.version>4.5.6-SNAPSHOT</bagofgold.version>
+			<mobhunting.version>8.5.5-SNAPSHOT</mobhunting.version>
 	</properties>
 
 	<issueManagement>
