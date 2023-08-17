@@ -11,7 +11,6 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -33,15 +32,12 @@ import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.InventoryType.SlotType;
-import org.bukkit.event.inventory.TradeSelectEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.MerchantInventory;
-import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
@@ -585,16 +581,17 @@ public class CoreRewardListeners implements Listener {
 									Reward reward = Reward.getReward(is);
 									if ((reward.isMoney()) && reward.getMoney() > 0) {
 										saldo = saldo + reward.getMoney() * is.getAmount();
-										if (saldo <= Core.getConfigManager().limitPerBag)
-											clickedInventory.clear(slot);
-										else {
-											reward.setMoney(Core.getConfigManager().limitPerBag);
-											is = Reward.setDisplayNameAndHiddenLores(is.clone(), reward);
-											is.setAmount(1);
-											clickedInventory.clear(slot);
-											clickedInventory.addItem(is);
-											saldo = saldo - Core.getConfigManager().limitPerBag;
-										}
+										clickedInventory.clear(slot);
+								//		if (saldo <= Core.getConfigManager().limitPerBag)
+								//			clickedInventory.clear(slot);
+								//		else {
+								//			reward.setMoney(Core.getConfigManager().limitPerBag);
+								//			is = Reward.setDisplayNameAndHiddenLores(is.clone(), reward);
+								//			is.setAmount(1);
+								//			clickedInventory.clear(slot);
+								//			clickedInventory.addItem(is);
+								//			saldo = saldo - Core.getConfigManager().limitPerBag;
+								//		}
 									}
 								}
 							}
@@ -602,7 +599,7 @@ public class CoreRewardListeners implements Listener {
 							isCursor = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), cursor);
 							isCursor.setAmount(1);
 							event.setCursor(isCursor);
-							Core.getMessages().debug("COLLECT_TO_CURSOR: %s collected %s to the cursor",
+							Core.getMessages().debug("COLLECT_TO_CURSOR: %s collected %s money to the cursor",
 									player.getName(), saldo);
 							if (clickedInventory.getType() == InventoryType.PLAYER) {
 								if (BagOfGoldCompat.isSupported() && cursor.isMoney())
@@ -771,6 +768,7 @@ public class CoreRewardListeners implements Listener {
 					}
 					break;
 				case PLACE_ONE:
+					// hold a bag in your hand and right-click in an mpty slot
 					int amount_of_cursor2 = isCursor != null ? isCursor.getAmount() : 0;
 					// int amount_of_currentslot2 = isCurrentSlot != null ?
 					// isCurrentSlot.getAmount() : 0;
@@ -832,7 +830,7 @@ public class CoreRewardListeners implements Listener {
 							event.setCurrentItem(isCurrentSlot);
 							Core.getMessages().debug("PLACE_ONE: %s moved %s (%s) out of Inventory", player.getName(),
 									reward.getDisplayName(), reward.getMoney());
-						} else if (Reward.isReward(isCursor) && isCurrentSlot.getType() == Material.AIR) {
+						} else if (Reward.isReward(isCursor) && (isCurrentSlot==null || isCurrentSlot.getType() == Material.AIR)) {
 							Reward reward = Reward.getReward(isCursor);
 							isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), reward);
 							isCurrentSlot.setAmount(1);
@@ -876,41 +874,74 @@ public class CoreRewardListeners implements Listener {
 					int amount_of_cursor = isCursor != null ? isCursor.getAmount() : 0;
 					int amount_of_currentslot = isCurrentSlot != null ? isCurrentSlot.getAmount() : 0;
 					if (player.getGameMode() == GameMode.SURVIVAL) {
-						// if (Reward.isReward(isCurrentSlot) && isCursor.getType() == Material.AIR) {
-						// Is this ever used ?????
-						// Reward reward = Reward.getReward(isCurrentSlot);
-						// if (reward.isMoney()) {
-						// reward.setMoney(reward.getMoney() * amount_of_currentslot);
-						// isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCurrentSlot.clone(),
-						// reward);
-						// isCurrentSlot.setAmount(1);
-						// event.setCurrentItem(isCurrentSlot);
-						// }
-						// Core.getMessages().debug("PLACE_SOME, PLACE_ALL: %s moved %s (%s) out of
-						// Inventory",
-						// player.getName(), reward.getDisplayName(), reward.getMoney());
-						// } else
+						
 						if (Reward.isReward(isCursor)) {
-							Reward reward = Reward.getReward(isCursor);
-							if (reward.isMoney()) {
-								event.setCancelled(true);
-								double added_money = reward.getMoney() * amount_of_cursor;
-								reward.setMoney(reward.getMoney() * (amount_of_cursor + amount_of_currentslot));
-								isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), reward);
-								isCurrentSlot.setAmount(1);
-								event.setCurrentItem(isCurrentSlot);
-								isCursor.setType(Material.AIR);
-								isCursor.setAmount(0);
-								event.setCursor(isCursor);
-								if (BagOfGoldCompat.isSupported()
-										&& clickedInventory.getType() == InventoryType.PLAYER) {
-									BagOfGold.getInstance().getRewardManager().addMoneyToPlayerBalance(player,
-											added_money);
+							event.setCancelled(true);
+							
+							Reward cursorReward = Reward.getReward(isCursor);
+							double cursor_money = cursorReward.isMoney()?cursorReward.getMoney() * amount_of_cursor: 0;
+							double added_money =0;
+							if (Reward.isReward(isCurrentSlot)) {
+								Reward slotReward = Reward.getReward(isCurrentSlot);
+								double slot_money = slotReward.isMoney()?slotReward.getMoney() * amount_of_currentslot:0;
+								if (cursor_money+slot_money<= Core.getConfigManager().limitPerBag) {
+									added_money=cursor_money+slot_money;
+									cursorReward.setMoney(added_money);
+									isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), cursorReward);
+									isCurrentSlot.setAmount(1);
+									event.setCurrentItem(isCurrentSlot);
+									isCursor.setType(Material.AIR);
+									isCursor.setAmount(0);
+									event.setCursor(isCursor);				
+								} else {
+									slotReward.setMoney(Core.getConfigManager().limitPerBag);
+									cursorReward.setMoney(cursor_money+slot_money-Core.getConfigManager().limitPerBag);
+									added_money=Core.getConfigManager().limitPerBag-slot_money;
+									isCursor = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), cursorReward);
+									isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCurrentSlot.clone(), slotReward);
+									isCurrentSlot.setAmount(1);
+									event.setCurrentItem(isCurrentSlot);
+									isCursor.setAmount(1);
+									event.setCursor(isCursor);
 								}
-								Core.getMessages().debug("PLACE_SOME, PLACE_ALL: %s moved %s (%s) into Inventory:%s",
-										player.getName(), reward.getDisplayName(), added_money,
-										clickedInventory.getType());
+							} else {
+								
+								if (cursor_money<= Core.getConfigManager().limitPerBag) {
+									added_money=cursor_money;
+									cursorReward.setMoney(added_money);
+									isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), cursorReward);
+									isCurrentSlot.setAmount(1);
+									event.setCurrentItem(isCurrentSlot);
+									isCursor.setType(Material.AIR);
+									isCursor.setAmount(0);
+									event.setCursor(isCursor);				
+								} else {
+									cursorReward.setMoney(cursor_money-Core.getConfigManager().limitPerBag);
+									added_money=Core.getConfigManager().limitPerBag;
+
+									isCursor = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), cursorReward);
+									isCursor.setAmount(1);
+									event.setCursor(isCursor);
+									
+									Reward slotReward = new Reward(cursorReward);
+									slotReward.setMoney(added_money);
+									isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCursor.clone(),  slotReward);
+									isCurrentSlot.setAmount(1);
+									event.setCurrentItem(isCurrentSlot);
+									
+								}
+								
 							}
+					
+							if (BagOfGoldCompat.isSupported()
+									&& clickedInventory.getType() == InventoryType.PLAYER) {
+								BagOfGold.getInstance().getRewardManager().addMoneyToPlayerBalance(player,
+										added_money);							
+							} 
+					
+							Core.getMessages().debug("PLACE_SOME, PLACE_ALL: %s moved %s (%s) into Inventory:%s",
+										player.getName(), cursorReward.getDisplayName(), added_money,
+										clickedInventory.getType());
 						}
 
 					} else { // GameMode!=Survival
@@ -925,7 +956,7 @@ public class CoreRewardListeners implements Listener {
 							Core.getMessages().debug("PLACE_SOME, PLACE_ALL: %s moved %s (%s) out of Inventory (2)",
 									player.getName(), reward.getDisplayName(), reward.getMoney());
 						} else if (Reward.isReward(isCursor)
-								&& (isCurrentSlot == null || isCurrentSlot.getType() == Material.AIR)) {
+								&& (isCurrentSlot == null || (isCurrentSlot==null || isCurrentSlot.getType() == Material.AIR))) {
 							Reward reward = Reward.getReward(isCursor);
 							isCurrentSlot = Reward.setDisplayNameAndHiddenLores(isCursor.clone(), reward);
 							isCurrentSlot.setAmount(1);
