@@ -29,7 +29,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import one.lindegaard.BagOfGold.compatibility.PlaceholderAPICompat;
-import one.lindegaard.Core.server.Servers;
 import one.lindegaard.CustomItemsLib.Core;
 import one.lindegaard.CustomItemsLib.Strings;
 import one.lindegaard.CustomItemsLib.compatibility.ActionAnnouncerCompat;
@@ -41,6 +40,7 @@ import one.lindegaard.CustomItemsLib.compatibility.BossBarAPICompat;
 import one.lindegaard.CustomItemsLib.compatibility.CMICompat;
 import one.lindegaard.CustomItemsLib.compatibility.CitizensCompat;
 //import one.lindegaard.CustomItemsLib.compatibility.TitleManagerCompat;
+import one.lindegaard.CustomItemsLib.server.Servers;
 
 public class Messages {
 
