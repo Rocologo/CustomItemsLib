@@ -325,8 +325,8 @@ public class Messages {
 				? PlaceholderAPICompat.setPlaceholders(player, message)
 				: "";
 
-		if (  //TitleManagerCompat.isSupported() || 
-				ActionbarCompat.isSupported() || ActionAnnouncerCompat.isSupported()
+		if (  //TitleManagerCompat.isSupported() || ActionAnnouncerCompat.isSupported() ||
+				ActionbarCompat.isSupported()
 				|| ActionBarAPICompat.isSupported() || CMICompat.isSupported()) {
 			long last = 0L;
 			long time_between_messages = 80L;
@@ -375,8 +375,6 @@ public class Messages {
 			
 		if (ActionbarCompat.isSupported()) {
 			ActionbarCompat.setMessage(player, message);
-		} else if (ActionAnnouncerCompat.isSupported()) {
-			ActionAnnouncerCompat.setMessage(player, message);
 		} else if (ActionBarAPICompat.isSupported()) {
 			ActionBarAPICompat.setMessage(player, message);
 		} else if (CMICompat.isSupported()) {

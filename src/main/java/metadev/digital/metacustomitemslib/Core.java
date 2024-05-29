@@ -7,7 +7,7 @@ import metadev.digital.metacustomitemslib.commands.DebugCommand;
 import metadev.digital.metacustomitemslib.commands.ReloadCommand;
 import metadev.digital.metacustomitemslib.commands.UpdateCommand;
 import metadev.digital.metacustomitemslib.commands.VersionCommand;
-import metadev.digital.metacustomitemslib.compatibility.ActionAnnouncerCompat;
+// TODO: ACTIONANNOUNCER Deprecated? import metadev.digital.metacustomitemslib.compatibility.ActionAnnouncerCompat;
 import metadev.digital.metacustomitemslib.compatibility.ActionBarAPICompat;
 import metadev.digital.metacustomitemslib.compatibility.ActionbarCompat;
 import metadev.digital.metacustomitemslib.compatibility.BagOfGoldCompat;
@@ -163,7 +163,7 @@ public class Core extends JavaPlugin {
 
 		mCompatibilityManager.registerPlugin(TitleManagerCompat.class, CompatPlugin.TitleManager);
 		mCompatibilityManager.registerPlugin(TitleAPICompat.class, CompatPlugin.TitleAPI);
-		mCompatibilityManager.registerPlugin(ActionAnnouncerCompat.class, CompatPlugin.ActionAnnouncer);
+		// TODO: ACTIONANNOUNCER Deprecated? mCompatibilityManager.registerPlugin(ActionAnnouncerCompat.class, CompatPlugin.ActionAnnouncer);
 		mCompatibilityManager.registerPlugin(ActionBarAPICompat.class, CompatPlugin.ActionBarApi);
 		mCompatibilityManager.registerPlugin(ActionbarCompat.class, CompatPlugin.Actionbar);
 		mCompatibilityManager.registerPlugin(BossBarAPICompat.class, CompatPlugin.BossBarApi);

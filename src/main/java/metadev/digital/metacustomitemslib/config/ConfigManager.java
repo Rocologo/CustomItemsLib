@@ -109,9 +109,9 @@ public class ConfigManager extends AutoConfig {
 				"########################################################################" + "\nActionbarAPI"
 						+ "\n########################################################################");
 
-		setCategoryComment("plugins.actionannouncer",
+		/* TODO: ACTIONANNOUNCER Deprecated? setCategoryComment("plugins.actionannouncer",
 				"########################################################################" + "\nActionAnnouncer"
-						+ "\n########################################################################");
+						+ "\n########################################################################"); */
 
 		setCategoryComment("plugins.cmi", "########################################################################"
 				+ "\nCMI" + "\n########################################################################");
@@ -306,9 +306,11 @@ public class ConfigManager extends AutoConfig {
 			+ "\nhttps://www.spigotmc.org/resources/actionbarapi_1_8_1_9_1_10.1315/")
 	public boolean enableIntegrationActionBarAPI = true;
 
+	/* TODO: ACTIONANNOUNCER Deprecated?
 	@ConfigField(name = "enable_integration_actionannouncer", category = "plugins.actionannouncer", comment = "Enable/Disable integration with ActionAnnouncer. If you want messages in player chat you can set this to true."
 			+ "\nhttps://www.spigotmc.org/resources/actionannouncer.1320/")
 	public boolean enableIntegrationActionAnnouncer = true;
+	 */
 
 	@ConfigField(name = "enable_integration_bossbarapi", category = "plugins.bossbarapi", comment = "Enable/Disable integration with BossBarAPI. If you want messages in player chat you can set this to true.")
 	public boolean enableIntegrationBossBarAPI = true;

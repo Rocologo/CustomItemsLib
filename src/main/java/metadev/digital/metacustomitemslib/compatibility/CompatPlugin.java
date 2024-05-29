@@ -1,7 +1,7 @@
 package metadev.digital.metacustomitemslib.compatibility;
 
 public enum CompatPlugin {
-	ActionAnnouncer("ActionAnnouncer", 0), //
+	// TODO: ACTIONANNOUNCER Deprecated? ActionAnnouncer("ActionAnnouncer", 0), //
 	ActionBarApi("ActionBarAPI", 1), //
 	Actionbar("Actionbar", 2), //
 	BarApi("BarAPI", 3), //

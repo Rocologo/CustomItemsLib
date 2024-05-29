@@ -1,4 +1,5 @@
 package metadev.digital.metacustomitemslib.compatibility;
+/* TODO: ACTIONANNOUNCER Deprecated?
 
 import me.clip.actionannouncer.ActionAPI;
 
@@ -67,3 +68,4 @@ public class ActionAnnouncerCompat {
 	}
 
 }
+*/
