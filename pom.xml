@@ -1,292 +1,273 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>CustomItemsLib</artifactId>
-	<packaging>jar</packaging>
-	<!-- <version>1.0.9</version> -->
-	<version>1.0.9-SNAPSHOT</version>
-	<name>Rocologo's CustomItems Library</name>
-	<url>https://github.com/Rocologo/CustomItemsLib</url>
-	<description>CustomItemsLib is a library with code shared between MobHunting and BagOfGold. </description>
+    <groupId>metadev.digital</groupId>
+    <artifactId>MetaCustomItemsLib</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>CustomItems Library</name>
+    <url>https://github.com/MetadevDigital</url>
+    <description>CustomItemsLib is a library with code shared between MobHunting and BagOfGold.</description>
 
-	<parent>
-		<groupId>one.lindegaard</groupId>
-		<artifactId>Main</artifactId>
-		<version>0.1.5-SNAPSHOT</version>
-	</parent>
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-	<scm>
-		<connection>scm:svn:https://github.com/Rocologo/CustomItemsLib.git</connection>
-		<developerConnection>scm:git:git://github.com/Rocologo</developerConnection>
-		<url>https://github.com/Rocologo/CustomItemsLib</url>
-	</scm>
+        <!-- These 2 versions MUST ALWAYS be one lower than newest version to make the plugin compile -->
+        <bagofgold.version>4.5.6-SNAPSHOT</bagofgold.version>
+        <mobhunting.version>8.5.5-SNAPSHOT</mobhunting.version>
+    </properties>
 
-	<properties>	
-			<!-- These 2 versions MUST ALWAYS be one lower than newest version to make the plugin compile -->
-			<bagofgold.version>4.5.6-SNAPSHOT</bagofgold.version>
-			<mobhunting.version>8.5.5-SNAPSHOT</mobhunting.version>
-	</properties>
+    <issueManagement>
+        <url>https://github.com/Rocologo/CustomItemsLib/issues</url>
+    </issueManagement>
 
-	<issueManagement>
-		<url>https://github.com/Rocologo/CustomItemsLib/issues</url>
-	</issueManagement>
-	
-	<!-- ********************************************************************** -->
-	<!-- ******************************** Build ******************************* -->
-	<!-- ********************************************************************** -->
-	<build>
-		<sourceDirectory>${basedir}/src</sourceDirectory>
-		<defaultGoal>clean install</defaultGoal>
-		<resources>
-			<resource>
-				<targetPath>.</targetPath>
-				<filtering>true</filtering>
-				<directory>${basedir}/src/main/resources</directory>
-				<includes>
-					<include>plugin.yml</include>
-				</includes>
-			</resource>
-			<resource>
-				<targetPath>lang</targetPath>
-				<filtering>true</filtering>
-				<directory>${basedir}/src/main/resources/lang</directory>
-			</resource>
-		</resources>
-		<directory>${basedir}/target</directory>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>${mavenShadePlugin.version}</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<createDependencyReducedPom>false</createDependencyReducedPom>
-					<createSourcesJar>false</createSourcesJar>
-					<artifactSet>
-						<includes>
-							<include>one.lindegaard:NMS*</include>
-						</includes>
-					</artifactSet>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <repositories>
+        <!-- Spigot -->
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
 
-	<!-- ********************************************************************** -->
-	<!-- **************************** Dependencies **************************** -->
-	<!-- ********************************************************************** -->
-	<dependencies>
+        <!-- Jitpack (Vault, TitleAPI, ActionBarAPI) -->
+        <repository>
+            <id>vault-repo</id>
+            <url>https://jitpack.io</url>
+        </repository>
 
-		<!-- SpigotMC -->
-		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>${spigotmc_1_20_R2.version}</version>
-		</dependency>
+        <!-- ProtocolLib -->
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>https://repo.dmulloy2.net/content/groups/public/</url>
+        </repository>
 
-		<dependency>
+        <!-- Mojang -->
+        <repository>
+            <id>minecraft-repo</id>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
+
+        <!-- Reserve -->
+        <repository>
+            <id>reserve-repo</id>
+            <url>https://repo.codemc.io/repository/maven-public/</url>
+        </repository>
+
+        <!-- Placeholder API -->
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/</url>
+        </repository>
+
+        <!-- Add imported jar files to main project-->
+        <!-- Uses: ActionAnnouncer -->
+        <repository>
+            <id>local-maven-repo</id>
+            <url>file:///${project.basedir}/lib</url>
+        </repository>
+
+        <!-- Rocologo repository -->
+        <repository>
+            <id>nexus-public</id>
+            <url>https://nexus.lindegaard.one/repository/maven-public/</url>
+        </repository>
+
+        <!-- Inventive Repo / SpigetUpdater / BossBarAPI -->
+        <repository>
+            <id>inventive-repo</id>
+            <url>https://repo.inventivetalent.org/repository/public/</url>
+        </repository>
+
+        <!-- citizens repository -->
+        <repository>
+            <id>citizens-repo</id>
+            <name>Citizens Repository</name>
+            <url>https://maven.citizensnpcs.co/repo</url>
+        </repository>
+    </repositories>
+
+    <!-- ********************************************************************** -->
+    <!-- ******************************** Build ******************************* -->
+    <!-- ********************************************************************** -->
+    <build>
+        <resources>
+            <resource>
+                <targetPath>lang</targetPath>
+                <filtering>true</filtering>
+                <directory>${basedir}/src/main/resources/lang</directory>
+            </resource>
+        </resources>
+    </build>
+
+    <!-- ********************************************************************** -->
+    <!-- **************************** Dependencies **************************** -->
+    <!-- ********************************************************************** -->
+    <dependencies>
+
+        <!-- Spigot -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.20.6-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Mojang -->
+        <dependency>
             <groupId>com.mojang</groupId>
             <artifactId>authlib</artifactId>
             <version>3.4.40</version>
             <scope>provided</scope>
         </dependency>
 
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_Shared</artifactId>
-			<version>${NMS_Shared.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_20_R2</artifactId>
-			<version>v1_20_R2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_20_R1</artifactId>
-			<version>v1_20_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_19_R3</artifactId>
-			<version>v1_19_R3-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_19_R2</artifactId>
-			<version>v1_19_R2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_19_R1</artifactId>
-			<version>v1_19_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_18_R1</artifactId>
-			<version>v1_18_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_17_R1</artifactId>
-			<version>v1_17_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_16_R3</artifactId>
-			<version>v1_16_R3-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_16_R2</artifactId>
-			<version>v1_16_R2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_16_R1</artifactId>
-			<version>v1_16_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_15_R1</artifactId>
-			<version>v1_15_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_14_R1</artifactId>
-			<version>v1_14_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_13_R2</artifactId>
-			<version>v1_13_R2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_13_R1</artifactId>
-			<version>v1_13_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_12_R1</artifactId>
-			<version>v1_12_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_11_R1</artifactId>
-			<version>v1_11_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_10_R1</artifactId>
-			<version>v1_10_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_9_R2</artifactId>
-			<version>v1_9_R2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_9_R1</artifactId>
-			<version>v1_9_R1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_8_R3</artifactId>
-			<version>v1_8_R3-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_8_R2</artifactId>
-			<version>v1_8_R2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>NMS_v1_8_R1</artifactId>
-			<version>v1_8_R1-SNAPSHOT</version>
-		</dependency>
+        <!-- ProtocolLib -->
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.8.0-SNAPSHOT</version>
+        </dependency>
 
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>BagOfGold</artifactId>
-			<version>${bagofgold.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>one.lindegaard</groupId>
-			<artifactId>MobHunting</artifactId>
-			<version>${mobhunting.version}</version>
-		</dependency>
-		
-		<!-- BossBarAPI -->
-		<dependency>
-			<groupId>org.inventivetalent</groupId>
-			<artifactId>bossbarapi</artifactId>
-			<version>${bossbarapi.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>metrics-lite</artifactId>
-					<groupId>org.mcstats.bukkit</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+        <!-- Vault -->
+        <dependency>
+            <groupId>com.github.MilkBowl</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.7</version>
+        </dependency>
 
-		<!-- BarAPI -->
-		<dependency>
-			<groupId>me.confuser</groupId>
-			<artifactId>BarAPI</artifactId>
-			<version>${barapi.version}</version>
-		</dependency>
+        <!-- Reserve -->
+        <dependency>
+            <groupId>net.tnemc</groupId>
+            <artifactId>Reserve</artifactId>
+            <version>0.1.5.4</version>
+            <scope>provided</scope>
+        </dependency>
 
-		<!-- TitleManager -->
-		<dependency>
-			<groupId>io.puharesource.mc</groupId>
-			<artifactId>TitleManager</artifactId>
-			<version>${titlemanager.version}</version>
-		</dependency>
+        <!-- ActionAnnouncer -->
+        <dependency>
+            <groupId>me.clip.actionannouncer</groupId>
+            <artifactId>ActionAnnouncer</artifactId>
+            <version>1.16.4</version>
+        </dependency>
 
-		<!-- TitleAPI, ActionBarAPI -->
-		<dependency>
-			<groupId>com.github.ConnorLinfoot</groupId>
-			<artifactId>TitleAPI</artifactId>
-			<version>${TitleAPI.version}</version>
-		</dependency>
 
-		<!-- CMI -->
-		<dependency>
-			<groupId>com.Zrips</groupId>
-			<artifactId>CMI</artifactId>
-			<version>${CMI.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.Zrips</groupId>
-			<artifactId>CMILib</artifactId>
-			<version>${CMILib.version}</version>
-		</dependency>
+        <!-- Placeholder API -->
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.6</version>
+        </dependency>
 
-		<!-- ActionBarAPI -->
-		<dependency>
-			<groupId>com.github.ConnorLinfoot</groupId>
-			<artifactId>ActionBarAPI</artifactId>
-			<version>${ActionBarAPI.version}</version>
-		</dependency>
+        <!-- TitleAPI, ActionBarAPI -->
+        <dependency>
+            <groupId>com.github.ConnorLinfoot</groupId>
+            <artifactId>TitleAPI</artifactId>
+            <version>1.8.1</version>
+        </dependency>
 
-		<!-- ActionAnnouncer -->
-		<dependency>
-			<groupId>me.clip.actionannouncer</groupId>
-			<artifactId>ActionAnnouncer</artifactId>
-			<version>${ActionAnnouncer.version}</version>
-		</dependency>
+        <!-- ActionBarAPI -->
+        <dependency>
+            <groupId>com.github.ConnorLinfoot</groupId>
+            <artifactId>ActionBarAPI</artifactId>
+            <version>5b2d642d3df240cfd2545effcdcacec38405f9cf</version>
+        </dependency>
 
-	</dependencies>
+        <!-- BarAPI -->
+        <dependency>
+            <groupId>me.confuser</groupId>
+            <artifactId>BarAPI</artifactId>
+            <version>3.5</version>
+        </dependency>
 
+        <!-- BossBarAPI -->
+        <dependency>
+            <groupId>org.inventivetalent</groupId>
+            <artifactId>bossbarapi</artifactId>
+            <version>2.4.3-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>metrics-lite</artifactId>
+                    <groupId>org.mcstats.bukkit</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- SpigetUpdate -->
+        <dependency>
+            <groupId>org.inventivetalent.spiget-update</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.4.5-SNAPSHOT</version>
+        </dependency>
+
+        <!-- BagofGold -->
+        <dependency>
+            <groupId>one.lindegaard</groupId>
+            <artifactId>BagOfGold</artifactId>
+            <version>4.5.6-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Roboloco NMS -->
+        <dependency>
+            <groupId>one.lindegaard</groupId>
+            <artifactId>NMS_Shared</artifactId>
+            <version>0.0.5-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>one.lindegaard</groupId>
+            <artifactId>NMS_v1_20_R1</artifactId>
+            <version>v1_20_R1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>one.lindegaard</groupId>
+            <artifactId>NMS_v1_19_R3</artifactId>
+            <version>v1_19_R3-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>one.lindegaard</groupId>
+            <artifactId>NMS_v1_19_R2</artifactId>
+            <version>v1_19_R2-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Citizens -->
+        <dependency>
+            <groupId>net.citizensnpcs</groupId>
+            <artifactId>citizensapi</artifactId>
+            <version>2.0.30-SNAPSHOT</version>
+            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- CMI -->
+        <dependency>
+            <groupId>com.Zrips</groupId>
+            <artifactId>CMI</artifactId>
+            <version>9.0.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.Zrips</groupId>
+            <artifactId>CMILib</artifactId>
+            <version>1.0.2.11</version>
+        </dependency>
+
+        <!-- Mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.32</version>
+        </dependency>
+
+    </dependencies>
 </project>
