@@ -6,7 +6,7 @@
 
     <groupId>metadev.digital</groupId>
     <artifactId>MetaCustomItemsLib</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>1.10.5-SNAPSHOT</version>
     <name>CustomItems Library</name>
     <url>https://github.com/MetadevDigital</url>
     <description>CustomItemsLib is a library with code shared between MobHunting and BagOfGold.</description>
@@ -93,6 +93,8 @@
     <!-- ******************************** Build ******************************* -->
     <!-- ********************************************************************** -->
     <build>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <defaultGoal>clean install</defaultGoal>
         <resources>
             <resource>
                 <targetPath>lang</targetPath>
@@ -100,7 +102,33 @@
                 <directory>${basedir}/src/main/resources/lang</directory>
             </resource>
         </resources>
+        <directory>${basedir}/target</directory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <createSourcesJar>false</createSourcesJar>
+                    <artifactSet>
+                        <includes>
+                            <include>one.lindegaard:NMS*</include>
+                        </includes>
+                    </artifactSet>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
+
 
     <!-- ********************************************************************** -->
     <!-- **************************** Dependencies **************************** -->

@@ -24,24 +24,19 @@ public class CMICompat {
 		} else {
 			mPlugin = Bukkit.getPluginManager().getPlugin(CompatPlugin.CMI.getName());
 
-			if (mPlugin.getDescription().getVersion().compareTo("9.0") >= 0) {
+			if (mPlugin != null && mPlugin.getDescription().getVersion().compareTo("9.0") >= 0) {
 				Bukkit.getConsoleSender().sendMessage(Core.PREFIX + "Enabling compatibility with CMI ("
 						+ mPlugin.getDescription().getVersion() + ").");
 
 				mPlugin2 = Bukkit.getPluginManager().getPlugin(CompatPlugin.CMILib.getName());
-				if (mPlugin2.getDescription().getVersion().compareTo("1.0") >= 0) {
+				if (mPlugin2 != null && mPlugin2.getDescription().getVersion().compareTo("1.0") >= 0) {
 					Bukkit.getConsoleSender().sendMessage(Core.PREFIX + "Enabling compatibility with CMILib ("
 							+ mPlugin2.getDescription().getVersion() + ").");
 					supported = true;
 				} else
-					Bukkit.getConsoleSender().sendMessage(Core.PREFIX_ERROR + " Your current version of CMILib ("
-							+ mPlugin2.getDescription().getVersion()
-							+ ") is not supported by CustomItemsLib. CustomItemsLib does only support version 1.0 or newer.");
-
+					Bukkit.getConsoleSender().sendMessage(Core.PREFIX_ERROR + " Your current version of CMILib is not supported by CustomItemsLib.");
 			} else
-				Bukkit.getConsoleSender().sendMessage(Core.PREFIX_ERROR + "Your current version of CMI ("
-						+ mPlugin.getDescription().getVersion()
-						+ ") is not supported by CustomItemsLib. CustomItemsLib does only support version 9.0 or newer.");
+				Bukkit.getConsoleSender().sendMessage(Core.PREFIX_ERROR + "Your current version of CMI is not supported by CustomItemsLib. CustomItemsLib does only support version 9.0 or newer.");
 
 		}
 	}

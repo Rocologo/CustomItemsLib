@@ -1,21 +1,41 @@
 name: CustomItemsLib
 main: metadev.digital.metacustomitemslib.Core
-version: 0.9.0
+version: 1.10.5
 description: CustomItemsLib is shared library used by BagOfGold and MobHunting.
 dev-url: https://www.spigotmc.org/resources/customitemslib.nnnnn/
 author: JebusChrystler
 depend: []
-loadbefore: [BagOfGold, MobHunting]
-softdepend: [Reserve, Vault, PerWorldInventory, Citizens, Essentials, ProtocolLib, PacketListenerApi, ItemFrameShops, Multiverse-Core, TitleManager, CMI, CMILib, BossBarAPI, BarAPI, ActionBar, TitleAPI, TitleManager, ActionBarAPI, ActionAnnouncer]
-api-version: 1.20
-
+loadbefore:
+  - BagOfGold
+  - MobHunting
+softdepend:
+  - Reserve
+  - Vault
+  - PerWorldInventory
+  - Citizens
+  - Essentials
+  - ProtocolLib
+  - PacketListenerApi
+  - ItemFrameShops
+  - Multiverse-Core
+  - TitleManager
+  - CMI
+  - CMILib
+  - BossBarAPI
+  - BarAPI
+  - ActionBar
+  - TitleAPI
+  - TitleManager
+  - ActionBarAPI
+  - ActionAnnouncer
+api-version: 1.20.6
 commands:
   customitemslib:
     description: Allows you to use commands in CustomItemsLib
     permission: customitemslib.cmd
-    aliases: [cil]
+    aliases:
+      - cil
     usage: /<command> command
-
 permissions:
   customitemslib.cmd:
     description: Allows a player to use the customitemslib command

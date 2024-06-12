@@ -29,7 +29,7 @@ import metadev.digital.metacustomitemslib.storage.DataStoreManager;
 import metadev.digital.metacustomitemslib.storage.IDataStore;
 import metadev.digital.metacustomitemslib.storage.MySQLDataStore;
 import metadev.digital.metacustomitemslib.storage.SQLiteDataStore;
-import metadev.digital.metacustomitemslib.update.SpigetUpdater;
+// import metadev.digital.metacustomitemslib.update.SpigetUpdater;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -56,7 +56,7 @@ public class Core extends JavaPlugin {
 	private static CoreRewardManager mCoreRewardManager;
 	private static CompatibilityManager mCompatibilityManager;
 	private CommandDispatcher mCommandDispatcher;
-	private SpigetUpdater mSpigetUpdater;
+	// private SpigetUpdater mSpigetUpdater;
 
 	// Public Placeholders used in BagOfGold and MobHunting
 	public static final String PH_PLAYERNAME = "playername";
@@ -179,9 +179,10 @@ public class Core extends JavaPlugin {
 			return;
 		
 		// Check for new updates
-		mSpigetUpdater = new SpigetUpdater(this);
+
+		/** mSpigetUpdater = new SpigetUpdater(this);
 		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
-		mSpigetUpdater.hourlyUpdateCheck(getServer().getConsoleSender(), mConfig.updateCheck, false);
+		mSpigetUpdater.hourlyUpdateCheck(getServer().getConsoleSender(), mConfig.updateCheck, false); */
 
 	}
 
@@ -238,9 +239,10 @@ public class Core extends JavaPlugin {
 		return mCoreRewardManager;
 	}
 
-	public SpigetUpdater getSpigetUpdater() {
+	/** - TODO: SpigetUpdater crashing */
+	/** public SpigetUpdater getSpigetUpdater() {
 		return mSpigetUpdater;
-	}
+	}*/
 
 	public static EconomyManager getEconomyManager() {
 		return mEconomyManager;

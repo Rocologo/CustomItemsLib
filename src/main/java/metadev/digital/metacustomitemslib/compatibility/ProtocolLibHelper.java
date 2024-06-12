@@ -39,7 +39,7 @@ public class ProtocolLibHelper {
 								ItemStack is = sm.getValues().get(i);
 								if (is.hasItemMeta()) {
 									ItemMeta itemMeta = is.getItemMeta();
-									if (itemMeta.hasLore()) {
+									if (itemMeta != null && itemMeta.hasLore()) {
 										List<String> lore = itemMeta.getLore();
 										Iterator<String> itr = lore.iterator();
 										while (itr.hasNext()) {
@@ -65,7 +65,7 @@ public class ProtocolLibHelper {
 									ItemStack is = itemStackList.get(i);
 									if (is.hasItemMeta()) {
 										ItemMeta itemMeta = is.getItemMeta();
-										if (itemMeta.hasLore()) {
+										if (itemMeta != null && itemMeta.hasLore()) {
 											List<String> lore = itemMeta.getLore();
 											Iterator<String> itr = lore.iterator();
 											while (itr.hasNext()) {
