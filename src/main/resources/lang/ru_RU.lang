@@ -42,10 +42,13 @@ core.commands.version.description=&7Отобразить версию плаги
 core.commands.version.newversion=&aДоступна новая версия: ${newversion}. Используйте '/cil update' чтобы обновить плагин.
 
 mobs.Armorer.name=§9Оружейник
+mobs.Armadillo.name=§9Броненосец
 mobs.Bat.name=§9Лечучая Мышь
 mobs.Bee.name=§9пчелка
 mobs.Blacksmith.name=§9Кузнец
 mobs.Blaze.name=§9Ифрит
+mobs.Breeze.name=§9Ветер
+mobs.Bogged.name=§9болото
 mobs.BonusMob.name=§9Бонусный Моб
 mobs.Butcher.name=§9Мясник
 mobs.Camel.name=§9Camel

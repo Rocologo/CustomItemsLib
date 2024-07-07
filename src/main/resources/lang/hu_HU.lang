@@ -42,10 +42,13 @@ core.commands.version.currentversion=Ez a kiszolgáló fut 'BagOfGold ${currentv
 core.commands.version.newversion=Verzió ${newversion} elérhető. Használd a '/cil update' a plugin frissítéséhez.
 
 mobs.Armorer.name=§9Fegyverkovács
+mobs.Armadillo.name=§9Tatú
 mobs.Bat.name=§9Denevér
 mobs.Bee.name=§9Méh
 mobs.Blacksmith.name=§9Kovács
 mobs.Blaze.name=§9Őrláng
+mobs.Breeze.name=§9Szellő
+mobs.Bogged.name=§9Mocsárt
 mobs.BonusMob.name=§9Bónusz mob
 mobs.Butcher.name=§9Hentes
 mobs.Camel.name=§9Camel

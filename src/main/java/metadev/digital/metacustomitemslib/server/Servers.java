@@ -5,8 +5,12 @@ import org.bukkit.Bukkit;
 public class Servers {
 
 	// *******************************************************************
-	// Version detection
+	// Version detection TODO: Unfuck this, this is a terrible way to do this
 	// *******************************************************************
+
+	public static boolean isMC121() {
+		return Bukkit.getBukkitVersion().contains("1.21");
+	}
 
 	public static boolean isMC120() {
 		return Bukkit.getBukkitVersion().contains("1.20");
@@ -62,6 +66,14 @@ public class Servers {
 
 	public static boolean isMC18() {
 		return Bukkit.getBukkitVersion().contains("1.8");
+	}
+
+	public static boolean isMC121OrNewer() {
+		if (isMC121())
+			return true;
+		else if (isMC120() || isMC119() || isMC118() || isMC117() || isMC1162() || isMC116() || isMC115() || isMC114() || isMC113() || isMC112() || isMC111() || isMC110() || isMC19() || isMC18())
+			return false;
+		return true;
 	}
 
 	public static boolean isMC120OrNewer() {

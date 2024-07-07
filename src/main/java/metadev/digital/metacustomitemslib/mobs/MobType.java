@@ -15,8 +15,23 @@ public enum MobType {
 	// http://heads.freshcoal.com/index.php
 
 	// ******************************************************************
+	// Minecraft 1.21
+	// ******************************************************************
+	Breeze("Breeze", "7e8a96ed-57af-42a7-8064-69d086a65c76", "Breeze",
+			"ewogICJ0aW1lc3RhbXAiIDogMTcyMDM3OTQ4OTc2NCwKICAicHJvZmlsZUlkIiA6ICI5YzM1ZGU3MjdmMzU0ZTVlYjFiOWRhOGViYTZhYzM1YyIsCiAgInByb2ZpbGVOYW1lIiA6ICJtb21teXR3ZXJrZXVzZSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9iNzczNTQ4ZTA4YjliODg3YzM4MjZjOGRhNWI2MGI1YjYzMWQzMDJjZGFmMmY4MjE5YTYxZTczYWQxMGU2MTkxIgogICAgfQogIH0KfQ==",
+			"qkhBnjCTl6EFLokibvMgFJ+jXhEwbmisHoZ1z4NMsyVgIAzO1hXMQSJJhkT/JnmEx+uEBDLqa93z7G+weElA0vFKhdBM/h7FwQu8nQAflqZfBfr45OAKFsrrhjuz4qTmgP0JFdD+p24xgU6le8FVExr9fx+tskniAeveKx1tNwtkboopB/tZCLTqnwSLENG3hSo0dICGkUDMAvQwuc2wcM9JwrRz68GiUCgDpCwWADKiHfDSMEuRkdB4ImJL+B/jl63SyZXjJkyccLldt1+mJb/eFDwJiXoiH84/KA5GwFBtgxDTa4Gy3NwDYW7Pvr6XJwjbdrC8mwfi5bqfPcqVm9MpydLh73VceTPUHTaoZyPp+jENYXI6+HqG3vvenrCZJZ4bnVJ/8XnnPL4SBhFC1y6Pn8fqsn7ZPN7nScDYFGH/xuhzqKAVFfUdcpHRGvrw8UU3kxPD9ESg09f/pFthdoUfz4BoKnJAmCo+3C/9nPI6bXbNZ4LtOy/D4D8ww8Ao6+dqiJEoFFc/3qmM270atDiCs6IveRIPwqQOK9ILslvLFX6GaJLWxdokjFGdRgtnpu1YdZelGodoxPen96ZPb4+H0eHUpfq2lxrMa2tFTJ+/joMuK42ZPcEIyEVRyNy6JRYKvC7LSnCpLvPCVe/zY0IozuB3HoEcFio94RHcy5U="),
+
+	Bogged("Bogged", "8e9343bf-91a2-4bef-8598-3027c56782a7", "Bogged",
+			"ewogICJ0aW1lc3RhbXAiIDogMTcxNzAxOTUwNDg3OCwKICAicHJvZmlsZUlkIiA6ICI0NTk3YjBiNWZlZGY0MTg0YjI2YWU0NWZjYmVhODVmMSIsCiAgInByb2ZpbGVOYW1lIiA6ICJQc3lrb19EYXJrIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2E0Y2IxMWQxMDAxNGMzNzc4MjcxODMzNWRmOWNlZmI1NTQ4YTlkN2Y0OTQ1NmQwY2ZjNjY0YmQyOGFmY2EyOTYiCiAgICB9CiAgfQp9",
+			"HfqK9Hi8vp3ZdS+Ax6ZRFBu6dhOKgVSwDOGk9IciHleWfjr19daExWRULIolv8Ui0WeM9CnXdLGjyaqTj7R1OiZFuEoSGC3jr/uHqxb3nH8f6Mfn9ypmZLQXPGT7qf/Q8irz24T0FKYkoepnUU7YTiEFBEQtxYiZC1dXk9OiQASnib2hfdvthfhlY+eGkMjqwSEp2LtMeTTdbiuT1/b8uM9GhccZWhsdieu/lcvjzr0rJz1U/nm+pG6d+DqAbFaPMZNMZhCxMydyXqG46+GKd6jipmsMglArrVggmDcJrwOmkeYcmnJRe3dXHVXzliO9sxF7ur6DSdEZo4fzloQIMPkMeiTKFW8qnY3ZzO+nTHlj+YH9io7AsgrjdAjItOXWculvh0hg+8m3VZ/TJN6oxfAiN8q5hTMZyGIVms4CAY4ItumoNYYvqfXewJPobW5FY7Dw0kCLXuAHxZobroZKZKTOMF7jCbhce1zFTlbrbVMKluV5mZtgnRdMLJfcHpxTp+On5q6k3IdEspHC4YwTTBnKsJ8QNTA+wYKpnfcWJi2Ftcqzv0WXKq2QTcTbhe12eqE7APALciN+6hOFpCeiNGj91Y3zRIG3Jt1Z/B1sn4EU5TgYLcNSK0eDtlSqB/FO+//iFggwQ3Szk71eQSWKgLFGCgSFCu1wA+9raA6Rwl0="),
+
+	// ******************************************************************
 	// Minecraft 1.20
 	// ******************************************************************
+	Armadillo("Armadillo", "d5b2fb51-4d70-4c82-90e4-0aa3d62a5760", "Armadillo",
+			"ewogICJ0aW1lc3RhbXAiIDogMTcwOTQ3MDM3NTY1NSwKICAicHJvZmlsZUlkIiA6ICJlZGUyYzdhMGFjNjM0MTNiYjA5ZDNmMGJlZTllYzhlYyIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0aGVEZXZKYWRlIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzI4MWI0Njg0Y2E4NzM0OGE0OTI2NGQ1NmJhNDIzYjg5YzYxMDAxZGJjYmI3ZjEzMWE5ZWYxZDkwMTM1NmNmZmEiCiAgICB9CiAgfQp9",
+			"B9W6xXJ0iXMM1iWwzUmqJ57uFMxBJA4oDaSHrRIJDARH+jkxcgEWBS7bMkycX+9mo4mbYp22PWd2b6EkTdFwQKehb2VRQnRb0gGAyCk9x/bBhXWlJpjUHwo3f+8moNv0xRW2Idyd5zSXUHPGjZaLVGljq/QwiFJehnbmr3h1bmdo/K5SIzfU7uf92+JmQvNh9DhIEloRYgJ6qDUFkUFRANODibB9WPtt5fSODWCF6kRxyuP/SIMJaTWEdDsrrVXDv078M2F4ije0Im371WZ2EwxFONHB+VNrkfvmCxNTmuJjv3/dUddgE5NbyCOENpLtY40ANrsqROBsybvuVHg9HhA0DV3w8y34d6qJ86TL811C/qKBITjSiaUwuajhEu0FSnins3zSoCun0mkD0+VoFEPHF5wSHcyjILs3GdU4SSqB1EsjYcD3UPE5t5q3T/EZmpHhw4lJeBydTOvsuhMDWCYLllMXYJF2+nvU74ov/+7F09dknwct4F+6wFyjPTqhcZDOSdSpe+ermIBAMHSSCh5u7p9ZDiA6KD0vF8rHuaCUMe9zgR+OfOWm5aPS1+hucsNpXAIKDDPPH4TVnrXaY+l++rPbvERrJcCIFL0hf4Yk9qeUbT7VdsV+4J3TGutk5zC5ojduPLKuKUHfoNn0f98B45XbaR5XDpzU+dfGZQU="),
+
 	Camel("Camel", "0b870939-ea19-4af2-a172-5c5204d21071", "Camel",
 			"ewogICJ0aW1lc3RhbXAiIDogMTU4OTAwMTgzOTQ4MiwKICAicHJvZmlsZUlkIiA6ICIzM2ViZDMyYmIzMzk0YWQ5YWM2NzBjOTZjNTQ5YmE3ZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJEYW5ub0JhbmFubm9YRCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8yMjY4ODYwNzRjZmE3NmFmNjg5YWE2Y2UwODg2NjA2OWQ4ZmRmYzc3OTg4MGZhMmZkZDNkYmJmYzA0ZWYxMDQyIgogICAgfQogIH0KfQ==",
 			"MnvItIBEB19zcBft/CaxJe433M/FhItJeNymOjxqztC+NwznNfr9S+FC9CuNy4Q45E+oJSSjj/KERhfHjNQ/k3W7iKZj6VpV/IogHO+Snpka+X2JSstf4VEa8CMPmYWGNgrq31i+ZD8yZFjqQ8nHv/rgqKivvGhALpOy97VgmX5kKP8GBuyhRHr/FuVwugZR1GriEjq+PRVUB0tvntYaOafMNAIsB7S3QgLjXvAyiotA+/kHZK+dzaAJcxWuDnlkN9QYFW5JVWSn2TjvaG4Eancw31gpewawG/QHgYFI4hyvUodKRD3Ll2JpwvV7iZUIc+f8vr+VFzVnqS1E9EI6wH6tjdFvU15qVR3R1JjNJU6uwc9imRJYeHcn3lVYRCv0SmAVH8tBPVooIzuaqW5GVjluik30faUm1yCX3M+xPhVeDcYkPFa0viNuVOwFCzGSWnhx/rnZwGK4pPHhZN4AMrqpX1G+AuBn082uxuRsrg8tNFiNFexxp3Zev12cdNPJgrXuyXPUfknrk2UjRoK2JmLrN7yBL+u1UyALGXXUJlcxN9Dvvr3CxB6AZgl/yjGwomB9Mw6fio9cTbYAh+4yiXywSRKeH531yry3t29RjG+x99yCG83ejKZoYa7sHOHPEgwk5om+AHJUncbVRrmq0+D2ZbIIHKak6RL7IvndTdo="),
@@ -569,14 +584,24 @@ public enum MobType {
 	}
 
 	public boolean matches(Entity entity) {
+		// TODO: Evaluate if we even need to bother supporting old versions of minecraft on new versions of plugin
+		if(Servers.isMC121OrNewer()) {
+			if (this == Breeze)
+				return entity instanceof org.bukkit.entity.Breeze;
+			else if(this == Bogged)
+				return entity instanceof org.bukkit.entity.Bogged;
+		}
 
-		if (Servers.isMC120OrNewer())
+		if (Servers.isMC120OrNewer()) {
 			if (this == Camel)
 				return entity instanceof org.bukkit.entity.Camel;
 			else if (this == Sniffer)
 				return entity instanceof org.bukkit.entity.Sniffer;
+			else if (this == Armadillo)
+				return entity instanceof org.bukkit.entity.Armadillo;
+		}
 
-		if (Servers.isMC119OrNewer())
+		if (Servers.isMC119OrNewer()) {
 			if (this == Warden)
 				return entity instanceof org.bukkit.entity.Warden;
 			else if (this == Frog)
@@ -585,23 +610,26 @@ public enum MobType {
 				return entity instanceof org.bukkit.entity.Tadpole;
 			else if (this == Allay)
 				return entity instanceof org.bukkit.entity.Allay;
+		}
 
 		if (Servers.isMC118OrNewer()) {
 		}
 
-		if (Servers.isMC117OrNewer())
+		if (Servers.isMC117OrNewer()) {
 			if (this == Axolotl)
 				return entity instanceof org.bukkit.entity.Axolotl;
 			else if (this == Goat)
 				return entity instanceof org.bukkit.entity.Goat;
 			else if (this == GlowSquid)
 				return entity instanceof org.bukkit.entity.GlowSquid;
+		}
 
-		if (Servers.isMC1162OrNewer())
+		if (Servers.isMC1162OrNewer()) {
 			if (this == MobType.PiglinBrute)
 				return entity instanceof org.bukkit.entity.PiglinBrute;
+		}
 
-		if (Servers.isMC116OrNewer())
+		if (Servers.isMC116OrNewer()) {
 			if (this == Hoglin)
 				return entity instanceof org.bukkit.entity.Hoglin;
 			else if (this == Piglin)
@@ -612,12 +640,14 @@ public enum MobType {
 				return entity instanceof org.bukkit.entity.Zoglin;
 			else if (this == ZombiePigman)
 				return entity instanceof org.bukkit.entity.PigZombie;
+		}
 
-		if (Servers.isMC115OrNewer())
+		if (Servers.isMC115OrNewer()) {
 			if (this == Bee)
 				return entity instanceof org.bukkit.entity.Bee;
+		}
 
-		if (Servers.isMC114OrNewer())
+		if (Servers.isMC114OrNewer()) {
 			if (this == Cat)
 				return entity instanceof org.bukkit.entity.Cat;
 			else if (this == Fox)
@@ -664,8 +694,9 @@ public enum MobType {
 				return (entity instanceof Villager && ((Villager) entity).getProfession() == Profession.TOOLSMITH);
 			else if (this == Weaponsmith)
 				return (entity instanceof Villager && ((Villager) entity).getProfession() == Profession.WEAPONSMITH);
+		}
 
-		if (Servers.isMC113OrNewer())
+		if (Servers.isMC113OrNewer()) {
 			if (this == Dolphin)
 				return entity instanceof org.bukkit.entity.Dolphin;
 			else if (this == Drowned)
@@ -686,14 +717,16 @@ public enum MobType {
 			else if (this == Pufferfish)
 				return entity instanceof org.bukkit.entity.PufferFish
 						|| (entity instanceof Item && ((Item) entity).getItemStack().getType() == Material.PUFFERFISH);
+		}
 
-		if (Servers.isMC112OrNewer())
+		if (Servers.isMC112OrNewer()) {
 			if (this == Parrot)
 				return entity instanceof org.bukkit.entity.Parrot;
 			else if (this == Illusioner)
 				return entity instanceof org.bukkit.entity.Illusioner;
+		}
 
-		if (Servers.isMC111OrNewer())
+		if (Servers.isMC111OrNewer()) {
 			if (this == Llama)
 				return entity instanceof org.bukkit.entity.Llama;
 			else if (this == Evoker)
@@ -721,15 +754,17 @@ public enum MobType {
 			else if (this == Nitwit)
 				return entity instanceof org.bukkit.entity.Villager
 						&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.NITWIT);
+		}
 
-		if (Servers.isMC110OrNewer())
+		if (Servers.isMC110OrNewer()) {
 			if (this == PolarBear)
 				return entity instanceof org.bukkit.entity.PolarBear;
 			else if (this == Stray)
 				return entity instanceof Skeleton && (((Skeleton) entity).getSkeletonType() == SkeletonType.STRAY);
+		}
 
 		// Handle old villagers
-		if (Servers.isMC110OrNewer() && !Servers.isMC114OrNewer())
+		if (Servers.isMC110OrNewer() && !Servers.isMC114OrNewer()) {
 			if (this == Husk)
 				return entity instanceof Zombie
 						&& ((Zombie) entity).getVillagerProfession() == Profession.valueOf("HUSK");
@@ -751,10 +786,12 @@ public enum MobType {
 			else if (this == Librarian)
 				return entity instanceof org.bukkit.entity.Villager
 						&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.LIBRARIAN);
+		}
 
-		if (Servers.isMC19OrNewer())
+		if (Servers.isMC19OrNewer()) {
 			if (this == Shulker)
 				return entity instanceof org.bukkit.entity.Shulker;
+		}
 
 		// MC 1.8 and older entities
 		if (this == KillerRabbit)
@@ -820,7 +857,17 @@ public enum MobType {
 
 	}
 
+	// TODO: Prune color codes out of lang files
 	public String getFriendlyName() {
-		return Core.getMessages().getString("mobs." + name() + ".name");
+		String friendlyName = Core.getMessages().getString("mobs." + name() + ".name");
+
+		if(friendlyName.contains("&")){
+			friendlyName = friendlyName.substring((friendlyName.indexOf("&") + 2));
+		}
+		else if (friendlyName.contains("§")) {
+			friendlyName = friendlyName.substring((friendlyName.indexOf("§") + 2));
+		}
+
+		return friendlyName;
 	}
 }

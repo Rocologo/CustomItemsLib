@@ -43,10 +43,13 @@ core.commands.version.description=显示 BagOfGold插件 的版本号.
 core.commands.version.newversion= ${newversion} 版本是可用的 输入 '/cil update' 来更新插件
 
 mobs.Armorer.name=§9Armorer
+mobs.Armadillo.name=§犰狳
 mobs.Bat.name=§9蝙蝠
 mobs.Bee.name=§9蜜蜂
 mobs.Blacksmith.name=§9铁匠
 mobs.Blaze.name=§9烈焰人
+mobs.Breeze.name=§9微風
+mobs.Bogged.name=§9沼澤
 mobs.BonusMob.name=§9奖金怪物
 mobs.Butcher.name=§9屠夫
 mobs.Camel.name=§9Camel

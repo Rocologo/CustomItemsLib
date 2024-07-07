@@ -40,10 +40,13 @@ core.commands.version.description=Pokazuje wersje pluginu.
 core.commands.version.newversion=Wersja ${newversion} jest dostepna. Uzyj '/cil update' aby zaktualizowac.
 
 mobs.Armorer.name=§9Platnerz
+mobs.Armadillo.name=§9Pancernik
 mobs.Bat.name=§9Nietoperz
 mobs.Bee.name=§9Pszczoła
 mobs.Blacksmith.name=§9Kowal
 mobs.Blaze.name=§9Blaze
+mobs.Breeze.name=§9Bryza
+mobs.Bogged.name=§9Bagnem
 mobs.BonusMob.name=§9Bonus Mob
 mobs.Butcher.name=§9Rzeznik
 mobs.Camel.name=§9Camel
