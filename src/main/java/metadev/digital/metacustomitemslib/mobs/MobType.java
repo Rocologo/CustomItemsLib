@@ -857,7 +857,7 @@ public enum MobType {
 
 	}
 
-	// TODO: Prune color codes out of lang files
+	// TODO: Prune color codes out of lang files and sanitize at source
 	public String getFriendlyName() {
 		String friendlyName = Core.getMessages().getString("mobs." + name() + ".name");
 
@@ -866,6 +866,10 @@ public enum MobType {
 		}
 		else if (friendlyName.contains("§")) {
 			friendlyName = friendlyName.substring((friendlyName.indexOf("§") + 2));
+		}
+
+		if(friendlyName.contains(" ")){
+			friendlyName = friendlyName.replace(' ', '_');
 		}
 
 		return friendlyName;
