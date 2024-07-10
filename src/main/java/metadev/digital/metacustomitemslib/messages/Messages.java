@@ -174,6 +174,7 @@ public class Messages {
 		return "UTF-8";
 	}
 
+	// TODO: DETECT/GENERATE NEW VERSION OF LANG FILES
 	private static Map<String, String> loadLang(File file) {
 		Map<String, String> map;
 
@@ -300,6 +301,37 @@ public class Messages {
 			Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX_DEBUG + String.format(message, args));
 		}
 	}
+
+	/**
+	 * Show console message
+	 *
+	 * @param message
+	 * @param args
+	 */
+	public void notice(String message, Object... args) {
+		Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX + String.format(message, args));
+	}
+
+	/**
+	 * Show console warning
+	 *
+	 * @param message
+	 * @param args
+	 */
+	public void warning(String message, Object... args) {
+		Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX_WARNING + String.format(message, args));
+	}
+
+	/**
+	 * Show console error
+	 *
+	 * @param message
+	 * @param args
+	 */
+	public void error(String message, Object... args) {
+		Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX_ERROR + String.format(message, args));
+	}
+
 
 	private static Map<String, String> sortByKeys(Map<String, String> map) {
 		SortedSet<String> keys = new TreeSet<String>(map.keySet());

@@ -56,7 +56,7 @@ public class Core extends JavaPlugin {
 	private static PlayerSettingsManager mPlayerSettingsManager;
 	private static CoreRewardManager mCoreRewardManager;
 	private static CompatibilityManager mCompatibilityManager;
-	private static UpdateManager mUpdateManager;
+	private UpdateManager mUpdateManager;
 	private CommandDispatcher mCommandDispatcher;
 
 	// Public Placeholders used in BagOfGold and MobHunting
@@ -68,6 +68,7 @@ public class Core extends JavaPlugin {
 
 	public boolean disabling = false;
 
+	//TODO: Move logs to messages
 	public static final String PREFIX = ChatColor.GOLD + "[CustomItemsLib] " + ChatColor.RESET;
 	public static final String PREFIX_DEBUG = ChatColor.GOLD + "[CustomItemsLib][Debug] " + ChatColor.RESET;
 	public static final String PREFIX_WARNING = ChatColor.GOLD + "[CustomItemsLib][Warning] " + ChatColor.RED;
@@ -181,7 +182,8 @@ public class Core extends JavaPlugin {
 		
 		// Check for new updates
 		mUpdateManager = new UpdateManager(plugin);
-		mUpdateManager.isInitialized();
+		mUpdateManager.handleUpdateCheck();
+
 		/** mSpigetUpdater = new SpigetUpdater(this);
 		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
 		mSpigetUpdater.hourlyUpdateCheck(getServer().getConsoleSender(), mConfig.updateCheck, false); */
