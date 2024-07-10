@@ -1,5 +1,6 @@
 package metadev.digital.metacustomitemslib.messages;
 
+//TODO: PlaceHolderAPICompat is throwing errors when being called here. Make CustomItemsLib version?
 import one.lindegaard.BagOfGold.compatibility.PlaceholderAPICompat;
 
 import metadev.digital.metacustomitemslib.Core;
@@ -464,7 +465,7 @@ public class Messages {
 		if (sender instanceof Player) {
 			Player player = ((Player) sender);
 			if (!Core.getPlayerSettingsManager().getPlayerSettings(player).isMuted())
-				player.sendMessage(PlaceholderAPICompat.setPlaceholders((Player) sender, message));
+				player.sendMessage(message);
 		} else
 			sender.sendMessage(message);
 	}

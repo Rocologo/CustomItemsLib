@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
+// TODO: Lang files are being referenced in commands which have dirty descriptions
 public class DebugCommand implements ICommand {
 
 	private Core plugin;
