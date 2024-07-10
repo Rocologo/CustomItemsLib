@@ -59,7 +59,7 @@
         <!-- Placeholder API -->
         <repository>
             <id>placeholderapi</id>
-            <url>https://repo.extendedclip.com/content/repositories/</url>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
 
         <!-- Add imported jar files to main project-->
