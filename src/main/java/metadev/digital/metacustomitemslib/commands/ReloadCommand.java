@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
+// TODO: Lang files are being referenced in commands which have dirty descriptions
 public class ReloadCommand implements ICommand {
 
 	private Core plugin;

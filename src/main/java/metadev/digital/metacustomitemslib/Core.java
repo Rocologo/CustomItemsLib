@@ -30,7 +30,6 @@ import metadev.digital.metacustomitemslib.storage.IDataStore;
 import metadev.digital.metacustomitemslib.storage.MySQLDataStore;
 import metadev.digital.metacustomitemslib.storage.SQLiteDataStore;
 import metadev.digital.metacustomitemslib.update.UpdateManager;
-// import metadev.digital.metacustomitemslib.update.SpigetUpdater;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -56,7 +55,7 @@ public class Core extends JavaPlugin {
 	private static PlayerSettingsManager mPlayerSettingsManager;
 	private static CoreRewardManager mCoreRewardManager;
 	private static CompatibilityManager mCompatibilityManager;
-	private UpdateManager mUpdateManager;
+	private static UpdateManager mUpdateManager;
 	private CommandDispatcher mCommandDispatcher;
 
 	// Public Placeholders used in BagOfGold and MobHunting
@@ -182,12 +181,7 @@ public class Core extends JavaPlugin {
 		
 		// Check for new updates
 		mUpdateManager = new UpdateManager(plugin);
-		mUpdateManager.handleUpdateCheck();
-
-		/** mSpigetUpdater = new SpigetUpdater(this);
-		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
-		mSpigetUpdater.hourlyUpdateCheck(getServer().getConsoleSender(), mConfig.updateCheck, false); */
-
+		mUpdateManager.processCheckResultInConsole();
 	}
 
 	@Override
@@ -235,22 +229,15 @@ public class Core extends JavaPlugin {
 		return mDataStoreManager;
 	}
 
-	public static PlayerSettingsManager getPlayerSettingsManager() {
-		return mPlayerSettingsManager;
-	}
+	public static PlayerSettingsManager getPlayerSettingsManager() { return mPlayerSettingsManager; }
 
 	public static CoreRewardManager getCoreRewardManager() {
 		return mCoreRewardManager;
 	}
 
-	/** - TODO: SpigetUpdater crashing */
-	/** public SpigetUpdater getSpigetUpdater() {
-		return mSpigetUpdater;
-	}*/
+	public static UpdateManager getUpdater() {	return mUpdateManager;	}
 
-	public static EconomyManager getEconomyManager() {
-		return mEconomyManager;
-	}
+	public static EconomyManager getEconomyManager() { return mEconomyManager;	}
 	
 	/**
 	 * setMessages
