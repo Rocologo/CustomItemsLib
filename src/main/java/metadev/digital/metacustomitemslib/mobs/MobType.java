@@ -504,7 +504,7 @@ public enum MobType {
 	Sheep("SHEEP", "93a9dc75-5120-4317-887c-757024c898d2", "Sheep",
 			"eyJ0aW1lc3RhbXAiOjE0NjczMTMwOTkxMjcsInByb2ZpbGVJZCI6IjNlMjZiMDk3MWFjZDRjNmQ5MzVjNmFkYjE1YjYyMDNhIiwicHJvZmlsZU5hbWUiOiJOYWhlbGUiLCJzaWduYXR1cmVSZXF1aXJlZCI6dHJ1ZSwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzdiMzhhZDQ2YTkxNTJkNjY5ODI0ZmI2MzJlZGIyZWYyOGRkNTc5ZTE1ZDRmOGYzNzNmYmZiYjgwNDQ1MyJ9fX0=",
 			"Io/E37BMa445GPRtFTzXoPfYy1TwG0kSx2aAGPIAHelM683jTV396q3m5slfDQZmxJ5ToZsvlCOqhG+Zh3236weIgBOiFH2qm9/nL3aEqZ+b0W56qztuEjoX6dE9GgEZ+ctQoVgA2JQ+Xr3zjsrTDYdnEYFqUDRiBKRKQR2IX3iscVhcv3cTBYtWHu32ZGPb+LxeI7ghvMM0ABXcD0QVK3v2JJTkHxq2imzz24jUhqgl19httqePenZO410uSWEKQpq/dUJPczjRDiEeEzU0vQjnVpypmouJGEz/aYwaY94Q6N6BTz2m5y2jO0Mj12jFKumIisbcNZelIqMezDogLmyKHsWSp20zjTdmf/ziYziEB1p5JGoLM7Fy0tphtD8Fo2Ee28WHSFmKxHDUgTzufSBZa1IhxliVM+wsoq/ua4oVdO9Uh+RbZfqlV41dqwHKaOYJIkHM/yVM7+5SdnVN/bOOQnXQTmUXIaeOe3018SST8Bq+9+M6HT6NsO+HeTW45lw2jTd1dQ/njHqah9JLqxBYstFRmar5n5lneaeVRchc7x+MK2A0STXDoYnwHwY/hbFP8Gn4eJKbfpVb2iAe+Pvzh2xLMk1cjfcJ3SyymwcvNf7bH/nx7RNTVfnUMWQoc/WkrKoad1q0hVFC38MAZEObIIrPBN8jTmBodHlxujM="),
-	// Snowman
+	// Snowgolem
 	Snowman("SNOWMAN", "7a6635f7-fb88-42cd-9799-86466c169a70", "Snowman",
 			"eyJ0aW1lc3RhbXAiOjE0ODEwNDQyMDc0NTYsInByb2ZpbGVJZCI6IjNjOWE4MjkyMGZhNzRlN2M4NDEzMmJjYjE1OTY4MjA0IiwicHJvZmlsZU5hbWUiOiJSb2NvbG9nbyIsInNpZ25hdHVyZVJlcXVpcmVkIjp0cnVlLCJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWQ1OTQ4ZDkzMDkxN2FlZTc2NzQxNDhhNmE1NWNlYjJhYTNmM2VjM2UxYTdmMTM2NjdmOTIxM2Y0NGRkY2FjIn19fQ==",
 			"lAEwCfGLVAcsR0QtKfLID1NtZdRwF6bVqHrTWla0fWpbRT+BBLxZnabic/38gixxdnw+ciigU1hiAag0I62L/yv4RvDFYRcRDiV25h/kNvW0DSjXIkFHUte8ZRIqGOITGYa+x4nT3WuMnhJ+sLsUNHfC6ShobIlBJzVCS/nkjNwiucf0DX5rWBedoI2okBvndgV3ei3JYUU++8fz8hiT965Z0BWEWrd3WhvOgY4GayNCwPCp2byBSSQEykpVTRh/Q0SIe1Xe38Ce3RHraI3rPdCqvWSztEAIWUtGB0Hy8yfHkFgXrFvPSKi6T26ax7oNZffzid5+J14R0LR3eKdL/fkZZuk/uGCJLc6e2Q964APqSud4oEa2YQ9BkhPy10n8cARRu6XqIqueLfZxSxAQYW5uykZ+QllgohwY8xO9aU6dY82DBfhy7j66weL7RsimGF32+pK7e2jOMQSLML2Q4vjtLqoEoyyW5+lwGE5hKpNO/3T+FFZ3hsc1hVXYb99fmAcMFLvdWyiucjBSH+/yv7U+D3xlSN/wLVEx7GHav8y7QRb28OP0fm0p1AVN8AapBApWnt4nqrcamsCna80uIH1x/mDT6jiXujBAG7yQ02Lspg+MufSzePitKSH53RZ/JKZ0HJax3ygC2ub4cnK+YLzmBLnhPsrLyxEwBjjvWmI="),
@@ -727,6 +727,8 @@ public enum MobType {
 		}
 
 		if (Servers.isMC111OrNewer()) {
+			if (this == Vex)
+				return entity instanceof org.bukkit.entity.Vex;
 			if (this == Llama)
 				return entity instanceof org.bukkit.entity.Llama;
 			else if (this == Evoker)
@@ -760,14 +762,14 @@ public enum MobType {
 			if (this == PolarBear)
 				return entity instanceof org.bukkit.entity.PolarBear;
 			else if (this == Stray)
-				return entity instanceof Skeleton && (((Skeleton) entity).getSkeletonType() == SkeletonType.STRAY);
+				return entity instanceof org.bukkit.entity.Stray;
 		}
 
+		// TODO: OLD VILLAGERS DEPRECATED SINCE VERSION 1.21
 		// Handle old villagers
 		if (Servers.isMC110OrNewer() && !Servers.isMC114OrNewer()) {
 			if (this == Husk)
-				return entity instanceof Zombie
-						&& ((Zombie) entity).getVillagerProfession() == Profession.valueOf("HUSK");
+				return entity instanceof org.bukkit.entity.Husk;
 			else if (this == Villager)
 				return entity instanceof org.bukkit.entity.Villager
 						&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.valueOf("NORMAL"));
@@ -791,6 +793,9 @@ public enum MobType {
 		if (Servers.isMC19OrNewer()) {
 			if (this == Shulker)
 				return entity instanceof org.bukkit.entity.Shulker;
+			else if (this == Blaze){
+				return entity instanceof org.bukkit.entity.Blaze;
+			}
 		}
 
 		// MC 1.8 and older entities
@@ -798,13 +803,62 @@ public enum MobType {
 			return entity instanceof Rabbit && (((Rabbit) entity).getRabbitType()) == Rabbit.Type.THE_KILLER_BUNNY;
 		else if (this == PassiveRabbit)
 			return entity instanceof Rabbit && (((Rabbit) entity).getRabbitType()) != Rabbit.Type.THE_KILLER_BUNNY;
-		else if (this == ElderGuardian) {
-			return (entity instanceof org.bukkit.entity.Guardian) && (((org.bukkit.entity.Guardian) entity).isElder());
-		} else if (this == WitherSkeleton)
-			return entity instanceof Skeleton && ((Skeleton) entity).getSkeletonType() == SkeletonType.WITHER;
+		else if (this == Guardian) {
+			return entity instanceof org.bukkit.entity.Guardian;
+		}
+		else if (this == MushroomCow){
+			return entity instanceof org.bukkit.entity.MushroomCow;
+		}
+		else if (this == Creeper){
+			return entity instanceof org.bukkit.entity.Creeper;
+		}
+		else if (this == EnderDragon){
+			return entity instanceof org.bukkit.entity.EnderDragon;
+		}
+		else if (this == Ghast){
+			return entity instanceof org.bukkit.entity.Ghast;
+		}
+		else if (this == Giant){
+			return entity instanceof org.bukkit.entity.Giant;
+		}
+		else if (this == Snowman){
+			return entity instanceof org.bukkit.entity.Snowman;
+		}
+		else if (this == Enderman){
+			return entity instanceof org.bukkit.entity.Enderman;
+		}
+		else if (this == Endermite){
+			return entity instanceof org.bukkit.entity.Endermite;
+		}
+		else if(this == IronGolem){
+			return entity instanceof org.bukkit.entity.IronGolem;
+		}
 		else if (this == Skeleton)
-			return entity instanceof Skeleton && ((Skeleton) entity).getSkeletonType() == SkeletonType.NORMAL;
-		else if (this == BonusMob)
+			return entity instanceof org.bukkit.entity.Skeleton;
+		else if (this == Zombie) {
+			return entity instanceof org.bukkit.entity.Zombie;
+		}
+		else if (this == Slime){
+			return entity instanceof org.bukkit.entity.Slime;
+		}
+		else if (this == MagmaCube) {
+			return entity instanceof org.bukkit.entity.MagmaCube;
+
+		} else if (this == Spider) {
+			return entity instanceof org.bukkit.entity.Spider;
+
+		} else if (this == CaveSpider) {
+			return entity instanceof org.bukkit.entity.CaveSpider;
+		}
+		else if(this == Witch){
+			return entity instanceof org.bukkit.entity.Witch;
+		}
+		else if (this == Wither){
+			return entity instanceof org.bukkit.entity.Wither;
+		} else if (this == Wolf) {
+			return entity instanceof org.bukkit.entity.Wolf;
+		}
+		if (this == BonusMob)
 			return entity.hasMetadata("MH:hasBonus");
 		else
 			return entity.getType().toString().equals(mMobType);
@@ -829,7 +883,7 @@ public enum MobType {
 	public static MobType getMobType(String name) {
 		String name1 = name.replace(" ", "_");
 		for (MobType type : values())
-			if (type.getFriendlyName().replace(" ", "_").equalsIgnoreCase(name1)
+			if (type.getLocalizedName().replace(" ", "_").equalsIgnoreCase(name1)
 					|| type.getDisplayName().replace(" ", "_").equalsIgnoreCase(name1)
 					|| type.name().equalsIgnoreCase(name1))
 				return type;
@@ -839,7 +893,7 @@ public enum MobType {
 	public String getTexture(String displayname) {
 		for (MobType mob : values()) {
 			if (mob.getDisplayName().equalsIgnoreCase(displayname)
-					|| mob.getFriendlyName().equalsIgnoreCase(displayname)) {
+					|| mob.getLocalizedName().equalsIgnoreCase(displayname)) {
 				return String.valueOf(mob.getTextureValue());
 			}
 		}
@@ -849,7 +903,7 @@ public enum MobType {
 	public String getSignature(String displayname) {
 		for (MobType mob : values()) {
 			if (mob.getDisplayName().equalsIgnoreCase(displayname)
-					|| mob.getFriendlyName().equalsIgnoreCase(displayname)) {
+					|| mob.getLocalizedName().equalsIgnoreCase(displayname)) {
 				return String.valueOf(mob.getTextureSignature());
 			}
 		}
@@ -857,21 +911,28 @@ public enum MobType {
 
 	}
 
-	// TODO: Prune color codes out of lang files and sanitize at source
-	public String getFriendlyName() {
-		String friendlyName = Core.getMessages().getString("mobs." + name() + ".name");
+	public String getLocalizedName() {
+		return Core.getMessages().getString("mobs." + name() + ".name");
+	}
 
-		if(friendlyName.contains("&")){
-			friendlyName = friendlyName.substring((friendlyName.indexOf("&") + 2));
+	/**
+	 * At some point player head custom names are strictly enforced as though they were legal minecraft player names with no special characters including spaces
+	 * @return - Prune color codes out of the localized files and provide a clean entity name with underscores
+	 */
+	public String getEntityName(){
+		String entityName = Core.getMessages().getString("mobs." + name() + ".name");
+
+		if(entityName.contains("&")){
+			entityName = entityName.substring((entityName.indexOf("&") + 2));
 		}
-		else if (friendlyName.contains("§")) {
-			friendlyName = friendlyName.substring((friendlyName.indexOf("§") + 2));
+		else if (entityName.contains("§")) {
+			entityName = entityName.substring((entityName.indexOf("§") + 2));
 		}
 
-		if(friendlyName.contains(" ")){
-			friendlyName = friendlyName.replace(' ', '_');
+		if(entityName.contains(" ")){
+			entityName = entityName.replace(' ', '_');
 		}
 
-		return friendlyName;
+		return entityName;
 	}
 }
