@@ -7,7 +7,6 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-// TODO: Lang files are being referenced in commands which have dirty descriptions
 public class UpdateCommand implements ICommand {
 
 	private Core plugin;
@@ -33,7 +32,7 @@ public class UpdateCommand implements ICommand {
 
 	@Override
 	public String[] getUsageString(String label, CommandSender sender) {
-		return new String[] { ChatColor.GOLD + label + ChatColor.WHITE + " - to download and update CustomItemsLib." };
+		return new String[] { ChatColor.GOLD + label };
 	}
 
 	@Override
