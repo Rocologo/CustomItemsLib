@@ -1,13 +1,13 @@
 package metadev.digital.metacustomitemslib.commands;
 
 import metadev.digital.metacustomitemslib.Core;
-import metadev.digital.metacustomitemslib.update.UpdateStatus;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
+// TODO: Lang files are being referenced in commands which have dirty descriptions
 public class VersionCommand implements ICommand {
 
 	private Core plugin;
@@ -58,14 +58,6 @@ public class VersionCommand implements ICommand {
 				ChatColor.GREEN + Core.getMessages().getString("core.commands.version.currentversion",
 						"currentversion", Core.getInstance().getDescription().getVersion()));
 		return true;
-		/**
-		if (plugin.getSpigetUpdater().getUpdateAvailable() == UpdateStatus.AVAILABLE)
-			Core.getMessages().senderSendMessage(sender,
-					ChatColor.GREEN + Core.getMessages().getString("core.commands.version.newversion",
-							"newversion", plugin.getSpigetUpdater().getNewDownloadVersion()));
-		else if (sender.hasPermission("bagofgold.update"))
-			plugin.getSpigetUpdater().checkForUpdate(sender, true, false);
-		return true;*/
 	}
 
 	@Override

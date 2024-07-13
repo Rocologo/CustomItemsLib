@@ -29,7 +29,7 @@ import metadev.digital.metacustomitemslib.storage.DataStoreManager;
 import metadev.digital.metacustomitemslib.storage.IDataStore;
 import metadev.digital.metacustomitemslib.storage.MySQLDataStore;
 import metadev.digital.metacustomitemslib.storage.SQLiteDataStore;
-// import metadev.digital.metacustomitemslib.update.SpigetUpdater;
+import metadev.digital.metacustomitemslib.update.UpdateManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -55,8 +55,8 @@ public class Core extends JavaPlugin {
 	private static PlayerSettingsManager mPlayerSettingsManager;
 	private static CoreRewardManager mCoreRewardManager;
 	private static CompatibilityManager mCompatibilityManager;
+	private static UpdateManager mUpdateManager;
 	private CommandDispatcher mCommandDispatcher;
-	// private SpigetUpdater mSpigetUpdater;
 
 	// Public Placeholders used in BagOfGold and MobHunting
 	public static final String PH_PLAYERNAME = "playername";
@@ -67,6 +67,7 @@ public class Core extends JavaPlugin {
 
 	public boolean disabling = false;
 
+	//TODO: Move logs to messages
 	public static final String PREFIX = ChatColor.GOLD + "[CustomItemsLib] " + ChatColor.RESET;
 	public static final String PREFIX_DEBUG = ChatColor.GOLD + "[CustomItemsLib][Debug] " + ChatColor.RESET;
 	public static final String PREFIX_WARNING = ChatColor.GOLD + "[CustomItemsLib][Warning] " + ChatColor.RED;
@@ -179,11 +180,8 @@ public class Core extends JavaPlugin {
 			return;
 		
 		// Check for new updates
-
-		/** mSpigetUpdater = new SpigetUpdater(this);
-		mSpigetUpdater.setCurrentJarFile(this.getFile().getName());
-		mSpigetUpdater.hourlyUpdateCheck(getServer().getConsoleSender(), mConfig.updateCheck, false); */
-
+		mUpdateManager = new UpdateManager(plugin);
+		mUpdateManager.processCheckResultInConsole();
 	}
 
 	@Override
@@ -231,22 +229,15 @@ public class Core extends JavaPlugin {
 		return mDataStoreManager;
 	}
 
-	public static PlayerSettingsManager getPlayerSettingsManager() {
-		return mPlayerSettingsManager;
-	}
+	public static PlayerSettingsManager getPlayerSettingsManager() { return mPlayerSettingsManager; }
 
 	public static CoreRewardManager getCoreRewardManager() {
 		return mCoreRewardManager;
 	}
 
-	/** - TODO: SpigetUpdater crashing */
-	/** public SpigetUpdater getSpigetUpdater() {
-		return mSpigetUpdater;
-	}*/
+	public static UpdateManager getUpdater() {	return mUpdateManager;	}
 
-	public static EconomyManager getEconomyManager() {
-		return mEconomyManager;
-	}
+	public static EconomyManager getEconomyManager() { return mEconomyManager;	}
 	
 	/**
 	 * setMessages

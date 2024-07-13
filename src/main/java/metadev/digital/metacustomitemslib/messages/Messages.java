@@ -1,5 +1,6 @@
 package metadev.digital.metacustomitemslib.messages;
 
+//TODO: PlaceHolderAPICompat is throwing errors when being called here. Make CustomItemsLib version?
 import one.lindegaard.BagOfGold.compatibility.PlaceholderAPICompat;
 
 import metadev.digital.metacustomitemslib.Core;
@@ -174,6 +175,7 @@ public class Messages {
 		return "UTF-8";
 	}
 
+	// TODO: DETECT/GENERATE NEW VERSION OF LANG FILES
 	private static Map<String, String> loadLang(File file) {
 		Map<String, String> map;
 
@@ -300,6 +302,37 @@ public class Messages {
 			Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX_DEBUG + String.format(message, args));
 		}
 	}
+
+	/**
+	 * Show console message
+	 *
+	 * @param message
+	 * @param args
+	 */
+	public void notice(String message, Object... args) {
+		Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX + String.format(message, args));
+	}
+
+	/**
+	 * Show console warning
+	 *
+	 * @param message
+	 * @param args
+	 */
+	public void warning(String message, Object... args) {
+		Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX_WARNING + String.format(message, args));
+	}
+
+	/**
+	 * Show console error
+	 *
+	 * @param message
+	 * @param args
+	 */
+	public void error(String message, Object... args) {
+		Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX_ERROR + String.format(message, args));
+	}
+
 
 	private static Map<String, String> sortByKeys(Map<String, String> map) {
 		SortedSet<String> keys = new TreeSet<String>(map.keySet());
@@ -432,7 +465,7 @@ public class Messages {
 		if (sender instanceof Player) {
 			Player player = ((Player) sender);
 			if (!Core.getPlayerSettingsManager().getPlayerSettings(player).isMuted())
-				player.sendMessage(PlaceholderAPICompat.setPlaceholders((Player) sender, message));
+				player.sendMessage(message);
 		} else
 			sender.sendMessage(message);
 	}
