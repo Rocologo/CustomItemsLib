@@ -6,7 +6,6 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-// TODO: Lang files are being referenced in commands which have dirty descriptions
 public class DebugCommand implements ICommand {
 
 	private Core plugin;
@@ -35,7 +34,7 @@ public class DebugCommand implements ICommand {
 
 	@Override
 	public String[] getUsageString(String label, CommandSender sender) {
-		return new String[] { ChatColor.GOLD + label + ChatColor.WHITE + " - to enable/disable debugmode." };
+		return new String[] { ChatColor.GOLD + label};
 	}
 
 	@Override

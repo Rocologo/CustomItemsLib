@@ -129,7 +129,7 @@ public class Core extends JavaPlugin {
 
 		// Register commands
 		mCommandDispatcher = new CommandDispatcher(this, "customitemslib",
-				Core.getMessages().getString("core.command.base.description") + getDescription().getVersion());
+				Core.getMessages().getString("core.command.base.description") + " " + getDescription().getVersion());
 		getCommand("customitemslib").setExecutor(mCommandDispatcher);
 		getCommand("customitemslib").setTabCompleter(mCommandDispatcher);
 		mCommandDispatcher.registerCommand(new ReloadCommand(this));

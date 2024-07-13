@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-// TODO: Lang files are being referenced in commands which have dirty descriptions
 public class ReloadCommand implements ICommand {
 
 	private Core plugin;
@@ -36,7 +35,7 @@ public class ReloadCommand implements ICommand {
 
 	@Override
 	public String[] getUsageString(String label, CommandSender sender) {
-		return new String[] { ChatColor.GOLD + label + ChatColor.WHITE + " - to reload CustomItemLibs configuration." };
+		return new String[] { ChatColor.GOLD + label};
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public class UpdateManager {
             Core.getMessages().debug("Update checker has been properly initialized");
         }
         else{
-            Core.getMessages().error("Update checker failed to properly initialize");
+            Core.getMessages().error(Core.getMessages().getString("core.commands.update.fail"));
         }
     }
 
@@ -57,41 +57,40 @@ public class UpdateManager {
             switch (lastResult.getReason()){
                 case NEW_UPDATE:
                     Core.getMessages().warning("===============================================");
-                    Core.getMessages().warning("====      Update Available on SpigotMc     ====");
+                    Core.getMessages().warning("====      " + Core.getMessages().getString("core.commands.update.header_update_available") + "    ====");
                     Core.getMessages().warning("===============================================");
-                    Core.getMessages().warning("Download the latest version " + lastResult.getNewestVersion() + "at https://www.spigotmc.org/resources/meta-customitemslib.117869/");
+                    Core.getMessages().warning(Core.getMessages().getString("core.commands.update.new_update", "newversion", lastResult.getNewestVersion()));
                     break;
                 case COULD_NOT_CONNECT:
                     Core.getMessages().warning("===============================================");
-                    Core.getMessages().warning("==== Meta Custom Items Lib Updater Checker ====");
+                    Core.getMessages().warning("====      " + Core.getMessages().getString("core.commands.update.header") + "    ====");
                     Core.getMessages().warning("===============================================");
-                    Core.getMessages().warning("Failed to connect to SpigotMC to check for updates or SpigotMC took too long to respond. Does the server have internet?");
+                    Core.getMessages().warning(Core.getMessages().getString("core.commands.update.could-not-connect"));
                 case INVALID_JSON:
                     Core.getMessages().error("===============================================");
-                    Core.getMessages().error("==== Meta Custom Items Lib Updater Checker ====");
+                    Core.getMessages().error("====      " + Core.getMessages().getString("core.commands.update.header") + "    ====");
                     Core.getMessages().error("===============================================");
-                    Core.getMessages().error("Spigot API returned unexpected or invalid JSON object on version check.");
-                    Core.getMessages().error("Please report this at https://github.com/Metadev-Digital/CustomItemsLib/issues/");
+                    Core.getMessages().error(Core.getMessages().getString("core.commands.update.invalid"));
                 case UNAUTHORIZED_QUERY:
                     Core.getMessages().error("===============================================");
-                    Core.getMessages().error("==== Meta Custom Items Lib Updater Checker ====");
+                    Core.getMessages().error("====      " + Core.getMessages().getString("core.commands.update.header") + "    ====");
                     Core.getMessages().error("===============================================");
-                    Core.getMessages().error("Spigot API blocked this request. Please report this at https://github.com/Metadev-Digital/CustomItemsLib/issues/");
+                    Core.getMessages().error(Core.getMessages().getString("core.commands.update.unauthorized"));
                     break;
                 case UNRELEASED_VERSION:
                     Core.getMessages().notice("===============================================");
-                    Core.getMessages().notice("====      Development Build Detected       ====");
+                    Core.getMessages().notice("====      " + Core.getMessages().getString("core.commands.update.header_development") + "    ====");
                     Core.getMessages().notice("===============================================");
-                    Core.getMessages().notice("Your installed version" + lastResult.getNewestVersion() + " is currently ahead of the public release. Please ensure you back up regularly while running a development build.");
+                    Core.getMessages().notice(Core.getMessages().getString("core.commands.update.development", "currentversion", lastResult.getNewestVersion()));
                     break;
                 case UNKNOWN_ERROR, UNSUPPORTED_VERSION_SCHEME:
                     Core.getMessages().error("===============================================");
-                    Core.getMessages().error("==== Meta Custom Items Lib Updater Checker ====");
+                    Core.getMessages().error("====      " + Core.getMessages().getString("core.commands.update.header") + "    ====");
                     Core.getMessages().error("===============================================");
-                    Core.getMessages().error("An unknown error occurred while checking for the latest version. Please report this at https://github.com/Metadev-Digital/CustomItemsLib/issues/");
+                    Core.getMessages().error(Core.getMessages().getString("core.commands.update.unknown"));
                     break;
                 case UP_TO_DATE:
-                    Core.getMessages().notice("Your build of Meta Custom Items Lib is up to date!");
+                    Core.getMessages().notice(Core.getMessages().getString("core.commands.update.no_update"));
                     break;
             }
         }
@@ -102,21 +101,21 @@ public class UpdateManager {
         if(lastResult != null){
             switch (lastResult.getReason()) {
                 case UP_TO_DATE:
-                    return "Your build of Meta Custom Items Lib is up to date!";
+                    return Core.getMessages().getString("core.commands.update.no_update");
                 case NEW_UPDATE:
-                    return "Download the latest version " + lastResult.getNewestVersion() + "at https://www.spigotmc.org/resources/meta-customitemslib.117869/";
+                    return Core.getMessages().getString("core.commands.update.new_update", "newversion", lastResult.getNewestVersion());
                 case COULD_NOT_CONNECT:
-                    return "Failed to connect to SpigotMC to check for updates or SpigotMC took too long to respond. Does the server have internet";
+                    return Core.getMessages().getString("core.commands.update.could-not-connect");
                 case INVALID_JSON:
-                    return "Spigot API returned unexpected or invalid JSON object on version check.";
+                    return Core.getMessages().getString("core.commands.update.invalid");
                 case UNAUTHORIZED_QUERY:
-                    return "Spigot API blocked this request.";
+                    return Core.getMessages().getString("core.commands.update.unauthorized");
                 case UNRELEASED_VERSION:
-                    return "Your installed version" + lastResult.getNewestVersion() + " is currently ahead of the public release.";
+                    return Core.getMessages().getString("core.commands.update.development", "currentversion", lastResult.getNewestVersion());
                 case UNKNOWN_ERROR, UNSUPPORTED_VERSION_SCHEME:
-                    return "An unknown error occurred while checking for the latest version.";
+                    return Core.getMessages().getString("core.commands.update.unknown");
             }
         }
-            return "Update checker failed to properly initialize.";
+            return Core.getMessages().getString("core.commands.update.fail");
     }
 }
