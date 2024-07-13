@@ -27,7 +27,7 @@ public class UpdateManager {
 
     private UpdateChecker.UpdateResult handleUpdateCheck() {
         if (UpdateChecker.isInitialized()){
-            Core.getMessages().notice("Checking SpigotMc.org for available updates...");
+            Core.getMessages().notice(Core.getMessages().getString("core.commands.update.check"));
             UpdateChecker.UpdateResult lastRanResult = pluginUpdateChecker.getLastResult();
 
             // If it hasn't been run, or it gave an unsatisfactory answer last time it was called, ping the API again
