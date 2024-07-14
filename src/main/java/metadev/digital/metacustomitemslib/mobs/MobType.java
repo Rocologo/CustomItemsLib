@@ -2,9 +2,9 @@ package metadev.digital.metacustomitemslib.mobs;
 
 import metadev.digital.metacustomitemslib.Core;
 import metadev.digital.metacustomitemslib.server.Servers;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
-import org.bukkit.entity.Skeleton.SkeletonType;
 import org.bukkit.entity.Villager.Profession;
 
 import java.util.UUID;
@@ -920,19 +920,6 @@ public enum MobType {
 	 * @return - Prune color codes out of the localized files and provide a clean entity name with underscores
 	 */
 	public String getEntityName(){
-		String entityName = Core.getMessages().getString("mobs." + name() + ".name");
-
-		if(entityName.contains("&")){
-			entityName = entityName.substring((entityName.indexOf("&") + 2));
-		}
-		else if (entityName.contains("§")) {
-			entityName = entityName.substring((entityName.indexOf("§") + 2));
-		}
-
-		if(entityName.contains(" ")){
-			entityName = entityName.replace(' ', '_');
-		}
-
-		return entityName;
+		return ChatColor.stripColor(Core.getMessages().getString("mobs." + name() + ".name")).replace(' ', '_');
 	}
 }
