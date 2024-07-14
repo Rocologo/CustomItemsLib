@@ -41,7 +41,7 @@ permissions:
     description: Allows a player to use the customitemslib command
     default: true
   customitemslib.update:
-    description: Allows a player to update the plugin
+    description: Allows a player to check SpigotMc for updates to the plugin
     default: op
     children:
       customitemslib.cmd: true
