@@ -844,11 +844,12 @@ public enum MobType {
 		else if (this == MagmaCube) {
 			return entity instanceof org.bukkit.entity.MagmaCube;
 
-		} else if (this == Spider) {
-			return entity instanceof org.bukkit.entity.Spider;
-
 		} else if (this == CaveSpider) {
 			return entity instanceof org.bukkit.entity.CaveSpider;
+		}
+		else if (this == Spider) {
+			return entity instanceof org.bukkit.entity.Spider;
+
 		}
 		else if(this == Witch){
 			return entity instanceof org.bukkit.entity.Witch;
@@ -858,7 +859,7 @@ public enum MobType {
 		} else if (this == Wolf) {
 			return entity instanceof org.bukkit.entity.Wolf;
 		}
-		if (this == BonusMob)
+		else if (this == BonusMob)
 			return entity.hasMetadata("MH:hasBonus");
 		else
 			return entity.getType().toString().equals(mMobType);
