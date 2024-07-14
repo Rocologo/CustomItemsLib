@@ -762,14 +762,15 @@ public enum MobType {
 			if (this == PolarBear)
 				return entity instanceof org.bukkit.entity.PolarBear;
 			else if (this == Stray)
-				return entity instanceof org.bukkit.entity.Stray;
+				return entity instanceof Skeleton && (((Skeleton) entity).getSkeletonType() == org.bukkit.entity.Skeleton.SkeletonType.STRAY);
 		}
 
 		// TODO: OLD VILLAGERS DEPRECATED SINCE VERSION 1.21
 		// Handle old villagers
 		if (Servers.isMC110OrNewer() && !Servers.isMC114OrNewer()) {
 			if (this == Husk)
-				return entity instanceof org.bukkit.entity.Husk;
+				return entity instanceof Zombie
+						&& ((Zombie) entity).getVillagerProfession() == Profession.valueOf("HUSK");
 			else if (this == Villager)
 				return entity instanceof org.bukkit.entity.Villager
 						&& (((org.bukkit.entity.Villager) entity).getProfession() == Profession.valueOf("NORMAL"));
@@ -803,11 +804,14 @@ public enum MobType {
 			return entity instanceof Rabbit && (((Rabbit) entity).getRabbitType()) == Rabbit.Type.THE_KILLER_BUNNY;
 		else if (this == PassiveRabbit)
 			return entity instanceof Rabbit && (((Rabbit) entity).getRabbitType()) != Rabbit.Type.THE_KILLER_BUNNY;
-		else if (this == Guardian) {
-			return entity instanceof org.bukkit.entity.Guardian;
+		else if (this == ElderGuardian) {
+			return (entity instanceof org.bukkit.entity.Guardian) && (((org.bukkit.entity.Guardian) entity).isElder());
 		}
 		else if (this == MushroomCow){
 			return entity instanceof org.bukkit.entity.MushroomCow;
+		}
+		else if (this == Ghast){
+			return entity instanceof org.bukkit.entity.Ghast;
 		}
 		else if (this == Creeper){
 			return entity instanceof org.bukkit.entity.Creeper;
@@ -815,9 +819,7 @@ public enum MobType {
 		else if (this == EnderDragon){
 			return entity instanceof org.bukkit.entity.EnderDragon;
 		}
-		else if (this == Ghast){
-			return entity instanceof org.bukkit.entity.Ghast;
-		}
+
 		else if (this == Giant){
 			return entity instanceof org.bukkit.entity.Giant;
 		}
@@ -835,9 +837,11 @@ public enum MobType {
 		}
 		else if (this == Skeleton)
 			return entity instanceof org.bukkit.entity.Skeleton;
-		else if (this == Zombie) {
+		/** - For some reason if these are included they overwrite each other
+		 else if (this == Zombie) {
 			return entity instanceof org.bukkit.entity.Zombie;
 		}
+
 		else if (this == Slime){
 			return entity instanceof org.bukkit.entity.Slime;
 		}
@@ -850,7 +854,7 @@ public enum MobType {
 		else if (this == Spider) {
 			return entity instanceof org.bukkit.entity.Spider;
 
-		}
+		}*/
 		else if(this == Witch){
 			return entity instanceof org.bukkit.entity.Witch;
 		}
@@ -884,7 +888,7 @@ public enum MobType {
 	public static MobType getMobType(String name) {
 		String name1 = name.replace(" ", "_");
 		for (MobType type : values())
-			if (type.getLocalizedName().replace(" ", "_").equalsIgnoreCase(name1)
+			if (type.getEntityName().replace(" ", "_").equalsIgnoreCase(name1)
 					|| type.getDisplayName().replace(" ", "_").equalsIgnoreCase(name1)
 					|| type.name().equalsIgnoreCase(name1))
 				return type;
@@ -894,7 +898,7 @@ public enum MobType {
 	public String getTexture(String displayname) {
 		for (MobType mob : values()) {
 			if (mob.getDisplayName().equalsIgnoreCase(displayname)
-					|| mob.getLocalizedName().equalsIgnoreCase(displayname)) {
+					|| mob.getEntityName().equalsIgnoreCase(displayname)) {
 				return String.valueOf(mob.getTextureValue());
 			}
 		}
@@ -904,7 +908,7 @@ public enum MobType {
 	public String getSignature(String displayname) {
 		for (MobType mob : values()) {
 			if (mob.getDisplayName().equalsIgnoreCase(displayname)
-					|| mob.getLocalizedName().equalsIgnoreCase(displayname)) {
+					|| mob.getEntityName().equalsIgnoreCase(displayname)) {
 				return String.valueOf(mob.getTextureSignature());
 			}
 		}
@@ -921,6 +925,6 @@ public enum MobType {
 	 * @return - Prune color codes out of the localized files and provide a clean entity name with underscores
 	 */
 	public String getEntityName(){
-		return ChatColor.stripColor(Core.getMessages().getString("mobs." + name() + ".name")).replace(' ', '_');
+		return ChatColor.stripColor(Core.getMessages().getString("mobs." + name() + ".name").replace(' ', '_'));
 	}
 }
