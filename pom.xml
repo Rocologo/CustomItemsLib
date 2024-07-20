@@ -15,10 +15,6 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <!-- These 2 versions MUST ALWAYS be one lower than newest version to make the plugin compile -->
-        <bagofgold.version>4.5.6-SNAPSHOT</bagofgold.version>
-        <mobhunting.version>8.5.5-SNAPSHOT</mobhunting.version>
     </properties>
 
     <issueManagement>
@@ -32,7 +28,7 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
 
-        <!-- Jitpack (Vault, TitleAPI, ActionBarAPI) -->
+        <!-- Jitpack (Vault, TitleAPI, ActionBarAPI, BossBarAPI) -->
         <repository>
             <id>vault-repo</id>
             <url>https://jitpack.io</url>
@@ -97,17 +93,33 @@
         <defaultGoal>clean install</defaultGoal>
         <resources>
             <resource>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+            <resource>
                 <targetPath>lang</targetPath>
                 <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources/lang</directory>
             </resource>
         </resources>
         <directory>${basedir}/target</directory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.6.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.3.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -119,11 +131,20 @@
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <createSourcesJar>false</createSourcesJar>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <createSourcesJar>false</createSourcesJar>
                     <artifactSet>
                         <includes>
+                            <include>org.bstats:*</include>
                             <include>one.lindegaard:NMS*</include>
                         </includes>
                     </artifactSet>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>metadev.digital.metacustomitemslib</shadedPattern>
+                        </relocation>
+                    </relocations>
                 </configuration>
             </plugin>
         </plugins>
@@ -141,6 +162,13 @@
             <artifactId>spigot-api</artifactId>
             <version>1.21-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.0.2</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- Mojang -->
@@ -211,8 +239,8 @@
 
         <!-- BossBarAPI -->
         <dependency>
-            <groupId>org.inventivetalent</groupId>
-            <artifactId>bossbarapi</artifactId>
+            <groupId>com.github.InventivetalentDev</groupId>
+            <artifactId>BossBarAPI</artifactId>
             <version>2.4.3-SNAPSHOT</version>
             <exclusions>
                 <exclusion>

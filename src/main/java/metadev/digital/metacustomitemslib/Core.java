@@ -24,6 +24,7 @@ import metadev.digital.metacustomitemslib.config.ConfigManager;
 import metadev.digital.metacustomitemslib.messages.Messages;
 import metadev.digital.metacustomitemslib.rewards.CoreRewardManager;
 import metadev.digital.metacustomitemslib.rewards.RewardBlockManager;
+import metadev.digital.metacustomitemslib.server.Servers;
 import metadev.digital.metacustomitemslib.storage.DataStoreException;
 import metadev.digital.metacustomitemslib.storage.DataStoreManager;
 import metadev.digital.metacustomitemslib.storage.IDataStore;
@@ -56,6 +57,7 @@ public class Core extends JavaPlugin {
 	private static CoreRewardManager mCoreRewardManager;
 	private static CompatibilityManager mCompatibilityManager;
 	private static UpdateManager mUpdateManager;
+	private static MetricsManager mMetricsManager;
 	private CommandDispatcher mCommandDispatcher;
 
 	// Public Placeholders used in BagOfGold and MobHunting
@@ -182,6 +184,13 @@ public class Core extends JavaPlugin {
 		// Check for new updates
 		mUpdateManager = new UpdateManager(plugin);
 		mUpdateManager.processCheckResultInConsole();
+
+		//Enable bStats
+		if (!Servers.isGlowstoneServer()) {
+			mMetricsManager = new MetricsManager(this);
+			mMetricsManager.startBStatsMetrics();
+		}
+
 	}
 
 	@Override
