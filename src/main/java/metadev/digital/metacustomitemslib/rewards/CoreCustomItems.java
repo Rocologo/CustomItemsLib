@@ -62,8 +62,6 @@ public class CoreCustomItems {
 	/**
 	 * Return an ItemStack with the Players head texture.
 	 *
-	 * @param name
-	 * @param money
 	 * @return
 	 */
 	public static Skins getSkinsClass() {
@@ -126,11 +124,9 @@ public class CoreCustomItems {
 	 * Return an ItemStack with a custom texture. If Mojang changes the way they
 	 * calculate Signatures this method will stop working.
 	 *
-	 * @param mPlayerUUID
-	 * @param mDisplayName
+	 * @param reward
 	 * @param mTextureValue
 	 * @param mTextureSignature
-	 * @param money
 	 * @return ItemStack with custom texture.
 	 */
 	public static ItemStack getCustomtexture(Reward reward, String mTextureValue, String mTextureSignature) {
@@ -278,19 +274,19 @@ public class CoreCustomItems {
 		case Skeleton:
 			skull = CoreCustomItems.getDefaultSkeletonHead(amount);
 			skull = Reward.setDisplayNameAndHiddenLores(skull,
-					new Reward(minecraftMob.getFriendlyName(), money, RewardType.KILLED, skinUUID));
+					new Reward(minecraftMob.getEntityName(), money, RewardType.KILLED, skinUUID));
 			break;
 
 		case WitherSkeleton:
 			skull = CoreCustomItems.getDefaultWitherSkeletonHead(amount);
 			skull = Reward.setDisplayNameAndHiddenLores(skull,
-					new Reward(minecraftMob.getFriendlyName(), money, RewardType.KILLED, skinUUID));
+					new Reward(minecraftMob.getEntityName(), money, RewardType.KILLED, skinUUID));
 			break;
 
 		case Zombie:
 			skull = CoreCustomItems.getDefaultZombieHead(amount);
 			skull = Reward.setDisplayNameAndHiddenLores(skull,
-					new Reward(minecraftMob.getFriendlyName(), money, RewardType.KILLED, skinUUID));
+					new Reward(minecraftMob.getEntityName(), money, RewardType.KILLED, skinUUID));
 			break;
 
 		case PvpPlayer:
@@ -300,18 +296,18 @@ public class CoreCustomItems {
 		case Creeper:
 			skull = CoreCustomItems.getDefaultCreeperHead(amount);
 			skull = Reward.setDisplayNameAndHiddenLores(skull,
-					new Reward(minecraftMob.getFriendlyName(), money, RewardType.KILLED, skinUUID));
+					new Reward(minecraftMob.getEntityName(), money, RewardType.KILLED, skinUUID));
 			break;
 
 		case EnderDragon:
 			skull = CoreCustomItems.getDefaultEnderDragonHead(amount);
 			skull = Reward.setDisplayNameAndHiddenLores(skull,
-					new Reward(minecraftMob.getFriendlyName(), money, RewardType.KILLED, skinUUID));
+					new Reward(minecraftMob.getEntityName(), money, RewardType.KILLED, skinUUID));
 			break;
 
 		default:
 			ItemStack is = new ItemStack(
-					getCustomtexture(new Reward(minecraftMob.getFriendlyName(), money, RewardType.KILLED, skinUUID),
+					getCustomtexture(new Reward(minecraftMob.getEntityName(), money, RewardType.KILLED, skinUUID),
 							minecraftMob.getTextureValue(), minecraftMob.getTextureSignature()));
 			is.setAmount(amount);
 			return is;

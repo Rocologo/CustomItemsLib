@@ -1,7 +1,6 @@
 package metadev.digital.metacustomitemslib.commands;
 
 import metadev.digital.metacustomitemslib.Core;
-import metadev.digital.metacustomitemslib.update.UpdateStatus;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -33,8 +32,7 @@ public class VersionCommand implements ICommand {
 
 	@Override
 	public String[] getUsageString(String label, CommandSender sender) {
-		return new String[] { ChatColor.GOLD + label + ChatColor.GREEN + " version" + ChatColor.WHITE
-				+ " - to get the version number" };
+		return new String[] { ChatColor.GOLD + label };
 	}
 
 	@Override
@@ -58,14 +56,6 @@ public class VersionCommand implements ICommand {
 				ChatColor.GREEN + Core.getMessages().getString("core.commands.version.currentversion",
 						"currentversion", Core.getInstance().getDescription().getVersion()));
 		return true;
-		/**
-		if (plugin.getSpigetUpdater().getUpdateAvailable() == UpdateStatus.AVAILABLE)
-			Core.getMessages().senderSendMessage(sender,
-					ChatColor.GREEN + Core.getMessages().getString("core.commands.version.newversion",
-							"newversion", plugin.getSpigetUpdater().getNewDownloadVersion()));
-		else if (sender.hasPermission("bagofgold.update"))
-			plugin.getSpigetUpdater().checkForUpdate(sender, true, false);
-		return true;*/
 	}
 
 	@Override

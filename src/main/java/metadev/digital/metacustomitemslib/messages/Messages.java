@@ -1,5 +1,6 @@
 package metadev.digital.metacustomitemslib.messages;
 
+//TODO: PlaceHolderAPICompat is throwing errors when being called here. Make CustomItemsLib version?
 import one.lindegaard.BagOfGold.compatibility.PlaceholderAPICompat;
 
 import metadev.digital.metacustomitemslib.Core;
@@ -15,11 +16,13 @@ import org.bukkit.plugin.Plugin;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Messages {
 
@@ -63,15 +66,18 @@ public class Messages {
 					InputStream is = plugin.getResource("lang/" + source);
 					String outputFile = datapath + "/lang/" + source;
 					try {
+						if(Files.deleteIfExists(Path.of(outputFile))){
+							Bukkit.getConsoleSender().sendMessage(Core.PREFIX + "Newer version of language file " + source + " available from JAR, overwriting file.");
+						}
 						Files.copy(is, Paths.get(outputFile));
 						File file = new File(outputFile);
 						sortFileOnDisk(file);
 					} catch (IOException e) {
+						Bukkit.getConsoleSender().sendMessage(Core.PREFIX_ERROR + "Failed to write to or generate new lang file.");
 						e.printStackTrace();
 					}
-				}
+                }
 			}
-			// mTranslationTable = loadLang(dest);
 		}
 	}
 
@@ -82,6 +88,10 @@ public class Messages {
 
 			if (dest == null)
 				return false;
+
+			if(dest.get("archived-lang-version") == null || compareVersion(source.get("archived-lang-version"), dest.get("archived-lang-version"))){
+				return false;
+			}
 
 			HashMap<String, String> newEntries = new HashMap<String, String>();
 			for (String key : source.keySet()) {
@@ -150,6 +160,36 @@ public class Messages {
 		}
 
 		return map;
+	}
+
+	/**
+	 * Compare two semantic versions to see which is newer.
+	 * @param sourceVersion - Version of the lang file in jar
+	 * @param diskVersion - Version of the lang file on disk
+	 * @return - If source is newer than disk
+	 */
+	private static boolean compareVersion(String sourceVersion, String diskVersion){
+		List<Integer> version1Components = Arrays.stream(sourceVersion.split("\\."))
+				.map(Integer::parseInt)
+				.collect(Collectors.toList());
+		List<Integer> version2Components = Arrays.stream(diskVersion.split("\\."))
+				.map(Integer::parseInt)
+				.collect(Collectors.toList());
+
+		int maxLength = Math.max(version1Components.size(), version2Components.size());
+
+		for (int i = 0; i < maxLength; i++) {
+			int v1Component = i < version1Components.size() ? version1Components.get(i) : 0;
+			int v2Component = i < version2Components.size() ? version2Components.get(i) : 0;
+
+			if (v1Component > v2Component) {
+				return true;
+			} else if (v1Component < v2Component) {
+				return false;
+			}
+		}
+
+		return false;
 	}
 
 	private static Pattern mDetectEncodingPattern = Pattern.compile("^[a-zA-Z\\.\\-0-9_]+=.+$");
@@ -301,6 +341,37 @@ public class Messages {
 		}
 	}
 
+	/**
+	 * Show console message
+	 *
+	 * @param message
+	 * @param args
+	 */
+	public void notice(String message, Object... args) {
+		Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX + String.format(message, args));
+	}
+
+	/**
+	 * Show console warning
+	 *
+	 * @param message
+	 * @param args
+	 */
+	public void warning(String message, Object... args) {
+		Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX_WARNING + String.format(message, args));
+	}
+
+	/**
+	 * Show console error
+	 *
+	 * @param message
+	 * @param args
+	 */
+	public void error(String message, Object... args) {
+		Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX_ERROR + String.format(message, args));
+	}
+
+
 	private static Map<String, String> sortByKeys(Map<String, String> map) {
 		SortedSet<String> keys = new TreeSet<String>(map.keySet());
 		Map<String, String> sortedHashMap = new LinkedHashMap<String, String>();
@@ -369,9 +440,6 @@ public class Messages {
 			return;
 
 		message = Strings.convertColors(PlaceholderAPICompat.setPlaceholders(player, message));
-		//if (TitleManagerCompat.isSupported()) {
-		//	TitleManagerCompat.setActionBar(player, message);
-		//} else 
 			
 		if (ActionbarCompat.isSupported()) {
 			ActionbarCompat.setMessage(player, message);
@@ -432,7 +500,7 @@ public class Messages {
 		if (sender instanceof Player) {
 			Player player = ((Player) sender);
 			if (!Core.getPlayerSettingsManager().getPlayerSettings(player).isMuted())
-				player.sendMessage(PlaceholderAPICompat.setPlaceholders((Player) sender, message));
+				player.sendMessage(message);
 		} else
 			sender.sendMessage(message);
 	}

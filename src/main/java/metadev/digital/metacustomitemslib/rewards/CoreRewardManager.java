@@ -258,7 +258,7 @@ public class CoreRewardManager {
 				MobType mob = MobType.getMobType(killedEntity);
 				rewardType = RewardType.KILLED;
 				skinuuid = mob.getSkinUUID();
-				is = CoreCustomItems.getCustomHead(mob, mob.getFriendlyName(), 1, money, skinuuid);
+				is = CoreCustomItems.getCustomHead(mob, mob.getEntityName(), 1, money, skinuuid);
 
 			} else if (Core.getConfigManager().rewardItemtype.equalsIgnoreCase("SKULL")) {
 				rewardType = RewardType.BAGOFGOLD;

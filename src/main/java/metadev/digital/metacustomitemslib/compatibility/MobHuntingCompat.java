@@ -13,7 +13,7 @@ public class MobHuntingCompat {
 		mPlugin = Bukkit.getPluginManager().getPlugin(CompatPlugin.MobHunting.getName());
 
 		if (mPlugin != null) {
-			if (mPlugin.getDescription().getVersion().compareTo("8.1.9") >= 0) {
+			if (mPlugin.getDescription().getVersion().compareTo("9.0.7") >= 0) {
 				Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX
 						+ "Enabling compatibility with MobHunting (" + mPlugin.getDescription().getVersion() + ")");
 				supported = true;
@@ -21,7 +21,7 @@ public class MobHuntingCompat {
 				Bukkit.getServer().getConsoleSender()
 						.sendMessage(Core.PREFIX_WARNING + "Your current version of MobHunting ("
 								+ mPlugin.getDescription().getVersion()
-								+ ") is outdated. Please upgrade to 8.1.9 or newer.");
+								+ ") is outdated. Please upgrade to 9.0.7 or newer.");
 				Bukkit.getPluginManager().disablePlugin(mPlugin);
 			}
 		} else {

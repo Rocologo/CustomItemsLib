@@ -1,7 +1,6 @@
 package metadev.digital.metacustomitemslib.commands;
 
 import metadev.digital.metacustomitemslib.Core;
-import metadev.digital.metacustomitemslib.update.UpdateStatus;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -33,17 +32,17 @@ public class UpdateCommand implements ICommand {
 
 	@Override
 	public String[] getUsageString(String label, CommandSender sender) {
-		return new String[] { ChatColor.GOLD + label + ChatColor.WHITE + " - to download and update CustomItemsLib." };
+		return new String[] { ChatColor.GOLD + label };
 	}
 
 	@Override
 	public String getDescription() {
-		return Core.getMessages().getString("bagofgold.commands.update.description");
+		return Core.getMessages().getString("core.commands.update.description");
 	}
 
 	@Override
 	public boolean canBeConsole() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -53,15 +52,8 @@ public class UpdateCommand implements ICommand {
 
 	@Override
 	public boolean onCommand(CommandSender sender, String label, String[] args) {
+		Core.getMessages().senderSendMessage(sender, ChatColor.GREEN + plugin.getUpdater().processCheckResultInChat());
 		return true;
-		/**if (plugin.getSpigetUpdater().getUpdateAvailable() == UpdateStatus.AVAILABLE)
-			plugin.getSpigetUpdater().checkForUpdate(sender, false, true);
-		else if (plugin.getSpigetUpdater().getUpdateAvailable() == UpdateStatus.RESTART_NEEDED)
-			Core.getMessages().senderSendMessage(sender,
-					ChatColor.GREEN + Core.getMessages().getString("core.commands.update.complete"));
-		else
-			plugin.getSpigetUpdater().checkForUpdate(sender, false, true);
-		return true;*/
 	}
 
 	@Override

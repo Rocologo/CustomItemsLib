@@ -35,7 +35,7 @@ public class ReloadCommand implements ICommand {
 
 	@Override
 	public String[] getUsageString(String label, CommandSender sender) {
-		return new String[] { ChatColor.GOLD + label + ChatColor.WHITE + " - to reload CustomItemLibs configuration." };
+		return new String[] { ChatColor.GOLD + label};
 	}
 
 	@Override
