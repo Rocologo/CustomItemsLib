@@ -34,7 +34,7 @@ public class CoreCustomItems {
 	// https://www.spigotmc.org/threads/how-to-get-a-players-texture.244966/
 
 	/**
-	 * Return an ItemStack with the Players head texture.
+	 * Return an NMS Skins class of the latest (or frozen in time for final revisions)
 	 * https://www.spigotmc.org/wiki/spigot-nms-and-minecraft-versions-1-16/
 	 * @return
 	 */
