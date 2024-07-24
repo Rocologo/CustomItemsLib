@@ -1,7 +1,7 @@
 package metadev.digital.metacustomitemslib.messages;
 
 //TODO: PlaceHolderAPICompat is throwing errors when being called here. Make CustomItemsLib version?
-import one.lindegaard.BagOfGold.compatibility.PlaceholderAPICompat;
+import metadev.digital.metabagofgold.compatibility.PlaceholderAPICompat;
 
 import metadev.digital.metacustomitemslib.Core;
 import metadev.digital.metacustomitemslib.Strings;
