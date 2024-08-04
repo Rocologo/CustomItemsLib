@@ -1,5 +1,6 @@
-archived-lang-version=1.0
+archived-lang-version=1.1
 core.command.base.description=Wersja Meta CustomItemsLib
+core.command.base.economymanager=Nie udało się wykryć zgodnego menedżera ekonomii. Meta CustomItemsLib wymaga go do działania. Upewnij się, że masz zainstalowaną zgodną wersję Vault lub Reserve. Poproś o pomoc dla swojego menedżera ekonomii lub zgłoś błąd wyświetlania tutaj: https://github.com/Metadev-Digital/CustomItemsLib/issues/
 core.commands.base.error=Wystapil blad wewnetrzny podczas wykonywania tej komendy
 core.commands.base.help.commands=Komendy:
 core.commands.base.help.description=Wyswietla te informacje.
@@ -11,6 +12,7 @@ core.commands.base.nopermission=Nie masz pozwolenia (${perm}) aby uzyc ${command
 core.commands.base.not_a_location=§4${xpos} ${ypos} ${zpos}§a nie jest poprawna lokacja
 core.commands.base.not_a_number=§4${number}§a nie jest liczba
 core.commands.base.playername-missing=Brak nazwy graacza lub ${player} nie jest online
+core.commands.base.shutdown=Meta CustomItemsLib jest wyłączona
 core.commands.base.unknown_playername=${playername} jest nieznany na tym serwerze
 core.commands.base.unknown_stattype=Nieznany StarType §b${stattype}
 core.commands.base.unknown_timeperiod=Nieznany Okres Czasu §b${period}

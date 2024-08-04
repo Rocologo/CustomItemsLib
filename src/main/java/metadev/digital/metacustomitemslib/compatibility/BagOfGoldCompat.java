@@ -26,7 +26,7 @@ public class BagOfGoldCompat {
 			}
 		} else {
 			Bukkit.getServer().getConsoleSender()
-					.sendMessage(Core.PREFIX + "CustomItemsLib is not installed on this server");
+					.sendMessage(Core.PREFIX + "BagOfGold is not installed on this server");
 		}
 
 	}

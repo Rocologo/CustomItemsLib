@@ -1,5 +1,6 @@
-archived-lang-version=1.0
+archived-lang-version=1.1
 core.command.base.description=Meta CustomItemsLib Version
+core.command.base.economymanager=Nem sikerült megtalálni a kompatibilis gazdaságkezelőt. A Meta CustomItemsLib működéséhez egy szükséges. Győződjön meg arról, hogy a Vault vagy Reserve kompatibilis verziója telepítve van. Kérjen támogatást a gazdaságvezetőtől, vagy jelentse a hibás megjelenítést itt: https://github.com/Metadev-Digital/CustomItemsLib/issues/
 core.commands.base.error=Belső hiba történt a parancs végrehajtása közben.
 core.commands.base.help.commands=Parancsok:
 core.commands.base.help.description=Megjeleníti ezt a képernyőt.
@@ -11,6 +12,7 @@ core.commands.base.nopermission=Nincs jogod (${perm}) ${command} a használatáh
 core.commands.base.not_a_location=&4${xpos} ${ypos} ${zpos}&a nem megfelelő hely
 core.commands.base.not_a_number=&4${number}&a nem szám
 core.commands.base.playername-missing=A játékos név hiányzik vagy ${playername} nem elérhető
+core.commands.base.shutdown=Meta CustomItemsLib le van tiltva
 core.commands.base.unknown_playername=${playername} nem ismert ezen a szerveren
 core.commands.base.unknown_stattype=Ismeretlen statisztika típus &b${stattype}
 core.commands.base.unknown_timeperiod=Ismeretlen idő &b${period}

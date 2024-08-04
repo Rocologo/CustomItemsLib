@@ -178,8 +178,12 @@ public class Core extends JavaPlugin {
 
 		// Hook into Vault or Reserve
 		mEconomyManager = new EconomyManager(this);
-		if (!mEconomyManager.isActive())
-			return;
+		if (!mEconomyManager.isActive()){
+			getMessages().error("===============================================");
+			getMessages().error((getMessages().getString("core.command.base.economymanager")));
+			getMessages().error("===============================================");
+			Bukkit.getPluginManager().disablePlugin((this));
+		}
 		
 		// Check for new updates
 		mUpdateManager = new UpdateManager(plugin);
@@ -205,6 +209,7 @@ public class Core extends JavaPlugin {
 			mDataStoreManager.shutdown();
 			getMessages().debug("Shutdown Store");
 			mStore.shutdown();
+			getMessages().notice((getMessages().getString("core.command.base.shutdown")));
 		} catch (DataStoreException e) {
 			e.printStackTrace();
 		}
