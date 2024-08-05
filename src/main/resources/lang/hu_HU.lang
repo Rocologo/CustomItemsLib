@@ -1,6 +1,8 @@
 archived-lang-version=1.1
 core.command.base.description=Meta CustomItemsLib Version
-core.command.base.economymanager=Nem sikerült megtalálni a kompatibilis gazdaságkezelőt. A Meta CustomItemsLib működéséhez egy szükséges. Győződjön meg arról, hogy a Vault vagy Reserve kompatibilis verziója telepítve van. Kérjen támogatást a gazdaságvezetőtől, vagy jelentse a hibás megjelenítést itt: https://github.com/Metadev-Digital/CustomItemsLib/issues/
+core.command.base.economymanager=Nem sikerült megtalálni a kompatibilis gazdaságkezelőt. A Meta CustomItemsLib működéséhez egy szükséges.
+core.command.base.economymanager2=Győződjön meg arról, hogy a Vault vagy Reserve kompatibilis verziója, valamint egy kezelő, például a Bag Of Gold vagy az EssentialsX telepítve van.
+core.command.base.economymanager3=Kérjen támogatást a gazdaságvezetőtől, vagy jelentse a hibás megjelenítést itt: https://github.com/Metadev-Digital/CustomItemsLib/issues/
 core.commands.base.error=Belső hiba történt a parancs végrehajtása közben.
 core.commands.base.help.commands=Parancsok:
 core.commands.base.help.description=Megjeleníti ezt a képernyőt.

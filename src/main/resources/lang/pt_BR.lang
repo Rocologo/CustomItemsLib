@@ -1,6 +1,8 @@
 archived-lang-version=1.1
 core.command.base.description=Meta CustomItemsLib Version
-core.command.base.economymanager=Failed to detect a compatible economy manager. Meta CustomItemsLib requires one to function. Ensure you have a compatible version of Vault or Reserve installed. Request support for your economy manager, or report this displaying in error here: https://github.com/Metadev-Digital/CustomItemsLib/issues/
+core.command.base.economymanager=Failed to detect a compatible economy manager. Meta CustomItemsLib requires one to function.
+core.command.base.economymanager2=Ensure you have a compatible version of Vault or Reserve as well as a manager like Bag Of Gold or EssentialsX installed.
+core.command.base.economymanager3=Request support for your economy manager, or report this displaying in error here: https://github.com/Metadev-Digital/CustomItemsLib/issues/
 core.commands.base.error=An internal error occurred while executing that command.
 core.commands.base.help.commands=Commands:
 core.commands.base.help.description=Displays this screen.

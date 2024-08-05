@@ -173,18 +173,20 @@ public class Core extends JavaPlugin {
 		mCompatibilityManager.registerPlugin(BarAPICompat.class, CompatPlugin.BarApi);
 		mCompatibilityManager.registerPlugin(CMICompat.class, CompatPlugin.CMI);
 
+		mCompatibilityManager.registerPlugin(BagOfGoldCompat.class, CompatPlugin.BagOfGold);
+		mCompatibilityManager.registerPlugin(MobHuntingCompat.class, CompatPlugin.MobHunting);
+
 		// Hook into Vault or Reserve
 		mEconomyManager = new EconomyManager(this);
-		if (!mEconomyManager.isActive()){
+		if (!mEconomyManager.isActive() && Bukkit.getPluginManager().getPlugin("BagOfGold") == null){
 			getMessages().error("===============================================");
 			getMessages().error((getMessages().getString("core.command.base.economymanager")));
+			getMessages().error((getMessages().getString("core.command.base.economymanager2")));
+			getMessages().error((getMessages().getString("core.command.base.economymanager3")));
 			getMessages().error((getMessages().getString("core.commands.base.shutdown")));
 			getMessages().error("===============================================");
 			return;
 		}
-
-		mCompatibilityManager.registerPlugin(BagOfGoldCompat.class, CompatPlugin.BagOfGold);
-		mCompatibilityManager.registerPlugin(MobHuntingCompat.class, CompatPlugin.MobHunting);
 
 		// Check for new updates
 		mUpdateManager = new UpdateManager(plugin);

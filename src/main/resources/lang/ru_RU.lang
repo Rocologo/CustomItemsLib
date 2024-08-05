@@ -1,6 +1,8 @@
 archived-lang-version=1.1
 core.command.base.description=&6Мета-версия CustomItemsLib
-core.command.base.economymanager=Не удалось обнаружить совместимый менеджер экономики. Meta CustomItemsLib требует его для работы. Убедитесь, что у вас установлена ​​совместимая версия Vault или Reserve. Запросите поддержку для вашего менеджера экономики или сообщите об этом, отображающем ошибку, здесь: https://github.com/Metadev-Digital/CustomItemsLib/issues/
+core.command.base.economymanager=Не удалось обнаружить совместимый менеджер экономики. Meta CustomItemsLib требует его для работы.
+core.command.base.economymanager2=Убедитесь, что у вас установлена совместимая версия Vault или Reserve, а также менеджер, например Bag Of Gold или EssentialsX.
+core.command.base.economymanager3=Запросите поддержку для вашего менеджера экономики или сообщите об ошибке отображения здесь: https://github.com/Metadev-Digital/CustomItemsLib/issues/
 core.commands.base.error=&cЧто-то пошло не так... Загляните в консоль.
 core.commands.base.help.commands=&aДоступные команды:
 core.commands.base.help.description=&7Список доступных команд.

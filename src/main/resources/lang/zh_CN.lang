@@ -1,6 +1,8 @@
 archived-lang-version=1.1
 core.command.base.description=Meta CustomItemsLib 版本
-core.command.base.economymanager=未能偵測到相容的經濟管理器。 Meta CustomItemsLib 需要一個才能運作。確保您安裝了 Vault 或 Reserve 的相容版本。請求對您的經濟經理的支持，或在此處報告此顯示錯誤：https://github.com/Metadev-Digital/CustomItemsLib/issues/
+core.command.base.economymanager=無法偵測到相容的經濟管理器。 Meta CustomItemsLib 需要一個才能運作。
+core.command.base.economymanager2=確保您安裝了 Vault 或 Reserve 的兼容版本以及 Bag Of Gold 或 EssentialsX 等管理器。
+core.command.base.economymanager3=請求對您的經濟經理的支持，或在此處報告此顯示錯誤：https://github.com/Metadev-Digital/CustomItemsLib/issues/
 core.commands.base.error=执行该命令时发生内部错误.
 core.commands.base.help.commands=指令:
 core.commands.base.help.description=显示屏幕.

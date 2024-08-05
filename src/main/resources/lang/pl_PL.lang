@@ -1,6 +1,8 @@
 archived-lang-version=1.1
 core.command.base.description=Wersja Meta CustomItemsLib
-core.command.base.economymanager=Nie udało się wykryć zgodnego menedżera ekonomii. Meta CustomItemsLib wymaga go do działania. Upewnij się, że masz zainstalowaną zgodną wersję Vault lub Reserve. Poproś o pomoc dla swojego menedżera ekonomii lub zgłoś błąd wyświetlania tutaj: https://github.com/Metadev-Digital/CustomItemsLib/issues/
+core.command.base.economymanager=Nie udało się wykryć zgodnego menedżera ekonomii. Meta CustomItemsLib wymaga go do działania.
+core.command.base.economymanager2=Upewnij się, że masz zainstalowaną kompatybilną wersję Vault lub Reserve, a także managera, takiego jak Bag Of Gold lub EssentialsX.
+core.command.base.economymanager3=Poproś o pomoc dla swojego menedżera gospodarki lub zgłoś błąd wyświetlania tutaj: https://github.com/Metadev-Digital/CustomItemsLib/issues/
 core.commands.base.error=Wystapil blad wewnetrzny podczas wykonywania tej komendy
 core.commands.base.help.commands=Komendy:
 core.commands.base.help.description=Wyswietla te informacje.

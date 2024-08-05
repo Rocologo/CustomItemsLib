@@ -1,6 +1,8 @@
 archived-lang-version=1.1
 core.command.base.description=Version de Meta CustomItemsLib
-core.command.base.economymanager=Impossible de détecter un gestionnaire d'économie compatible. Meta CustomItemsLib en nécessite un pour fonctionner. Assurez-vous d'avoir une version compatible de Vault ou Reserve installée. Demandez de l'aide pour votre gestionnaire d'économie ou signalez-le en cas d'erreur ici : https://github.com/Metadev-Digital/CustomItemsLib/issues/
+core.command.base.economymanager=Impossible de détecter un gestionnaire d'économie compatible. Meta CustomItemsLib en nécessite un pour fonctionner.
+core.command.base.economymanager2=Assurez-vous d'avoir une version compatible de Vault ou Reserve ainsi qu'un gestionnaire comme Bag Of Gold ou EssentialsX installé.
+core.command.base.economymanager3=Demandez de l'aide pour votre gestionnaire d'économie ou signalez-le en cas d'erreur ici : https://github.com/Metadev-Digital/CustomItemsLib/issues/
 core.commands.base.error=Erreur interne lors de l'exécution de cette commande.
 core.commands.base.help.commands=Commandes :
 core.commands.base.help.description=Affiche cet écran.
