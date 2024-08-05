@@ -173,18 +173,19 @@ public class Core extends JavaPlugin {
 		mCompatibilityManager.registerPlugin(BarAPICompat.class, CompatPlugin.BarApi);
 		mCompatibilityManager.registerPlugin(CMICompat.class, CompatPlugin.CMI);
 
-		mCompatibilityManager.registerPlugin(BagOfGoldCompat.class, CompatPlugin.BagOfGold);
-		mCompatibilityManager.registerPlugin(MobHuntingCompat.class, CompatPlugin.MobHunting);
-
 		// Hook into Vault or Reserve
 		mEconomyManager = new EconomyManager(this);
 		if (!mEconomyManager.isActive()){
 			getMessages().error("===============================================");
 			getMessages().error((getMessages().getString("core.command.base.economymanager")));
+			getMessages().error((getMessages().getString("core.commands.base.shutdown")));
 			getMessages().error("===============================================");
-			Bukkit.getPluginManager().disablePlugin((this));
+			return;
 		}
-		
+
+		mCompatibilityManager.registerPlugin(BagOfGoldCompat.class, CompatPlugin.BagOfGold);
+		mCompatibilityManager.registerPlugin(MobHuntingCompat.class, CompatPlugin.MobHunting);
+
 		// Check for new updates
 		mUpdateManager = new UpdateManager(plugin);
 		mUpdateManager.processCheckResultInConsole();
@@ -209,7 +210,7 @@ public class Core extends JavaPlugin {
 			mDataStoreManager.shutdown();
 			getMessages().debug("Shutdown Store");
 			mStore.shutdown();
-			getMessages().notice((getMessages().getString("core.command.base.shutdown")));
+			getMessages().notice((getMessages().getString("core.commands.base.shutdown")));
 		} catch (DataStoreException e) {
 			e.printStackTrace();
 		}
