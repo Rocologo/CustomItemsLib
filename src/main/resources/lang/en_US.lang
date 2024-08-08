@@ -1,4 +1,4 @@
-archived-lang-version=1.1
+archived-lang-version=1.2
 core.command.base.description=Meta CustomItemsLib Version
 core.command.base.economymanager=Failed to detect a compatible economy manager. Meta CustomItemsLib requires one to function.
 core.command.base.economymanager2=Ensure you have a compatible version of Vault or Reserve as well as a manager like Bag Of Gold or EssentialsX installed.

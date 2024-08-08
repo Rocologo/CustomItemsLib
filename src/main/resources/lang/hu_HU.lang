@@ -1,4 +1,4 @@
-archived-lang-version=1.1
+archived-lang-version=1.2
 core.command.base.description=Meta CustomItemsLib Version
 core.command.base.economymanager=Nem sikerült megtalálni a kompatibilis gazdaságkezelőt. A Meta CustomItemsLib működéséhez egy szükséges.
 core.command.base.economymanager2=Győződjön meg arról, hogy a Vault vagy Reserve kompatibilis verziója, valamint egy kezelő, például a Bag Of Gold vagy az EssentialsX telepítve van.
@@ -136,7 +136,7 @@ mobs.Toolsmith.name=§7Eszközkovács
 mobs.TraderLlama.name=§7Láma kereskedő
 mobs.TropicalFish.name=§7Bohóchal
 mobs.Turtle.name=§7Teknős
-mobs.Unemployed.name=§7Munkanélküli
+mobs.Unemployed.name=§7Falusi
 mobs.Vex.name=§7Bosszants
 mobs.Villager.name=§7Falusi
 mobs.Vindicator.name=§7Védelmező

@@ -1,4 +1,4 @@
-archived-lang-version=1.1
+archived-lang-version=1.2
 core.command.base.description=Meta CustomItemsLib 版本
 core.command.base.economymanager=無法偵測到相容的經濟管理器。 Meta CustomItemsLib 需要一個才能運作。
 core.command.base.economymanager2=確保您安裝了 Vault 或 Reserve 的兼容版本以及 Bag Of Gold 或 EssentialsX 等管理器。
