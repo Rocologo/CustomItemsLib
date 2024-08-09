@@ -65,10 +65,12 @@ public class CoreRewardManager {
 	}
 
 	public boolean canPickupMoney(Player player) {
-		if (player.getGameMode() == GameMode.SPECTATOR)
+		if (player.getGameMode() == GameMode.SPECTATOR) {
 			return false;
-		else if (player.getInventory().firstEmpty() != -1)
+		}
+		else if (player.getInventory().firstEmpty() != -1) {
 			return true;
+		}
 		for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
 			ItemStack is = player.getInventory().getItem(slot);
 			if (Reward.isReward(is)) {
