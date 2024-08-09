@@ -52,6 +52,11 @@
             <url>https://repo.codemc.io/repository/maven-public/</url>
         </repository>
 
+        <repository>
+            <id>puha-repo</id>
+            <url>https://repo.puha.io/repo/</url>
+        </repository>
+
         <!-- Placeholder API -->
         <repository>
             <id>placeholderapi</id>
@@ -243,6 +248,12 @@
             <groupId>com.github.ConnorLinfoot</groupId>
             <artifactId>TitleAPI</artifactId>
             <version>1.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.puharesource.mc</groupId>
+            <artifactId>TitleManager</artifactId>
+            <version>2.2.0</version>
         </dependency>
 
         <!-- ActionBarAPI -->
