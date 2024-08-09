@@ -60,7 +60,7 @@ public class CoreCustomItems {
 
 		// add custom texture to skull
 		SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-		GameProfile profile = new GameProfile(reward.getSkinUUID(), reward.getDisplayName());
+		GameProfile profile = new GameProfile(reward.getSkinUUID(), reward.getDisplayName().replaceAll("\\s+", "_"));
 		if (mTextureSignature.isEmpty())
 			profile.getProperties().put("textures", new Property("textures", mTextureValue));
 		else
