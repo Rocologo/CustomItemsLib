@@ -110,6 +110,7 @@ public class EconomyManager {
 			Type = EcoType.RESERVE;
 			return true;
 		}
+
 		return false;
 	}
 

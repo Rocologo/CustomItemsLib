@@ -1,7 +1,7 @@
 package metadev.digital.metacustomitemslib.messages;
 
 //TODO: PlaceHolderAPICompat is throwing errors when being called here. Make CustomItemsLib version?
-import one.lindegaard.BagOfGold.compatibility.PlaceholderAPICompat;
+import metadev.digital.metabagofgold.compatibility.PlaceholderAPICompat;
 
 import metadev.digital.metacustomitemslib.Core;
 import metadev.digital.metacustomitemslib.Strings;
@@ -388,17 +388,18 @@ public class Messages {
 
 	HashMap<Player, Long> lastMessage = new HashMap<Player, Long>();
 
+	// TODO: This seems borked
 	public void playerActionBarMessageQueue(Player player, String message) {
-		if (isEmpty(message))
+		if (isEmpty(message)) {
 			return;
+		}
 
-		final String final_message = BagOfGoldCompat.isSupported()
-				? PlaceholderAPICompat.setPlaceholders(player, message)
-				: "";
+		final String final_message = (BagOfGoldCompat.isSupported()) ? PlaceholderAPICompat.setPlaceholders(player, message) : "";
 
-		if (  //TitleManagerCompat.isSupported() || ActionAnnouncerCompat.isSupported() ||
-				ActionbarCompat.isSupported()
-				|| ActionBarAPICompat.isSupported() || CMICompat.isSupported()) {
+		Core.getMessages().debug(final_message);
+
+		/*|| ActionAnnouncerCompat.isSupported()*/
+		if (  TitleManagerCompat.isSupported() || ActionbarCompat.isSupported()	|| ActionBarAPICompat.isSupported() || CMICompat.isSupported()) {
 			long last = 0L;
 			long time_between_messages = 80L;
 			long delay = 1L, now = System.currentTimeMillis();
@@ -411,20 +412,23 @@ public class Messages {
 				else
 					delay = (last - now) + time_between_messages;
 			}
+
 			lastMessage.put(player, now + delay);
 
 			Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-
 				@Override
 				public void run() {
 					playerActionBarMessageNow(player, final_message);
 				}
 			}, delay);
 		} else {
-			if (Servers.isMC115OrNewer())
-				player.sendTitle("", final_message);
+			if( Servers.isMC119OrNewer()){
+				player.sendTitle("", message,10,100,10);
+			}
+			else if (Servers.isMC115OrNewer())
+				player.sendTitle("", message);
 			else
-				player.sendMessage(final_message);
+				player.sendMessage(message);
 
 		}
 	}

@@ -94,8 +94,10 @@ public class PlayerSettingsManager implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	private void onPlayerJoin(PlayerJoinEvent event) {
 		final Player player = event.getPlayer();
-		if (!containsKey(player))
+		if (!containsKey(player)) {
+			Core.getMessages().debug("Loading %s 's player data into memory", player);
 			load(player);
+		}
 	}
 
 	@EventHandler(priority = EventPriority.NORMAL)
@@ -114,8 +116,8 @@ public class PlayerSettingsManager implements Listener {
 	 * @param offlinePlayer
 	 */
 	public void load(final OfflinePlayer offlinePlayer) {
+		Core.getMessages().debug("Requesting %s's information from the database", offlinePlayer.getName());
 		Core.getDataStoreManager().requestPlayerSettings(offlinePlayer, new IDataCallback<PlayerSettings>() {
-
 			@Override
 			public void onCompleted(PlayerSettings ps) {
 				ps.setLast_logon(System.currentTimeMillis());

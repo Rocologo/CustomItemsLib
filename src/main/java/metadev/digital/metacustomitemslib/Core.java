@@ -178,9 +178,16 @@ public class Core extends JavaPlugin {
 
 		// Hook into Vault or Reserve
 		mEconomyManager = new EconomyManager(this);
-		if (!mEconomyManager.isActive())
+		if (!mEconomyManager.isActive() && Bukkit.getPluginManager().getPlugin("BagOfGold") == null){
+			getMessages().error("===============================================");
+			getMessages().error((getMessages().getString("core.command.base.economymanager")));
+			getMessages().error((getMessages().getString("core.command.base.economymanager2")));
+			getMessages().error((getMessages().getString("core.command.base.economymanager3")));
+			getMessages().error((getMessages().getString("core.commands.base.shutdown")));
+			getMessages().error("===============================================");
 			return;
-		
+		}
+
 		// Check for new updates
 		mUpdateManager = new UpdateManager(plugin);
 		mUpdateManager.processCheckResultInConsole();
@@ -205,6 +212,7 @@ public class Core extends JavaPlugin {
 			mDataStoreManager.shutdown();
 			getMessages().debug("Shutdown Store");
 			mStore.shutdown();
+			getMessages().notice((getMessages().getString("core.commands.base.shutdown")));
 		} catch (DataStoreException e) {
 			e.printStackTrace();
 		}

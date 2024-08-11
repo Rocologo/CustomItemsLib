@@ -5,28 +5,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import one.lindegaard.Core.shared.Skins;
-import one.lindegaard.Core.v1_10_R1.Skins_1_10_R1;
-import one.lindegaard.Core.v1_10_R1.Skins_1_12_R1;
-import one.lindegaard.Core.v1_11_R1.Skins_1_11_R1;
-import one.lindegaard.Core.v1_13_R1.Skins_1_13_R1;
-import one.lindegaard.Core.v1_13_R2.Skins_1_13_R2;
-import one.lindegaard.Core.v1_14_R1.Skins_1_14_R1;
-import one.lindegaard.Core.v1_15_R1.Skins_1_15_R1;
-import one.lindegaard.Core.v1_16_R1.Skins_1_16_R1;
-import one.lindegaard.Core.v1_16_R2.Skins_1_16_R2;
-import one.lindegaard.Core.v1_16_R3.Skins_1_16_R3;
-import one.lindegaard.Core.v1_17_R1.Skins_1_17_R1;
-import one.lindegaard.Core.v1_18_R1.Skins_1_18_R1;
-import one.lindegaard.Core.v1_19_R1.Skins_1_19_R1;
-import one.lindegaard.Core.v1_19_R2.Skins_1_19_R2;
-import one.lindegaard.Core.v1_19_R3.Skins_1_19_R3;
-import one.lindegaard.Core.v1_20_R1.Skins_1_20_R1;
-import one.lindegaard.Core.v1_8_R1.Skins_1_8_R1;
-import one.lindegaard.Core.v1_8_R2.Skins_1_8_R2;
-import one.lindegaard.Core.v1_8_R3.Skins_1_8_R3;
-import one.lindegaard.Core.v1_9_R1.Skins_1_9_R1;
-import one.lindegaard.Core.v1_9_R2.Skins_1_9_R2;
+import metadev.digital.metaskins.Skins;
+import metadev.digital.metaskins.SkinManager_Latest;
 import metadev.digital.metacustomitemslib.Core;
 import metadev.digital.metacustomitemslib.PlayerSettings;
 import metadev.digital.metacustomitemslib.Strings;
@@ -50,74 +30,24 @@ import java.util.UUID;
 
 public class CoreCustomItems {
 
-	//Plugin plugin;
-
-	//public CoreCustomItems(Plugin plugin) {
-	//	this.plugin = plugin;
-	//}
-
 	// How to get Playerskin
 	// https://www.spigotmc.org/threads/how-to-get-a-players-texture.244966/
 
 	/**
-	 * Return an ItemStack with the Players head texture.
-	 *
+	 * Return an NMS Skins class of the latest (or frozen in time for final revisions)
+	 * https://www.spigotmc.org/wiki/spigot-nms-and-minecraft-versions-1-16/
 	 * @return
 	 */
 	public static Skins getSkinsClass() {
-		String version;
-		Skins sk = null;
-		try {
-			version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-		} catch (ArrayIndexOutOfBoundsException whatVersionAreYouUsingException) {
-			whatVersionAreYouUsingException.printStackTrace();
-			return null;
+		Skins Manager = new SkinManager_Latest();
+
+		if (Core.getConfigManager().debug){
+			if (!Bukkit.getBukkitVersion().equals(Manager.getVersion())){
+				Core.getMessages().debug("Failed to get a NMS Skin Manager matching this version. Latest Meta Skins is " + Manager.getVersion() + ", where bukkit is reporting " + Bukkit.getBukkitVersion());
+			}
 		}
-		// https://www.spigotmc.org/wiki/spigot-nms-and-minecraft-versions-1-16/
-		if (version.equals("v1_20_R1")) {
-			sk = new Skins_1_20_R1();
-		} else if (version.equals("v1_19_R3")) {
-			sk = new Skins_1_19_R3();
-		} else if (version.equals("v1_19_R2")) {
-			sk = new Skins_1_19_R2();
-		} else if (version.equals("v1_19_R1")) {
-			sk = new Skins_1_19_R1();
-		} else if (version.equals("v1_18_R1")) {
-			sk = new Skins_1_18_R1();
-		} else if (version.equals("v1_17_R1")) {
-			sk = new Skins_1_17_R1();
-		} else if (version.equals("v1_16_R3")) {
-			sk = new Skins_1_16_R3();
-		} else if (version.equals("v1_16_R2")) {
-			sk = new Skins_1_16_R2();
-		} else if (version.equals("v1_16_R1")) {
-			sk = new Skins_1_16_R1();
-		} else if (version.equals("v1_15_R1")) {
-			sk = new Skins_1_15_R1();
-		} else if (version.equals("v1_14_R1")) {
-			sk = new Skins_1_14_R1();
-		} else if (version.equals("v1_13_R2")) {
-			sk = new Skins_1_13_R2();
-		} else if (version.equals("v1_13_R1")) {
-			sk = new Skins_1_13_R1();
-		} else if (version.equals("v1_12_R1")) {
-			sk = new Skins_1_12_R1();
-		} else if (version.equals("v1_11_R1")) {
-			sk = new Skins_1_11_R1();
-		} else if (version.equals("v1_10_R1")) {
-			sk = new Skins_1_10_R1();
-		} else if (version.equals("v1_9_R2")) {
-			sk = new Skins_1_9_R2();
-		} else if (version.equals("v1_9_R1")) {
-			sk = new Skins_1_9_R1();
-		} else if (version.equals("v1_8_R3")) {
-			sk = new Skins_1_8_R3();
-		} else if (version.equals("v1_8_R2")) {
-			sk = new Skins_1_8_R2();
-		} else if (version.equals("v1_8_R1")) {
-			sk = new Skins_1_8_R1();
-		}
-		return sk;
+
+		return (Bukkit.getBukkitVersion().equals(Manager.getVersion())) ? Manager : null;
 	}
 
 	/**
@@ -136,7 +66,7 @@ public class CoreCustomItems {
 
 		// add custom texture to skull
 		SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-		GameProfile profile = new GameProfile(reward.getSkinUUID(), reward.getDisplayName());
+		GameProfile profile = new GameProfile(reward.getSkinUUID(), reward.getDisplayName().replaceAll("\\s+", "_"));
 		if (mTextureSignature.isEmpty())
 			profile.getProperties().put("textures", new Property("textures", mTextureValue));
 		else
@@ -176,7 +106,7 @@ public class CoreCustomItems {
 		PlayerSettings ps = Core.getPlayerSettingsManager().getPlayerSettings(offlinePlayer);
 		if (ps.getTexture() == null || ps.getSignature() == null || ps.getTexture().isEmpty()
 				|| ps.getSignature().isEmpty()) {
-			Core.getMessages().debug("No skin found i database");
+			Core.getMessages().debug("No skin found in database");
 			String[] onlineSkin = new String[2];
 			if (offlinePlayer.isOnline()) {
 				Player player = (Player) offlinePlayer;

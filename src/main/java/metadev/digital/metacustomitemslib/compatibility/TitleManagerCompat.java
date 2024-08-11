@@ -1,8 +1,13 @@
 package metadev.digital.metacustomitemslib.compatibility;
 
+import io.puharesource.mc.titlemanager.api.v2.TitleManagerAPI;
+import metadev.digital.metacustomitemslib.Core;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+
 public class TitleManagerCompat {
 
-	/**
 	private static Plugin mPlugin;
 	private static TitleManagerAPI api;
 	private static boolean supported = false;
@@ -72,5 +77,4 @@ public class TitleManagerCompat {
 			//}
 		}
 	}
-**/
 }

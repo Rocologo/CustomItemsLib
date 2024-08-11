@@ -23,11 +23,13 @@ public class EntityPickupItemEventListener implements Listener {
 		// OBS: EntityPickupItemEvent does only exist in MC1.12 and newer
 
 		// This event is NOT called when the inventory is full.
-		if (event.isCancelled())
+		if (event.isCancelled()) {
 			return;
+		}
 
-		if (!Reward.isReward(event.getItem()))
+		if (!Reward.isReward(event.getItem())) {
 			return;
+		}
 
 		Entity entity = event.getEntity();
 

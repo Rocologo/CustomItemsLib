@@ -19,7 +19,7 @@ public class MobHuntingCompat {
 				supported = true;
 			} else {
 				Bukkit.getServer().getConsoleSender()
-						.sendMessage(Core.PREFIX_WARNING + "Your current version of MobHunting ("
+						.sendMessage(Core.PREFIX_ERROR + "Your current version of MobHunting ("
 								+ mPlugin.getDescription().getVersion()
 								+ ") is outdated. Please upgrade to 9.0.7 or newer.");
 				Bukkit.getPluginManager().disablePlugin(mPlugin);
