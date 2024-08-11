@@ -13,7 +13,7 @@ public class BagOfGoldCompat {
 		mPlugin = Bukkit.getPluginManager().getPlugin(CompatPlugin.BagOfGold.getName());
 
 		if (mPlugin != null) {
-			if (mPlugin.getDescription().getVersion().compareTo("3.0.0.") >= 0) {
+			if (mPlugin.getDescription().getVersion().compareTo("4.5.7.") >= 0) {
 				Bukkit.getServer().getConsoleSender().sendMessage(Core.PREFIX
 						+ "Enabling compatibility with BagOfGold (" + mPlugin.getDescription().getVersion() + ")");
 				supported = true;
@@ -21,7 +21,7 @@ public class BagOfGoldCompat {
 				Bukkit.getServer().getConsoleSender()
 						.sendMessage(Core.PREFIX_ERROR + "Your current version of BagOfGold ("
 								+ mPlugin.getDescription().getVersion()
-								+ ") is outdated. Please upgrade to 3.1.3 or newer.");
+								+ ") is outdated. Please upgrade to 4.5.7 or newer.");
 				Bukkit.getPluginManager().disablePlugin(mPlugin);
 			}
 		} else {

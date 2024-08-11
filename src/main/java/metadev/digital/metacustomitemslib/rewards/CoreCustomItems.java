@@ -41,6 +41,12 @@ public class CoreCustomItems {
 	public static Skins getSkinsClass() {
 		Skins Manager = new SkinManager_Latest();
 
+		if (Core.getConfigManager().debug){
+			if (!Bukkit.getBukkitVersion().equals(Manager.getVersion())){
+				Core.getMessages().debug("Failed to get a NMS Skin Manager matching this version. Latest Meta Skins is " + Manager.getVersion() + ", where bukkit is reporting " + Bukkit.getBukkitVersion());
+			}
+		}
+
 		return (Bukkit.getBukkitVersion().equals(Manager.getVersion())) ? Manager : null;
 	}
 
