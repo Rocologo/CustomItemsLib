@@ -5,23 +5,25 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+// TODO: Remove MetaSkins and deprecated calls as NMS is no longer used
 import metadev.digital.metaskins.Skins;
 import metadev.digital.metaskins.SkinManager_Latest;
 import metadev.digital.metacustomitemslib.Core;
-import metadev.digital.metacustomitemslib.PlayerSettings;
 import metadev.digital.metacustomitemslib.Strings;
 import metadev.digital.metacustomitemslib.mobs.MobType;
 import metadev.digital.metacustomitemslib.server.Servers;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.profile.PlayerProfile;
+import org.bukkit.profile.PlayerTextures;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,13 +53,50 @@ public class CoreCustomItems {
 	}
 
 	/**
+	 * Return an ItemStack with a custom texture. Updated to 1.21.1+ standards for PlayerProfile over GameProfile
+	 *
+	 * @param reward - Existing Reward Item
+	 * @param textureURL - Mojang Texture URL
+	 * @return ItemStack with custom texture.
+	 */
+	public static ItemStack getCustomTexture(Reward reward, String textureURL) {
+		ItemStack skull = CoreCustomItems.getDefaultPlayerHead(1);
+		SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
+		if (textureURL.isEmpty()){
+			return skull;
+		}
+
+		try {
+			PlayerProfile playerProfile = Bukkit.createPlayerProfile(reward.getSkinUUID(), reward.getDisplayName().replaceAll("\\s+", "_"));
+			PlayerTextures textures = playerProfile.getTextures();
+
+			textures.setSkin(new URL(textureURL));
+
+			skullMeta.setOwnerProfile(playerProfile);
+			skull.setItemMeta(skullMeta);
+			skull = Reward.setDisplayNameAndHiddenLores(skull, reward);
+
+		} catch (MalformedURLException e) {
+			Core.getMessages().debug("There was an issue validating the texture URL and getting the data from it");
+			e.printStackTrace();
+        } catch (NullPointerException e) {
+			Core.getMessages().debug("setOwnerProfile on skullMeta created an NPE");
+			e.printStackTrace();
+		}
+
+		return skull;
+    }
+
+	/**
 	 * Return an ItemStack with a custom texture. If Mojang changes the way they
 	 * calculate Signatures this method will stop working.
+	 *
 	 *
 	 * @param reward
 	 * @param mTextureValue
 	 * @param mTextureSignature
 	 * @return ItemStack with custom texture.
+	 * @deprecated - 1.21.1+ requires PlayerProfile and TextureURLs instead of GameProfile and Texture Value/Signatures
 	 */
 	public static ItemStack getCustomtexture(Reward reward, String mTextureValue, String mTextureSignature) {
 		ItemStack skull = CoreCustomItems.getDefaultPlayerHead(1);
@@ -100,63 +139,33 @@ public class CoreCustomItems {
 	 * @return
 	 */
 	public static ItemStack getPlayerHead(UUID uuid, String name, int amount, double money) {
+		// TODO: SEE IF WE NEED NAME OR MONEY AT ALL
 		ItemStack skull = CoreCustomItems.getDefaultPlayerHead(amount);
 		skull.setAmount(amount);
-		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(uuid);
-		PlayerSettings ps = Core.getPlayerSettingsManager().getPlayerSettings(offlinePlayer);
-		if (ps.getTexture() == null || ps.getSignature() == null || ps.getTexture().isEmpty()
-				|| ps.getSignature().isEmpty()) {
-			Core.getMessages().debug("No skin found in database");
-			String[] onlineSkin = new String[2];
-			if (offlinePlayer.isOnline()) {
-				Player player = (Player) offlinePlayer;
-				Skins sk = CoreCustomItems.getSkinsClass();
-				if (sk != null) {
-					Core.getMessages().debug("Trying to fecth skin from Online Player Profile");
-					onlineSkin = sk.getSkin(player);
-				} else {
-					Core.getMessages().debug("Trying to fecth skin from Minecraft Servers");
-					onlineSkin = getSkinFromUUID(uuid);
-				}
-			}
+		SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
 
-			if ((onlineSkin == null || onlineSkin[0] == null || onlineSkin[0].isEmpty() || onlineSkin[1] == null
-					|| onlineSkin[1].isEmpty()) && Servers.isMC112OrNewer())
-				return getPlayerHeadOwningPlayer(uuid, name, amount, money);
+		try {
+			OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(uuid);
+			PlayerProfile playerProfile = offlinePlayer.getPlayerProfile();
 
-			if (onlineSkin != null && onlineSkin[0] != null && !onlineSkin[0].isEmpty() && onlineSkin[1] != null
-					&& !onlineSkin[1].isEmpty()) {
-				ps.setTexture(onlineSkin[0]);
-				ps.setSignature(onlineSkin[1]);
-				Core.getPlayerSettingsManager().setPlayerSettings(ps);
-			} else {
-				Core.getMessages().debug("Empty skin");
-				return skull;
-			}
-		} else {
-			if (offlinePlayer.isOnline()) {
-				Player player = (Player) offlinePlayer;
-				Skins sk = CoreCustomItems.getSkinsClass();
-				if (sk != null) {
-					String[] skin = sk.getSkin(player);
-					if (skin != null && skin[0] != null && !skin[0].equals(ps.getTexture())) {
-						Core.getMessages().debug("%s has changed skin, updating database with new skin. (%s,%s)",
-								player.getName(), ps.getTexture(), skin[0]);
-						ps.setTexture(skin[0]);
-						ps.setSignature(skin[1]);
-						Core.getPlayerSettingsManager().setPlayerSettings(ps);
-					}
-				}
-			} else
-				Core.getMessages().debug("%s using skin from skin Cache", offlinePlayer.getName());
+			PlayerTextures playerTextures = playerProfile.getTextures();
+			playerTextures.setSkin((playerProfile.getTextures().getSkin()));
+
+			skullMeta.setOwnerProfile(playerProfile);
+			skull.setItemMeta(skullMeta);
+		} catch (NullPointerException e) {
+			Core.getMessages().debug("setOwnerProfile on skullMeta created an NPE");
+			e.printStackTrace();
 		}
-
-		skull = new ItemStack(getCustomtexture(new Reward(offlinePlayer.getName(), money, RewardType.KILLED, uuid),
-				ps.getTexture(), ps.getSignature()));
-		skull.setAmount(amount);
 		return skull;
 	}
 
+	/**
+	 *
+	 * @param uuid
+	 * @return
+	 * @deprecated - Player head drop system changed in 1.21.1 API
+	 */
 	private static String[] getSkinFromUUID(UUID uuid) {
 		try {
 			URL url_1 = new URL(
@@ -183,6 +192,15 @@ public class CoreCustomItems {
 		}
 	}
 
+	/**
+	 *
+	 * @param uuid
+	 * @param name
+	 * @param amount
+	 * @param money
+	 * @return
+	 * @deprecated - Player head drop system changed in 1.21.1 API
+	 */
 	private static ItemStack getPlayerHeadOwningPlayer(UUID uuid, String name, int amount, double money) {
 		ItemStack skull = CoreCustomItems.getDefaultPlayerHead(amount);
 		SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
@@ -237,8 +255,8 @@ public class CoreCustomItems {
 
 		default:
 			ItemStack is = new ItemStack(
-					getCustomtexture(new Reward(minecraftMob.getEntityName(), money, RewardType.KILLED, skinUUID),
-							minecraftMob.getTextureValue(), minecraftMob.getTextureSignature()));
+					getCustomTexture(new Reward(minecraftMob.getEntityName(), money, RewardType.KILLED, skinUUID),
+							minecraftMob.getTextureURL()));
 			is.setAmount(amount);
 			return is;
 		}

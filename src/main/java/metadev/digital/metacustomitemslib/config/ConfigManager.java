@@ -236,6 +236,12 @@ public class ConfigManager extends AutoConfig {
 	@ConfigField(name = "displayname_format", category = "reward.itemtype.skull", comment = "This is the displayname format of BagOfGold (SKULL) items.")
 	public String bagOfGoldDisplayNameFormat = "&6{name} &6({value})&r";
 
+	@ConfigField(name = "skull_texture_uuid", category = "reward.itemtype.skull", comment = "This is the Custom Texture UUID generated at http://mineskin.org")
+	public String skullTextureUUID = "1d5a5ffc-728f-337f-b37e-898a3be6898e";
+
+	@ConfigField(name = "skull_texture_url", category = "reward.itemtype.skull", comment = "This is the Custom Texture URL generated at http://mineskin.org")
+	public String skullTextureURL = "http://textures.minecraft.net/texture/396ce13ff6155fdf3235d8d22174c5de4bf5512f1adeda1afa3fc28180f3f7";
+
 	@ConfigField(name = "skull_texture_value", category = "reward.itemtype.skull", comment = "This is the Custom Texture Value generated at http://mineskin.org")
 	public String skullTextureValue = "eyJ0aW1lc3RhbXAiOjE0ODU5MTIwNjk3OTgsInByb2ZpbGVJZCI6IjdkYTJhYjNhOTNjYTQ4ZWU4MzA0OGFmYzNiODBlNjhlIiwicHJvZmlsZU5hbWUiOiJHb2xkYXBmZWwiLCJzaWduYXR1cmVSZXF1aXJlZCI6dHJ1ZSwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzM5NmNlMTNmZjYxNTVmZGYzMjM1ZDhkMjIxNzRjNWRlNGJmNTUxMmYxYWRlZGExYWZhM2ZjMjgxODBmM2Y3In19fQ==";
 
