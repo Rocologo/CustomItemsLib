@@ -148,11 +148,10 @@ public class CoreRewardManager {
 					addedMoney = addedMoney + nextBag;
 					ItemStack is;
 					if (Core.getConfigManager().rewardItemtype.equalsIgnoreCase("SKULL"))
-						is = CoreCustomItems.getCustomtexture(
+						is = CoreCustomItems.getCustomTexture(
 								new Reward(Core.getConfigManager().bagOfGoldName, Tools.round(nextBag),
 										RewardType.BAGOFGOLD, UUID.fromString(RewardType.BAGOFGOLD.getUUID())),
-								Core.getConfigManager().skullTextureValue,
-								Core.getConfigManager().skullTextureSignature);
+								Core.getConfigManager().skullTextureURL);
 					else {
 						is = new ItemStack(Material.valueOf(Core.getConfigManager().rewardItem), 1);
 						is = Reward.setDisplayNameAndHiddenLores(is, new Reward(Core.getConfigManager().bagOfGoldName,
@@ -265,9 +264,9 @@ public class CoreRewardManager {
 			} else if (Core.getConfigManager().rewardItemtype.equalsIgnoreCase("SKULL")) {
 				rewardType = RewardType.BAGOFGOLD;
 				skinuuid = UUID.fromString(RewardType.BAGOFGOLD.getUUID());
-				is = CoreCustomItems.getCustomtexture(
+				is = CoreCustomItems.getCustomTexture(
 						new Reward(Core.getConfigManager().bagOfGoldName.trim(), money, rewardType, skinuuid),
-						Core.getConfigManager().skullTextureValue, Core.getConfigManager().skullTextureSignature);
+						Core.getConfigManager().skullTextureURL);
 			} else if (Core.getConfigManager().rewardItemtype.equalsIgnoreCase("KILLER")) {
 				rewardType = RewardType.KILLER;
 				skinuuid = player.getUniqueId();

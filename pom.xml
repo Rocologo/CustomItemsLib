@@ -6,7 +6,7 @@
 
     <groupId>metadev.digital</groupId>
     <artifactId>MetaCustomItemsLib</artifactId>
-    <version>2.1.1</version>
+    <version>2.1.2</version>
     <name>CustomItems Library</name>
     <url>https://github.com/Metadev-Digital/CustomItemsLib</url>
     <description>CustomItemsLib is a library with code shared between MobHunting and BagOfGold.</description>
@@ -166,7 +166,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.21-R0.1-SNAPSHOT</version>
+            <version>1.21.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -182,7 +182,7 @@
         <dependency>
             <groupId>metadev.digital</groupId>
             <artifactId>MetaBagOfGold</artifactId>
-            <version>4.5.7-SNAPSHOT</version>
+            <version>4.5.8-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
