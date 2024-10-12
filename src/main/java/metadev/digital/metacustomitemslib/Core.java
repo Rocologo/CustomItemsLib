@@ -39,6 +39,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class Core extends JavaPlugin {
@@ -214,6 +215,9 @@ public class Core extends JavaPlugin {
 			mStore.shutdown();
 			getMessages().notice((getMessages().getString("core.commands.base.shutdown")));
 		} catch (DataStoreException e) {
+			e.printStackTrace();
+		} catch (ConcurrentModificationException e ){
+			getMessages().notice("Failed to shutdown data store properly due to ConcurrentModification Exception");
 			e.printStackTrace();
 		}
 	}
