@@ -5,9 +5,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-// TODO: Remove MetaSkins and deprecated calls as NMS is no longer used
-import metadev.digital.metaskins.Skins;
-import metadev.digital.metaskins.SkinManager_Latest;
 import metadev.digital.metacustomitemslib.Core;
 import metadev.digital.metacustomitemslib.Strings;
 import metadev.digital.metacustomitemslib.mobs.MobType;
@@ -31,26 +28,6 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class CoreCustomItems {
-
-	// How to get Playerskin
-	// https://www.spigotmc.org/threads/how-to-get-a-players-texture.244966/
-
-	/**
-	 * Return an NMS Skins class of the latest (or frozen in time for final revisions)
-	 * https://www.spigotmc.org/wiki/spigot-nms-and-minecraft-versions-1-16/
-	 * @return
-	 */
-	public static Skins getSkinsClass() {
-		Skins Manager = new SkinManager_Latest();
-
-		if (Core.getConfigManager().debug){
-			if (!Bukkit.getBukkitVersion().equals(Manager.getVersion())){
-				Core.getMessages().debug("Failed to get a NMS Skin Manager matching this version. Latest Meta Skins is " + Manager.getVersion() + ", where bukkit is reporting " + Bukkit.getBukkitVersion());
-			}
-		}
-
-		return (Bukkit.getBukkitVersion().equals(Manager.getVersion())) ? Manager : null;
-	}
 
 	/**
 	 * Return an ItemStack with a custom texture. Updated to 1.21.1+ standards for PlayerProfile over GameProfile

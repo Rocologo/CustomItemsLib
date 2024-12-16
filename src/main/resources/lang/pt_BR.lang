@@ -1,4 +1,4 @@
-archived-lang-version=1.2
+archived-lang-version=1.3
 core.command.base.description=Meta CustomItemsLib Version
 core.command.base.economymanager=Failed to detect a compatible economy manager. Meta CustomItemsLib requires one to function.
 core.command.base.economymanager2=Ensure you have a compatible version of Vault or Reserve as well as a manager like Bag Of Gold or EssentialsX installed.
@@ -69,6 +69,7 @@ mobs.Chicken.name=§7Chicken
 mobs.Cleric.name=§7Cleric
 mobs.Cod.name=§7Cod
 mobs.Cow.name=§7Cow
+mobs.Creaking.name=§7Creaking
 mobs.Creeper.name=§7Creeper
 mobs.Dolphin.name=§7Dolphin
 mobs.Donkey.name=§7Donkey

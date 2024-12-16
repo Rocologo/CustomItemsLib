@@ -17,6 +17,10 @@ public enum MobType {
 	// ******************************************************************
 	// Minecraft 1.21
 	// ******************************************************************
+	Creaking("Creaking", "8bf1141f-b11e-4ecb-845b-55c21e1c5c4b", "Creaking", "ewogICJ0aW1lc3RhbXAiIDogMTczMzc2MTUyODk4OCwKICAicHJvZmlsZUlkIiA6ICI4YmM3MjdlYThjZjA0YWUzYTI4MDVhY2YzNjRjMmQyNCIsCiAgInByb2ZpbGVOYW1lIiA6ICJub3RpbnZlbnRpdmUiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDRmZjdiZWZiMjY5YWMyY2I3YTQxOWM5N2NjNWQ0NjA1MmQ4OWE3NjYzMzcxOWRhZTY4NWJlZDI3NDQxNjI2MyIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9",
+			"IWt4TKrj4T1mrt8YaiaexMl44n4mfXoLShEkGN9K/fTthZc8pID8mohJlGCea/GdlIqU7CC18wl5mcnClaUK75oEXgbIbpwu8CiHmzAKlWTa1V5VqKdr5jz95bhoa6laMMi/pkB9cLKoTwZPUuI7+9QZ+48ZlAh7mQGGjLXoEQOOYw49KSk7tW7tuQ0azyZQekgCPhyogzzSM9fmi+qYsU/rK6Me2U0Teqe8FLw6DFdwyfcSHp07V3DRsJZihP+bw0zIS9KvJhk5gYGeILCiWPeh18BMTnIlwgufCqpzw9s2D0QVfKUo0291KYYwFZDK2qFTsLFSxQ6vQVfe85zbZ88ciTy+fvvOFBhSc6zk34wH0OfMe5D2OWu9RBUoauVuHHhQipg7ZQSKob4Uvsq5r4iJDaC05RLyYBe3wwbAJEp9n190XVLU6skJPNQo1c7mc5WLK6w5Jrwdj6T4n4q46TijAyR9hh7oEEwlVWwYJH0sbAYnR9imLxm8WQZfAIx3yHJcDs2Zn6V4qStPICw6KAtJIDGVAhgUeGpbRujhZhoYMxCX8Map4GADI1yqYJX77xBxXZDm3sR10L4a7uvJGCuAfRPZwBFXUbGZc9IMH0GAJW3nZ0Sd7pJNxi2HeroNwmC3uM0zd6W8ZSrcShLwkadR4w1m+ooja6GSmvbfL54=",
+			"https://textures.minecraft.net/texture/44ff7befb269ac2cb7a419c97cc5d46052d89a76633719dae685bed274416263"),
+
 	Breeze("Breeze", "7e8a96ed-57af-42a7-8064-69d086a65c76", "Breeze",
 			"ewogICJ0aW1lc3RhbXAiIDogMTcyMDM3OTQ4OTc2NCwKICAicHJvZmlsZUlkIiA6ICI5YzM1ZGU3MjdmMzU0ZTVlYjFiOWRhOGViYTZhYzM1YyIsCiAgInByb2ZpbGVOYW1lIiA6ICJtb21teXR3ZXJrZXVzZSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9iNzczNTQ4ZTA4YjliODg3YzM4MjZjOGRhNWI2MGI1YjYzMWQzMDJjZGFmMmY4MjE5YTYxZTczYWQxMGU2MTkxIgogICAgfQogIH0KfQ==",
 			"qkhBnjCTl6EFLokibvMgFJ+jXhEwbmisHoZ1z4NMsyVgIAzO1hXMQSJJhkT/JnmEx+uEBDLqa93z7G+weElA0vFKhdBM/h7FwQu8nQAflqZfBfr45OAKFsrrhjuz4qTmgP0JFdD+p24xgU6le8FVExr9fx+tskniAeveKx1tNwtkboopB/tZCLTqnwSLENG3hSo0dICGkUDMAvQwuc2wcM9JwrRz68GiUCgDpCwWADKiHfDSMEuRkdB4ImJL+B/jl63SyZXjJkyccLldt1+mJb/eFDwJiXoiH84/KA5GwFBtgxDTa4Gy3NwDYW7Pvr6XJwjbdrC8mwfi5bqfPcqVm9MpydLh73VceTPUHTaoZyPp+jENYXI6+HqG3vvenrCZJZ4bnVJ/8XnnPL4SBhFC1y6Pn8fqsn7ZPN7nScDYFGH/xuhzqKAVFfUdcpHRGvrw8UU3kxPD9ESg09f/pFthdoUfz4BoKnJAmCo+3C/9nPI6bXbNZ4LtOy/D4D8ww8Ao6+dqiJEoFFc/3qmM270atDiCs6IveRIPwqQOK9ILslvLFX6GaJLWxdokjFGdRgtnpu1YdZelGodoxPen96ZPb4+H0eHUpfq2lxrMa2tFTJ+/joMuK42ZPcEIyEVRyNy6JRYKvC7LSnCpLvPCVe/zY0IozuB3HoEcFio94RHcy5U=",
@@ -685,7 +689,9 @@ public enum MobType {
 	public boolean matches(Entity entity) {
 		// TODO: Evaluate if we even need to bother supporting old versions of minecraft on new versions of plugin
 		if(Servers.isMC121OrNewer()) {
-			if (this == Breeze)
+			if (this == Creaking)
+				return entity instanceof org.bukkit.entity.Creaking;
+			else if (this == Breeze)
 				return entity instanceof org.bukkit.entity.Breeze;
 			else if(this == Bogged)
 				return entity instanceof org.bukkit.entity.Bogged;

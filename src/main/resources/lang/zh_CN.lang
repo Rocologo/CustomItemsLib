@@ -1,4 +1,4 @@
-archived-lang-version=1.2
+archived-lang-version=1.3
 core.command.base.description=Meta CustomItemsLib 版本
 core.command.base.economymanager=無法偵測到相容的經濟管理器。 Meta CustomItemsLib 需要一個才能運作。
 core.command.base.economymanager2=確保您安裝了 Vault 或 Reserve 的兼容版本以及 Bag Of Gold 或 EssentialsX 等管理器。
@@ -69,6 +69,7 @@ mobs.Chicken.name=§7鸡
 mobs.Cleric.name=§7牧師
 mobs.Cod.name=§7鳕鱼
 mobs.Cow.name=§7牛
+mobs.Creaking.name=§7吱吱作響
 mobs.Creeper.name=§7爬行者
 mobs.Dolphin.name=§7海豚
 mobs.Donkey.name=§7驴
