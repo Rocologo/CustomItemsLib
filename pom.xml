@@ -104,11 +104,11 @@
 			<artifactId>NMS_Shared</artifactId>
 			<version>${NMS_Shared.version}</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_21_R3</artifactId>
 			<version>v1_21_R3-SNAPSHOT</version>
-		</dependency>
+		<dependenc>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_21_R2</artifactId>
@@ -128,7 +128,7 @@
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_20_R2</artifactId>
 			<version>v1_20_R2-SNAPSHOT</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_20_R1</artifactId>
