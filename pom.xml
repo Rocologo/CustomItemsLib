@@ -5,7 +5,7 @@
 	<artifactId>CustomItemsLib</artifactId>
 	<packaging>jar</packaging>
 	<!-- <version>1.0.9</version> -->
-	<version>1.0.9-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<name>Rocologo's CustomItems Library</name>
 	<url>https://github.com/Rocologo/CustomItemsLib</url>
 	<description>CustomItemsLib is a library with code shared between MobHunting and BagOfGold. </description>
@@ -24,8 +24,8 @@
 
 	<properties>	
 			<!-- These 2 versions MUST ALWAYS be one lower than newest version to make the plugin compile -->
-			<bagofgold.version>4.5.6-SNAPSHOT</bagofgold.version>
-			<mobhunting.version>8.5.5-SNAPSHOT</mobhunting.version>
+			<bagofgold.version>4.5.7-SNAPSHOT</bagofgold.version>
+			<mobhunting.version>8.5.6-SNAPSHOT</mobhunting.version>
 	</properties>
 
 	<issueManagement>
@@ -104,7 +104,6 @@
 			<artifactId>NMS_Shared</artifactId>
 			<version>${NMS_Shared.version}</version>
 		</dependency>
-		
 		
 		<dependency>
 			<groupId>one.lindegaard</groupId>

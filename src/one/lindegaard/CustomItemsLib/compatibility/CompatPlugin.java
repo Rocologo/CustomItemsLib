@@ -23,7 +23,7 @@ public enum CompatPlugin {
 	InfernalMobs("InfernalMobs", 19), //
 	LibsDisguises("LibsDisguises", 20), //
 	mcMMO("mcMMO", 21), //
-    //	Minigames("Minigames", 22), // DELETED
+    Minigames("Minigames", 22), // 
 	MinigamesLib("MinigamesLib", 23), //
 	MobArena("MobArena", 24), //
 	MobDungeon("MobDungeon", 25), //
