@@ -90,6 +90,7 @@
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
 			<version>${spigotmc_1_21_R3.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -102,124 +103,124 @@
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_Shared</artifactId>
-			<version>${NMS_Shared.version}</version>
+			<version>${main.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_21_R3</artifactId>
-			<version>v1_21_R3-SNAPSHOT</version>
+			<version>${main.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_21_R2</artifactId>
-			<version>v1_21_R2-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_21_R1</artifactId>
-			<version>v1_21_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_20_R3</artifactId>
-			<version>v1_20_R3-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_20_R2</artifactId>
-			<version>v1_20_R2-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_20_R1</artifactId>
-			<version>v1_20_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_19_R3</artifactId>
-			<version>v1_19_R3-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_19_R2</artifactId>
-			<version>v1_19_R2-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_19_R1</artifactId>
-			<version>v1_19_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_18_R1</artifactId>
-			<version>v1_18_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_17_R1</artifactId>
-			<version>v1_17_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_16_R3</artifactId>
-			<version>v1_16_R3-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_16_R2</artifactId>
-			<version>v1_16_R2-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_16_R1</artifactId>
-			<version>v1_16_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_15_R1</artifactId>
-			<version>v1_15_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_14_R1</artifactId>
-			<version>v1_14_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_13_R2</artifactId>
-			<version>v1_13_R2-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_13_R1</artifactId>
-			<version>v1_13_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_12_R1</artifactId>
-			<version>v1_12_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_11_R1</artifactId>
-			<version>v1_11_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_10_R1</artifactId>
-			<version>v1_10_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_9_R2</artifactId>
-			<version>v1_9_R2-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
@@ -229,29 +230,31 @@
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_8_R3</artifactId>
-			<version>v1_8_R3-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_8_R2</artifactId>
-			<version>v1_8_R2-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>NMS_v1_8_R1</artifactId>
-			<version>v1_8_R1-SNAPSHOT</version>
+			<version>${main.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>BagOfGold</artifactId>
 			<version>${bagofgold.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>one.lindegaard</groupId>
 			<artifactId>MobHunting</artifactId>
 			<version>${mobhunting.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		
 		<!-- BossBarAPI -->
@@ -259,6 +262,7 @@
 			<groupId>org.inventivetalent</groupId>
 			<artifactId>bossbarapi</artifactId>
 			<version>${bossbarapi.version}</version>
+			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<artifactId>metrics-lite</artifactId>
@@ -272,6 +276,7 @@
 			<groupId>me.confuser</groupId>
 			<artifactId>BarAPI</artifactId>
 			<version>${barapi.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- TitleManager -->
@@ -279,6 +284,7 @@
 			<groupId>io.puharesource.mc.titlemanager</groupId>
 			<artifactId>TitleManager</artifactId>
 			<version>${titlemanager.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- TitleAPI, ActionBarAPI -->
@@ -286,6 +292,7 @@
 			<groupId>com.github.ConnorLinfoot</groupId>
 			<artifactId>TitleAPI</artifactId>
 			<version>${TitleAPI.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- CMI -->
@@ -293,11 +300,13 @@
 			<groupId>com.Zrips.CMI</groupId>
 			<artifactId>CMI</artifactId>
 			<version>${CMI.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.Zrips.CMILib</groupId>
 			<artifactId>CMILib</artifactId>
 			<version>${CMILib.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- ActionBarAPI -->
@@ -305,6 +314,7 @@
 			<groupId>com.github.ConnorLinfoot</groupId>
 			<artifactId>ActionBarAPI</artifactId>
 			<version>${ActionBarAPI.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- ActionAnnouncer -->
@@ -312,6 +322,7 @@
 			<groupId>me.clip.actionannouncer</groupId>
 			<artifactId>ActionAnnouncer</artifactId>
 			<version>${ActionAnnouncer.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		
 				<!-- Vault / -->
